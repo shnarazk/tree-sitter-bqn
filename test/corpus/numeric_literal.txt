@@ -1,10 +1,8 @@
 ==================
-numeric literals
+integer literal
 ==================
 1
 ¯1
-∞
-¯∞
 ---
 
 (source_file
@@ -31,7 +29,47 @@ numeric literals
       )
     )
   )
+)
+==================
+float literal
+==================
+1.8
+¯3.01
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl))
+          )
+        )
+      )
+    )
+  )
   (STMT_delimiter)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl))
+          )
+        )
+      )
+    )
+  )
+)
+==================
+infinity
+==================
+∞
+¯∞
+---
+
+(source_file
   (STMT
     (EXPR
       (subExpr
