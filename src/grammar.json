@@ -1,0 +1,169 @@
+{
+  "name": "BQN",
+  "rules": {
+    "source_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "stmt_delimiter"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "stmt"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "stmt_delimiter"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "stmt"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "stmt_delimiter"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "stmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nothing"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "export"
+        }
+      ]
+    },
+    "stmt_delimiter": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "⋄"
+          },
+          {
+            "type": "STRING",
+            "value": ","
+          },
+          {
+            "type": "STRING",
+            "value": "\n"
+          },
+          {
+            "type": "STRING",
+            "value": "\r"
+          },
+          {
+            "type": "PATTERN",
+            "value": "#[^\\n]*(\\n\\r)+"
+          }
+        ]
+      }
+    },
+    "expr": {
+      "type": "STRING",
+      "value": "."
+    },
+    "export": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "STRING",
+          "value": "⇐"
+        }
+      ]
+    },
+    "nothing": {
+      "type": "STRING",
+      "value": "·"
+    },
+    "symbol": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "symbol_s"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol_F"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol__m"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol__c_"
+        }
+      ]
+    },
+    "symbol_s": {
+      "type": "PATTERN",
+      "value": "[a-z]\\w*"
+    },
+    "symbol_F": {
+      "type": "PATTERN",
+      "value": "[A-Z]\\w*"
+    },
+    "symbol__m": {
+      "type": "PATTERN",
+      "value": "_[A-Za-z]\\w*"
+    },
+    "symbol__c_": {
+      "type": "PATTERN",
+      "value": "_[A-Za-z]\\w*_"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+

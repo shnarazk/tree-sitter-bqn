@@ -1,0 +1,135 @@
+[
+  {
+    "type": "export",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "stmt",
+          "named": true
+        },
+        {
+          "type": "stmt_delimiter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "export",
+          "named": true
+        },
+        {
+          "type": "expr",
+          "named": true
+        },
+        {
+          "type": "nothing",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stmt_delimiter",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "symbol_F",
+          "named": true
+        },
+        {
+          "type": "symbol__c_",
+          "named": true
+        },
+        {
+          "type": "symbol__m",
+          "named": true
+        },
+        {
+          "type": "symbol_s",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "\r",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "expr",
+    "named": true
+  },
+  {
+    "type": "nothing",
+    "named": true
+  },
+  {
+    "type": "symbol_F",
+    "named": true
+  },
+  {
+    "type": "symbol__c_",
+    "named": true
+  },
+  {
+    "type": "symbol__m",
+    "named": true
+  },
+  {
+    "type": "symbol_s",
+    "named": true
+  },
+  {
+    "type": "⇐",
+    "named": false
+  },
+  {
+    "type": "⋄",
+    "named": false
+  }
+]

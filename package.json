@@ -1,0 +1,27 @@
+{
+  "name": "tree-sitter-bqn",
+  "version": "1.0.0",
+  "description": "parser for BQN",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shnarazk/tree-sitter-bqn.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "bqn",
+    "parser"
+  ],
+  "author": "shnarazk",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/shnarazk/tree-sitter-bqn/issues"
+  },
+  "homepage": "https://github.com/shnarazk/tree-sitter-bqn#readme",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  }
+}
