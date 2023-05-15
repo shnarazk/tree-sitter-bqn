@@ -101,6 +101,10 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "expr",
     "named": true
   },

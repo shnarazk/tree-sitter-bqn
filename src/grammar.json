@@ -87,10 +87,6 @@
           {
             "type": "STRING",
             "value": "\r"
-          },
-          {
-            "type": "PATTERN",
-            "value": "#[^\\n]*(\\n\\r)+"
           }
         ]
       }
@@ -152,12 +148,28 @@
     "symbol__c_": {
       "type": "PATTERN",
       "value": "_[A-Za-z]\\w*_"
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "#"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
+      }
     }
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

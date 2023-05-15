@@ -1,6 +1,8 @@
 module.exports = grammar({
   name: 'BQN',
 
+  extras: $ => [$.comment],
+
   rules: {
     source_file: $ => seq(
       optional($.stmt_delimiter),
@@ -9,7 +11,7 @@ module.exports = grammar({
       optional($.stmt_delimiter)
     ),
     stmt: $ => choice($.expr, $.nothing, $.export),
-    stmt_delimiter: $ => repeat1(choice('⋄', ',', '\n', '\r', /#[^\n]*(\n\r)+/)),
+    stmt_delimiter: $ => repeat1(choice('⋄', ',', '\n', '\r')),
     expr: $ => '.',
     export: $ => seq($.symbol, '⇐'),
     nothing: $ => '·',
@@ -18,6 +20,7 @@ module.exports = grammar({
     symbol_F: $ => /[A-Z]\w*/,
     symbol__m: $ => /_[A-Za-z]\w*/,
     symbol__c_: $ => /_[A-Za-z]\w*_/,
+    comment: $ => token(seq('#', /.*/))
   }
 });
  
