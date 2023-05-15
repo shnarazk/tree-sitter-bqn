@@ -1,0 +1,76 @@
+==================
+empty list
+==================
+⟨⟩
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom (array))))))
+  )
+)
+
+==================
+strand
+==================
+1‿2
+1‿2‿3
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (atom (symbol_sl)))
+            (ANY (atom (symbol_sl)))
+          )
+        )
+      )
+    )
+  )
+  (STMT_delimiter)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (atom (symbol_sl)))
+            (ANY (atom (symbol_sl)))
+            (ANY (atom (symbol_sl)))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+list literal
+==================
+⟨1,2⟩
+# ⟨1,2,3⟩
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom
+              (array
+                (EXPR (subExpr (arg (subject (atom (symbol_sl))))))
+                (STMT_delimiter)
+                (EXPR (subExpr (arg (subject (atom (symbol_sl))))))
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (STMT_delimiter)
+  (comment)
+) 
