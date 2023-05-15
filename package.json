@@ -24,8 +24,8 @@
   "devDependencies": {
     "tree-sitter-cli": "^0.20.8"
   },
-  "tree-sitter": {
+  "tree-sitter": [{
     "scope": "source.bqn",
-    "file_types": ["bqn"]
-  }
+    "file-types": ["bqn"]
+  }]
 }
