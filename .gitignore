@@ -1,5 +1,5 @@
 Cargo.lock
-mode_modules
+node_modules
 build
 *.log
 package_lock.json

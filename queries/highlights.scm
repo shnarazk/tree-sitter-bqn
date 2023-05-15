@@ -1,6 +1,9 @@
 (comment) @comment
 
-;"⟨" @punctuation.bracket
+"⟨" @punctuation.bracket
+")" @punctuation.bracket
+"[" @punctuation.bracket
+"]" @punctuation.bracket
 ;"⁼" @punctuation.delimiter
 "⊸" @operator
 "○" @operator
@@ -12,3 +15,4 @@
 "," @punctuation.delimiter
 "‿" @punctuation.delimiter
 ; "⍟" @punctuation.bracket
+"⇐" @keyword
