@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "tree_sitter_BQN_binding",
+      "target_name": "tree_sitter_bqn_binding",
       "include_dirs": [
         "<!(node -e \"require('nan')\")",
         "src"

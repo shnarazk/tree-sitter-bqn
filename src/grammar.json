@@ -1,5 +1,5 @@
 {
-  "name": "BQN",
+  "name": "bqn",
   "rules": {
     "source_file": {
       "type": "SEQ",
@@ -81,12 +81,8 @@
             "value": ","
           },
           {
-            "type": "STRING",
-            "value": "\n"
-          },
-          {
-            "type": "STRING",
-            "value": "\r"
+            "type": "PATTERN",
+            "value": "\\r?\\n"
           }
         ]
       }
@@ -167,6 +163,10 @@
     }
   },
   "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    },
     {
       "type": "SYMBOL",
       "name": "comment"

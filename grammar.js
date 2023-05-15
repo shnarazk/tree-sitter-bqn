@@ -1,7 +1,7 @@
 module.exports = grammar({
-  name: 'BQN',
+  name: 'bqn',
 
-  extras: $ => [$.comment],
+  extras: $ => [/\s/, $.comment],
 
   rules: {
     source_file: $ => seq(
@@ -11,7 +11,7 @@ module.exports = grammar({
       optional($.stmt_delimiter)
     ),
     stmt: $ => choice($.expr, $.nothing, $.export),
-    stmt_delimiter: $ => repeat1(choice('⋄', ',', '\n', '\r')),
+    stmt_delimiter: $ => repeat1(choice('⋄', ',', /\r?\n/)),
     expr: $ => '.',
     export: $ => seq($.symbol, '⇐'),
     nothing: $ => '·',

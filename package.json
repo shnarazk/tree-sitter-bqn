@@ -23,5 +23,9 @@
   "homepage": "https://github.com/shnarazk/tree-sitter-bqn#readme",
   "devDependencies": {
     "tree-sitter-cli": "^0.20.8"
+  },
+  "tree-sitter": {
+    "scope": "source.bqn",
+    "file_types": ["bqn"]
   }
 }

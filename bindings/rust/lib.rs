@@ -1,4 +1,4 @@
-//! This crate provides BQN language support for the [tree-sitter][] parsing library.
+//! This crate provides bqn language support for the [tree-sitter][] parsing library.
 //!
 //! Typically, you will use the [language][language func] function to add this language to a
 //! tree-sitter [Parser][], and then use the parser to parse some code:
@@ -6,7 +6,7 @@
 //! ```
 //! let code = "";
 //! let mut parser = tree_sitter::Parser::new();
-//! parser.set_language(tree_sitter_BQN::language()).expect("Error loading BQN grammar");
+//! parser.set_language(tree_sitter_bqn::language()).expect("Error loading bqn grammar");
 //! let tree = parser.parse(code, None).unwrap();
 //! ```
 //!
@@ -18,14 +18,14 @@
 use tree_sitter::Language;
 
 extern "C" {
-    fn tree_sitter_BQN() -> Language;
+    fn tree_sitter_bqn() -> Language;
 }
 
 /// Get the tree-sitter [Language][] for this grammar.
 ///
 /// [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
 pub fn language() -> Language {
-    unsafe { tree_sitter_BQN() }
+    unsafe { tree_sitter_bqn() }
 }
 
 /// The content of the [`node-types.json`][] file for this grammar.
@@ -47,6 +47,6 @@ mod tests {
         let mut parser = tree_sitter::Parser::new();
         parser
             .set_language(super::language())
-            .expect("Error loading BQN language");
+            .expect("Error loading bqn language");
     }
 }
