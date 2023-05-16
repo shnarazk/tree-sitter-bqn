@@ -11,7 +11,7 @@ integer literal
       (subExpr
         (arg
           (subject
-            (atom (symbol_sl))
+            (atom (symbol_sl (number)))
           )
         )
       )
@@ -23,7 +23,7 @@ integer literal
       (subExpr
         (arg
           (subject
-            (atom (symbol_sl))
+            (atom (symbol_sl (number)))
           )
         )
       )
@@ -43,7 +43,7 @@ float literal
       (subExpr
         (arg
           (subject
-            (atom (symbol_sl))
+            (atom (symbol_sl (number)))
           )
         )
       )
@@ -55,7 +55,7 @@ float literal
       (subExpr
         (arg
           (subject
-            (atom (symbol_sl))
+            (atom (symbol_sl (number)))
           )
         )
       )
@@ -63,10 +63,10 @@ float literal
   )
 )
 ==================
-infinity
+infinity and constant
 ==================
 ∞
-¯∞
+¯π
 ---
 
 (source_file
@@ -75,7 +75,7 @@ infinity
       (subExpr
         (arg
           (subject
-            (atom (symbol_sl))
+            (atom (symbol_sl (number)))
           )
         )
       )
@@ -87,7 +87,7 @@ infinity
       (subExpr
         (arg
           (subject
-            (atom (symbol_sl))
+            (atom (symbol_sl (number)))
           )
         )
       )

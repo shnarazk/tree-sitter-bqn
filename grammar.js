@@ -2,6 +2,7 @@ module.exports = grammar({
   name: 'bqn',
 
   extras: $ => [/\s/, $.comment],
+  // word: $ => $.identifier,
 
   rules: {
     source_file: $ => seq(
@@ -105,20 +106,120 @@ module.exports = grammar({
     LHS_ELT: $  => choice($.LHS_ANY, $.lhsStr),
     LHS_ENTRY: $=> choice($.LHS_ELT, seq($.lhs, "⇐", $.NAME)),
     lhsStr: $   => seq($.LHS_ATOM, repeat1(seq("‿", $.LHS_ATOM))),
-    // lhsList: $  => choice("⟨" ⋄? ( ( LHS_ENTRY ⋄ )* LHS_ENTRY ⋄? )? "⟩"
-    // lhsArray: $ => choice("[" ⋄? ( ( LHS_ELT   ⋄ )* LHS_ELT   ⋄? )? "]"
+    lhsList: $  => seq(
+      "⟨",
+      optional($.STMT_delimiter),
+      optional(seq(
+        repeat(seq($.LHS_ENTRY, $.STMT_delimiter)),
+        $.LHS_ENTRY,
+        optional($.STMT_delimiter))
+      ),
+      "⟩"
+    ),
+    lhsArray: $  => seq(
+      "[",
+      optional($.STMT_delimiter),
+      optional(seq(
+        repeat(seq($.LHS_ELT, $.STMT_delimiter)),
+        $.LHS_ELT,
+        optional($.STMT_delimiter))
+      ),
+      "]"
+    ),
     lhsComp: $  => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
     lhs: $      => choice($.symbol_s, $.lhsComp),
 
-    symbol_sl: $ => choice(token(/¯?∞/), token(/¯?(\d+|\d+\.\d*|\.\d+)/)),
-    symbol_Fl: $ => choice('⍋', '⊑'),
-    symbol__ml: $ => choice('˘', '´'),
-    symbol__cl_: $ => choice('⊸', '○'),
-
+    number: $ => seq(optional('¯',), choice(token(/¯?(\d+|\d+\.\d*|\.\d+)/), 'π','∞',)), 
+    symbol_sl: $ => choice(
+      '𝕨',
+      '𝕎',
+      '𝕩',
+      '𝕏',
+      '𝕗',
+      '𝔽',
+      '𝕘',
+      '𝔾',
+      '𝕤',
+      '𝕊',
+      '𝕣',
+      // '¯',
+      '@',
+      $.number
+    ),
+    symbol_Fl: $ => choice(
+      '+',
+      '-',
+      '×',
+      '÷',
+      '⋆',
+      '√',
+      '⌊',
+      '⌈',
+      '∧',
+      '∨',
+      '¬',
+      '|',
+      '≤',
+      '<',
+      '>',
+      '≥',
+      '=',
+      '≠',
+      '≡',
+      '≢',
+      '⊣',
+      '⊢',
+      '⥊',
+      '∾',
+      '≍',
+      '⋈',
+      '↑',
+      '↓',
+      '↕',
+      '«',
+      '»',
+      '⌽',
+      '⍉',
+      '/',
+      '⍋',
+      '⍒',
+      '⊏',
+      '⊑',
+      '⊐',
+      '⊒',
+      '∊',
+      '⍷',
+      '⊔',
+      '!'
+    ),
+    symbol__ml: $ => choice( 
+      '˙',
+      '˜',
+      '˘',
+      '¨',
+      '⌜',
+      '⁼',
+      '´',
+      '˝',
+      '`'
+    ),
+    symbol__cl_: $ => choice(
+      '∘',
+      '○',
+      '⊸',
+      '⟜',
+      '⌾',
+      '⊘',
+      '◶',
+      '⎊',
+      '⎉',
+      '⚇',
+      '⍟'
+    ),
     symbol_s: $ => token(/[a-z][A-Za-z0-9]*/),
     symbol_F: $ => token(/[A-Z][A-Za-z0-9]*/),
     symbol__m: $ => token(/_[A-Za-z][A-Za-z0-9]*/),
     symbol__c_: $ => token(/_[A-Za-z][A-Za-z0-9]*_/),
-    comment: $ => token(seq('#', /.*/))
+    comment: $ => token(seq('#', /.*/)),
   }
 }); 

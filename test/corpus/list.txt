@@ -23,8 +23,8 @@ strand
       (subExpr
         (arg
           (subject
-            (ANY (atom (symbol_sl)))
-            (ANY (atom (symbol_sl)))
+            (ANY (atom (symbol_sl (number))))
+            (ANY (atom (symbol_sl (number))))
           )
         )
       )
@@ -36,9 +36,9 @@ strand
       (subExpr
         (arg
           (subject
-            (ANY (atom (symbol_sl)))
-            (ANY (atom (symbol_sl)))
-            (ANY (atom (symbol_sl)))
+            (ANY (atom (symbol_sl (number))))
+            (ANY (atom (symbol_sl (number))))
+            (ANY (atom (symbol_sl (number))))
           )
         )
       )
@@ -61,9 +61,9 @@ list literal
           (subject
             (atom
               (array
-                (EXPR (subExpr (arg (subject (atom (symbol_sl))))))
+                (EXPR (subExpr (arg (subject (atom (symbol_sl (number)))))))
                 (STMT_delimiter)
-                (EXPR (subExpr (arg (subject (atom (symbol_sl))))))
+                (EXPR (subExpr (arg (subject (atom (symbol_sl (number)))))))
               )
             )
           )
