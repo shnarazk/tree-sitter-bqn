@@ -43,7 +43,68 @@ Fn ← +´⋄
               (Derv
                 (Operand
                   (Derv
-                    (Func
-                      (symbol_Fl))))
-                (mod_1
-                  (symbol__ml))))))))))
+                    (Func (symbol_Fl))))
+                (mod_1 (symbol__ml)))))))))
+  (delimiter)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (Derv (Func (symbol_Fl)))
+          (subExpr
+            (arg
+              (subject
+                (ANY (atom (symbol_sl (number))))
+                (ANY (atom (symbol_sl (number))))
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (delimiter)
+)
+==================
+end-of-line as delimiter
+==================
+# comment
+Fn ← +´
+•Show ¯3‿π
+---
+(source_file
+  (comment)
+  (delimiter)
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand
+                  (Derv
+                    (Func (symbol_Fl))))
+                (mod_1 (symbol__ml)))))))))
+  (delimiter)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (Derv (Func (symbol_Fl)))
+          (subExpr
+            (arg
+              (subject
+                (ANY (atom (symbol_sl (number))))
+                (ANY (atom (symbol_sl (number))))
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (delimiter)
+)
