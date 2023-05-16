@@ -1,0 +1,80 @@
+==================
+simple subject assignment
+==================
+x←1
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (atom (symbol_s))
+        (ASGN)
+        (subExpr
+          (arg
+            (subject (atom (symbol_sl (number))))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+Function assignment
+==================
+F←+´
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand (Derv (Func (symbol_Fl))))
+                (mod_1
+                  (symbol__ml)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+Function export
+==================
+F⇐+´
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand (Derv (Func (symbol_Fl))))
+                (mod_1
+                  (symbol__ml)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+

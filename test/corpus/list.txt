@@ -30,7 +30,7 @@ strand
       )
     )
   )
-  (STMT_delimiter)
+  (delimiter)
   (STMT
     (EXPR
       (subExpr
@@ -62,7 +62,7 @@ list literal
             (atom
               (array
                 (EXPR (subExpr (arg (subject (atom (symbol_sl (number)))))))
-                (STMT_delimiter)
+                (delimiter)
                 (EXPR (subExpr (arg (subject (atom (symbol_sl (number)))))))
               )
             )
@@ -71,6 +71,6 @@ list literal
       )
     )
   )
-  (STMT_delimiter)
+  (delimiter)
   (comment)
 ) 

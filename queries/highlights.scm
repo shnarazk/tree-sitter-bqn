@@ -15,4 +15,7 @@
 "," @punctuation.delimiter
 "‿" @punctuation.delimiter
 ; "⍟" @punctuation.bracket
-"⇐" @keyword
+; "⇐" @keyword
+(symbol__m) @type
+(symbol__c_) @keyword
+(symbol_Fl) @function

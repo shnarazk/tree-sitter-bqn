@@ -1,4 +1,5 @@
 # comment
-Fn ⇐
-x0‿x1
+Fn ← +´
+•Show ¯3‿π
+# •Show x0‿x1 ← ⟨1, ¯3⟩
 # comment  

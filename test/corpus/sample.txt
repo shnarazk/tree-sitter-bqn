@@ -1,0 +1,49 @@
+==================
+samble.bqn LL1-2
+==================
+# comment
+Fn ← +´
+---
+(source_file
+  (comment)
+  (delimiter)
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand
+                  (Derv
+                    (Func
+                      (symbol_Fl))))
+                (mod_1
+                  (symbol__ml))))))))))
+==================
+samble.bqn LL1-3
+==================
+# comment
+Fn ← +´
+•Show ¯3‿π
+---
+(source_file
+  (comment)
+  (delimiter)
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand
+                  (Derv
+                    (Func
+                      (symbol_Fl))))
+                (mod_1
+                  (symbol__ml))))))))))
