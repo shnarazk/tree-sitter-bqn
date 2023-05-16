@@ -26,8 +26,8 @@ Fn ← +´
 samble.bqn LL1-3
 ==================
 # comment
-Fn ← +´
-•Show ¯3‿π
+Fn ← +´⋄
+•Show ¯3‿π⋄
 ---
 (source_file
   (comment)

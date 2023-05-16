@@ -14,14 +14,6 @@
         {
           "type": "atom",
           "named": true
-        },
-        {
-          "type": "mod_1",
-          "named": true
-        },
-        {
-          "type": "mod_2_",
-          "named": true
         }
       ]
     }
@@ -653,7 +645,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "EXPR",
@@ -760,7 +752,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -1002,7 +994,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "atom",
@@ -1104,26 +1096,15 @@
   {
     "type": "subject",
     "named": true,
-    "fields": {
-      "strand": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "ANY",
-            "named": true
-          },
-          {
-            "type": "‿",
-            "named": false
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "ANY",
+          "named": true
+        },
         {
           "type": "atom",
           "named": true
@@ -1226,15 +1207,11 @@
     "named": false
   },
   {
+    "type": "TODO:$.EXPORT",
+    "named": false
+  },
+  {
     "type": "TODO:$.blMod_1",
-    "named": false
-  },
-  {
-    "type": "TODO:$.blMod_2_",
-    "named": false
-  },
-  {
-    "type": "TODO:$.blSub",
     "named": false
   },
   {
