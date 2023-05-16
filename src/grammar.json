@@ -62,8 +62,8 @@
           "name": "nothing"
         },
         {
-          "type": "STRING",
-          "value": "TODO:$.EXPORT"
+          "type": "SYMBOL",
+          "name": "EXPORT"
         }
       ]
     },
@@ -112,8 +112,16 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "LHS_ELT"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "atom"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -187,6 +195,10 @@
               "value": ")"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": "TODO:$.blMod_2_"
         }
       ]
     },
@@ -2336,6 +2348,10 @@
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_end_of_line"
     }
   ],
   "conflicts": [],

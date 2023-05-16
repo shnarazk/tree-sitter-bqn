@@ -2,7 +2,7 @@ module.exports = grammar({
   name: 'bqn',
 
  // extras: $ => [$.symbol_s, $.symbol_F, $.symbol__m, $.symbol__c_, $.symbol_sl, $.symbol_Fl, $.symbol__ml, $.symbol__cl_, $._end_of_line, $.comment],
-  extras: $ => [/[ \t]+/, $.comment],
+  extras: $ => [/[ \t]+/, $.comment, $._end_of_line],
   // word: $ => $.end_of_line,
 
   conflicts: $ => [
@@ -17,12 +17,11 @@ module.exports = grammar({
       $.STMT,
       optional($.delimiter)
     ),
-    STMT: $ => choice($.EXPR, $.nothing, 'TODO:$.EXPORT'),
-    // STMT: $ => choice($.EXPR, $.nothing), // , $.EXPORT),
+    STMT: $ => choice($.EXPR, $.nothing, $.EXPORT),
     delimiter: $ => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $ => choice($.subExpr, $.FuncExpr, $.m_1Expr, $.m_2Expr_),
-    EXPORT: $ => seq($.LHS_ELT, '⇐'),
-    // EXPORT: $ => seq(optional($.LHS_ELT), '⇐'),
+    EXPORT: $ => seq(optional($.atom), '⇐'),
+    // EXPORT: $ => seq(optional($.LHS_ELT), '⇐⇐'),
 
     ANY: $ => choice($.atom, $.Func),
     // ANY: $ => choice($.atom, $.Func, $.mod_1, $.mod_2_),
@@ -30,7 +29,7 @@ module.exports = grammar({
       seq(optional(seq($.atom, '.')), $.symbol__c_),
       $.symbol__cl_,
       seq('(', $.m_2Expr_, ')'),
-      // 'TODO:$.blMod_2_'
+      'TODO:$.blMod_2_'
     ),
     mod_1: $ =>  choice(
       seq(optional(seq($.atom, '.')), $.symbol__m),
