@@ -6,6 +6,13 @@ module.exports = grammar({
   // word: $ => $.end_of_line,
 
   conflicts: $ => [
+    [$.nothing, $.LHS_SUB],
+    [$.headW, $.symbol_sl],
+    [$.HeadF, $.symbol_sl],
+    [$.MergedLab, $.symbol_sl],
+    [$.MergedLab, $.merged],
+    [$.NAME, $.merged],
+    // [$.FuncLab, $.symbol_sl]
     // [$.subject, $.subExpr],
     // [$.Operand, $.arg, $.nothing],
   ],
@@ -20,37 +27,49 @@ module.exports = grammar({
     STMT: $ => choice($.EXPR, $.nothing, 'TODO:$.EXPORT'),
     // STMT: $ => choice($.EXPR, $.nothing), // , $.EXPORT),
     delimiter: $ => repeat1(choice('⋄', ',', $._end_of_line)),
-    EXPR: $ => choice($.subExpr, $.FuncExpr, $.m_1Expr, $.m_2Expr_),
+    // EXPR: $ => choice($.subExpr, $.FuncExpr, $.m_1Expr, $.m_2Expr_),
+    EXPR: $ => choice($.subExpr, $.mergedExpr),
     EXPORT: $ => seq($.LHS_ELT, '⇐'),
     // EXPORT: $ => seq(optional($.LHS_ELT), '⇐'),
 
-    ANY: $ => choice($.atom, $.Func),
+    ANY: $ => choice($.atom, $.merged),
+    // ANY: $ => choice($.atom, $.Func),
     // ANY: $ => choice($.atom, $.Func, $.mod_1, $.mod_2_),
-    mod_2_: $ => choice(
-      seq(optional(seq($.atom, '.')), $.symbol__c_),
-      $.symbol__cl_,
-      seq('(', $.m_2Expr_, ')'),
-      // 'TODO:$.blMod_2_'
+    // mod_2_: $ => choice(
+    //   seq(optional(seq($.atom, '.')), $.symbol__c_),
+    //   $.symbol__cl_,
+    //   seq('(', $.m_2Expr_, ')'),
+    //   // $.blMod_2_
+    //   $.blMerged
+    // ),
+    // mod_1: $ =>  choice(
+    //   seq(optional(seq($.atom, '.')), $.symbol__m),
+    //   $.symbol__ml,
+    //   seq('(', $.m_1Expr, ')'),
+    //   // $.blMod_1
+    //   $.blMerged
+    // ),
+    // Func: $ => choice(
+    //   seq(optional(seq($.atom, '.')), $.symbol_F),
+    //   $.symbol_Fl,
+    //   seq('(', $.FuncExpr, ')'),
+    //   // $.BlFunc
+    //   $.blMerged
+    // ),
+    merged: $ => choice(
+      seq(optional(seq($.atom, '.')), choice($.symbol__c_, $.symbol__m, $.symbol_F)),
+      choice($.symbol__cl_, $.symbol__ml, $.symbol_Fl),
+      seq('(', $.mergedExpr, ')'),
+      // $.BlFunc
+      $.blMerged
     ),
-    mod_1: $ =>  choice(
-      seq(optional(seq($.atom, '.')), $.symbol__m),
-      $.symbol__ml,
-      seq('(', $.m_1Expr, ')'),
-      'TODO:$.blMod_1'
-    ),
-    Func: $ => choice(
-      seq(optional(seq($.atom, '.')), $.symbol_F),
-      $.symbol_Fl,
-      seq('(', $.FuncExpr, ')'),
-      'TODO:$.BlFunc'
-    ),
-    atom: $ => choice(
+    atom: $ => prec(4, choice(
       seq(optional(seq($.atom, '.')), $.symbol_s),
       $.symbol_sl,
       seq('(', $.subExpr, ')'),
-      // $.blSub,
+      $.blSub,
       $.array
-    ),
+    )),
     array: $ => choice(
       seq(
         '⟨',
@@ -71,17 +90,25 @@ module.exports = grammar({
     ),
 
     ASGN: $ => choice('←', '⇐', '↩'),
-    m_2Expr_: $ => choice($.mod_2_, seq($.symbol__c_, $.ASGN, $.m_2Expr_)),
-    m_1Expr: $ => choice($.mod_1, seq($.symbol__m, $.ASGN, $.m_1Expr)),
+    // m_2Expr_: $ => choice($.mod_2_, seq($.symbol__c_, $.ASGN, $.m_2Expr_)),
+    // m_1Expr: $ => choice($.mod_1, seq($.symbol__m, $.ASGN, $.m_1Expr)),
+    // FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
+    mergedExpr: $ => choice($.merged, seq(choice($.symbol__c_, $.symbol__m, $.symbol_F), $.ASGN, $.mergedExpr)),
 
-    Derv: $ => choice(
+    Derv: $ => prec.left(choice(
       // prec.left(0,$.Func),
       // prec.left(1,seq($.Operand, $.mod_1)),
       // prec.left(2,seq($.Operand, $.mod_2_, choice($.subject, $.Func)))
-      $.Func,
-      seq($.Operand, $.mod_1),
-      seq($.Operand, $.mod_2_, choice($.subject, $.Func))
-    ),
+      // $.Func,
+      // seq($.Operand, $.mod_1),
+      // seq($.Operand, $.mod_2_, choice($.subject, $.Func))
+      seq(
+        optional($.Operand),
+        $.merged,
+        // optional(choice($.subject, $.Func))
+        optional(choice($.subject, $.merged))
+      )
+    )),
     Operand: $ => prec.right(choice(
       $.subject,
       $.Derv
@@ -94,7 +121,6 @@ module.exports = grammar({
       seq($.nothing, $.Derv, $.Fork)
     ),
     Train: $ => choice($.Fork, seq($.Derv, $.Fork)),
-    FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
 
     arg: $ => prec.right(2, choice(
       $.subject,
@@ -147,20 +173,29 @@ module.exports = grammar({
     headX: $    => choice($.lhs, "𝕩"),
     HeadF: $    => choice($.lhs, $.symbol_F, "𝕗", "𝔽"),
     HeadG: $    => choice($.lhs, $.symbol_F, "𝕘", "𝔾"),
-    FuncLab: $  => choice($.symbol_F,   "𝕊"),
-    Mod1Lab: $  => choice($.symbol__m,  "_𝕣"),
-    Mod2Lab: $  => choice($.symbol__c_, "_𝕣_"),
-    FuncName: $ => $.FuncLab,
-    Mod1Name: $ => seq($.HeadF, $.Mod1Lab),
-    Mod2Name: $ => seq($.HeadF, $.Mod2Lab, $.HeadG),
-    LABEL: $    => choice(         $.FuncLab,  $.Mod1Lab,  $.Mod2Lab),
-    IMM_HEAD: $ => choice($.LABEL, $.FuncName, $.Mod1Name, $.Mod2Name),
+    // FuncLab: $  => choice($.symbol_F,   "𝕊"),
+    // Mod1Lab: $  => choice($.symbol__m,  "_𝕣"),
+    // Mod2Lab: $  => choice($.symbol__c_, "_𝕣_"),
+    MergedLab: $ => choice($.symbol_F,   "𝕊", $.symbol__m,  "_𝕣", $.symbol__c_, "_𝕣_"),
+    // FuncName: $ => $.FuncLab,
+    // Mod1Name: $ => seq($.HeadF, $.Mod1Lab),
+    // Mod2Name: $ => seq($.HeadF, $.Mod2Lab, $.HeadG),
+    MergedName: $ => seq(
+      optional($.HeadF),
+      $.MergedLab,
+      optional($.HeadG)
+    ),
+    // LABEL: $    => choice(         $.FuncLab,  $.Mod1Lab,  $.Mod2Lab),
+    IMM_HEAD: $ => choice($.MergedLab, $.MergedName),
+    // IMM_HEAD: $ => choice($.LABEL, $.FuncName, $.Mod1Name, $.Mod2Name),
 
     ARG_HEAD: $ => choice(
-      $.LABEL,
+      $.MergedLab,
+      // $.LABEL,
       seq(optional($.headW), $.IMM_HEAD,       optional("⁼"), $.headX),
       seq(         $.headW , $.IMM_HEAD, "˜",           "⁼" , $.headX),
-      seq(                   $.FuncName, optional("˜"), "⁼"          ),
+      seq(                   $.IMM_HEAD, optional("˜"), "⁼"          ),
+      // seq(                   $.FuncName, optional("˜"), "⁼"          ),
       $.lhsComp
     ),
 
@@ -179,16 +214,17 @@ module.exports = grammar({
       optional(seq(optional($.delimiter), $.ARG_HEAD, optional($.delimiter), ":")),
       $.BODY
     ),
-    S_CASE: $ => seq(
+    S_CASE: $ => prec(2, seq(
       optional(seq(optional($.delimiter), $.symbol_s, optional($.delimiter), ":")),
       $.BODY
-    ),
+    )),
     IMM_BLK:  $ => seq("{", repeat(seq($.I_CASE, ";")), $.I_CASE, "}"),
     ARG_BLK:  $ => seq("{", repeat(seq($.A_CASE, ";")), $.A_CASE, "}"),
     blSub:    $ => seq("{", repeat(seq($.S_CASE, ";")), $.S_CASE, "}"),
     BlFunc:   $ => $.ARG_BLK,
     blMod_1:  $ => choice($.IMM_BLK, $.ARG_BLK),
     blMod_2_: $ => choice($.IMM_BLK, $.ARG_BLK),
+    blMerged: $ => choice($.IMM_BLK, $.ARG_BLK),
 
     number: $ => seq(optional('¯',), choice(token(/¯?(\d+|\d+\.\d*|\.\d+)/), 'π','∞',)),
     symbol_sl: $ => choice(

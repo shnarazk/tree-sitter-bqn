@@ -96,15 +96,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "FuncExpr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "m_1Expr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "m_2Expr_"
+          "name": "mergedExpr"
         }
       ]
     },
@@ -130,11 +122,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Func"
+          "name": "merged"
         }
       ]
     },
-    "mod_2_": {
+    "merged": {
       "type": "CHOICE",
       "members": [
         {
@@ -162,70 +154,40 @@
               ]
             },
             {
-              "type": "SYMBOL",
-              "name": "symbol__c_"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "symbol__cl_"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SYMBOL",
-              "name": "m_2Expr_"
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
-        }
-      ]
-    },
-    "mod_1": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "atom"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "."
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "symbol__c_"
                 },
                 {
-                  "type": "BLANK"
+                  "type": "SYMBOL",
+                  "name": "symbol__m"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "symbol_F"
                 }
               ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "symbol__m"
             }
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "symbol__ml"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol__cl_"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol__ml"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol_Fl"
+            }
+          ]
         },
         {
           "type": "SEQ",
@@ -236,139 +198,87 @@
             },
             {
               "type": "SYMBOL",
-              "name": "m_1Expr"
+              "name": "mergedExpr"
             },
             {
               "type": "STRING",
               "value": ")"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "TODO:$.blMod_1"
-        }
-      ]
-    },
-    "Func": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "atom"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "."
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "symbol_F"
             }
           ]
         },
         {
           "type": "SYMBOL",
-          "name": "symbol_Fl"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SYMBOL",
-              "name": "FuncExpr"
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "TODO:$.BlFunc"
+          "name": "blMerged"
         }
       ]
     },
     "atom": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "atom"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "."
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "symbol_s"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "symbol_sl"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SYMBOL",
-              "name": "subExpr"
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "array"
-        }
-      ]
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "atom"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "symbol_s"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "symbol_sl"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "subExpr"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "blSub"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "array"
+          }
+        ]
+      }
     },
     "array": {
       "type": "CHOICE",
@@ -553,19 +463,32 @@
         }
       ]
     },
-    "m_2Expr_": {
+    "mergedExpr": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "mod_2_"
+          "name": "merged"
         },
         {
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "symbol__c_"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "symbol__c_"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "symbol__m"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "symbol_F"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -573,85 +496,62 @@
             },
             {
               "type": "SYMBOL",
-              "name": "m_2Expr_"
-            }
-          ]
-        }
-      ]
-    },
-    "m_1Expr": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "mod_1"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "symbol__m"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "ASGN"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "m_1Expr"
+              "name": "mergedExpr"
             }
           ]
         }
       ]
     },
     "Derv": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Func"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "Operand"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "mod_1"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "Operand"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "mod_2_"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "subject"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Func"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "Operand"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "merged"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "subject"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "merged"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "Operand": {
       "type": "PREC_RIGHT",
@@ -730,32 +630,6 @@
             {
               "type": "SYMBOL",
               "name": "Fork"
-            }
-          ]
-        }
-      ]
-    },
-    "FuncExpr": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Train"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "symbol_F"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "ASGN"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "FuncExpr"
             }
           ]
         }
@@ -1331,7 +1205,7 @@
         }
       ]
     },
-    "FuncLab": {
+    "MergedLab": {
       "type": "CHOICE",
       "members": [
         {
@@ -1341,12 +1215,7 @@
         {
           "type": "STRING",
           "value": "𝕊"
-        }
-      ]
-    },
-    "Mod1Lab": {
-      "type": "CHOICE",
-      "members": [
+        },
         {
           "type": "SYMBOL",
           "name": "symbol__m"
@@ -1354,12 +1223,7 @@
         {
           "type": "STRING",
           "value": "_𝕣"
-        }
-      ]
-    },
-    "Mod2Lab": {
-      "type": "CHOICE",
-      "members": [
+        },
         {
           "type": "SYMBOL",
           "name": "symbol__c_"
@@ -1370,54 +1234,36 @@
         }
       ]
     },
-    "FuncName": {
-      "type": "SYMBOL",
-      "name": "FuncLab"
-    },
-    "Mod1Name": {
+    "MergedName": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "HeadF"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "HeadF"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
-          "name": "Mod1Lab"
-        }
-      ]
-    },
-    "Mod2Name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "HeadF"
+          "name": "MergedLab"
         },
         {
-          "type": "SYMBOL",
-          "name": "Mod2Lab"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "HeadG"
-        }
-      ]
-    },
-    "LABEL": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "FuncLab"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Mod1Lab"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Mod2Lab"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "HeadG"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1426,19 +1272,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "LABEL"
+          "name": "MergedLab"
         },
         {
           "type": "SYMBOL",
-          "name": "FuncName"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Mod1Name"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Mod2Name"
+          "name": "MergedName"
         }
       ]
     },
@@ -1447,7 +1285,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "LABEL"
+          "name": "MergedLab"
         },
         {
           "type": "SEQ",
@@ -1516,7 +1354,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "FuncName"
+              "name": "IMM_HEAD"
             },
             {
               "type": "CHOICE",
@@ -1730,58 +1568,62 @@
       ]
     },
     "S_CASE": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "delimiter"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "symbol_s"
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "delimiter"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "STRING",
-                  "value": ":"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "BODY"
-        }
-      ]
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "delimiter"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "symbol_s"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "delimiter"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "BODY"
+          }
+        ]
+      }
     },
     "IMM_BLK": {
       "type": "SEQ",
@@ -1900,6 +1742,19 @@
       ]
     },
     "blMod_2_": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "IMM_BLK"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ARG_BLK"
+        }
+      ]
+    },
+    "blMerged": {
       "type": "CHOICE",
       "members": [
         {
@@ -2338,7 +2193,32 @@
       "name": "comment"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "nothing",
+      "LHS_SUB"
+    ],
+    [
+      "headW",
+      "symbol_sl"
+    ],
+    [
+      "HeadF",
+      "symbol_sl"
+    ],
+    [
+      "MergedLab",
+      "symbol_sl"
+    ],
+    [
+      "MergedLab",
+      "merged"
+    ],
+    [
+      "NAME",
+      "merged"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],
