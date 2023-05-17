@@ -1,0 +1,163 @@
+==================
+atom "."?: s(1) f 
+==================
+f
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom (symbol_s))))))
+  )
+)
+
+==================
+atom "."? s: (2) f.g 
+==================
+f.g
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom (atom (symbol_s)) (symbol_s))))))
+  )
+)
+
+==================
+atom sl: (1) ∞ 
+==================
+∞
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom (symbol_sl (number)))))))
+  )
+)
+
+==================
+atom sl: (2) 𝕨 
+==================
+𝕨
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom (symbol_sl))))))
+  )
+)
+
+==================
+atom "(" subExpr ")": (1) (1) 
+==================
+(f)
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom  
+      (subExpr (arg (subject (atom (symbol_s))))) 
+    )))))
+  )
+)
+
+==================
+atom array: (1) ⟨⟩ 
+==================
+⟨⟩
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom  
+      (array) 
+    )))))
+  )
+)
+
+==================
+atom array: (2) ⟨f⟩ 
+==================
+⟨f⟩
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom  
+      (array (EXPR (subExpr (arg (subject (atom (symbol_s))))))) 
+    )))))
+  )
+)
+
+==================
+atom array: (3) [f] 
+==================
+[f]
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom  
+      (array (EXPR (subExpr (arg (subject (atom (symbol_s))))))) 
+    )))))
+  )
+)
+==================
+atom array: (4) [f,] 
+==================
+[f,]
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg (subject (atom  
+      (array
+        (EXPR (subExpr (arg (subject (atom (symbol_s))))))
+        (delimiter)
+      ) 
+    )))))
+  )
+)
+
+==================
+ANY(‿ANY)+: (1) 1‿2
+==================
+1‿2
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (atom (symbol_sl (number))))
+            (ANY (atom (symbol_sl (number))))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+ANY(‿ANY)+: (2) 1‿2‿3
+==================
+1‿2‿3
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (atom (symbol_sl (number))))
+            (ANY (atom (symbol_sl (number))))
+            (ANY (atom (symbol_sl (number))))
+          )
+        )
+      )
+    )
+  )
+)
+

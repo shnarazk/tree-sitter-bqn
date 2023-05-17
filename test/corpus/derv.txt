@@ -1,0 +1,67 @@
+==================
+arg → Derv subExpr: (1) F 1
+==================
+F 1
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg
+      (Derv (Func (symbol_F)))
+      (subExpr (arg (subject (atom (symbol_sl (number))))))
+    )))
+  )
+)
+
+==================
+arg → nothing Derv subExpr: (1) · F 1
+==================
+· F 1
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg
+      (nothing)
+      (Derv (Func (symbol_F)))
+      (subExpr (arg (subject (atom (symbol_sl (number))))))
+    )))
+  )
+)
+
+==================
+nothing → nothing Derv nothing: (1) · F ·
+==================
+· F ·
+---
+
+(source_file
+  (STMT
+    (nothing
+      (nothing)
+      (Derv (Func (symbol_F)))
+      (nothing)
+    )
+  )
+)
+
+==================
+arg → nothing Derv subExpr: (1) · F · F 1
+==================
+· F · F 1
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg
+      (nothing)
+      (Derv (Func (symbol_F)))
+      (subExpr (arg
+        (nothing) 
+        (Derv (Func (symbol_F)))
+        (subExpr (arg (subject (atom (symbol_sl (number)))))
+      )))
+    )))
+  )
+)
+

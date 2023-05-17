@@ -1,5 +1,5 @@
 ==================
-simple subject assignment
+simple subject assignment: x←1 
 ==================
 x←1
 ---
@@ -21,7 +21,7 @@ x←1
 )
 
 ==================
-Function assignment
+Function assignment: F←+´
 ==================
 F←+´
 ---
