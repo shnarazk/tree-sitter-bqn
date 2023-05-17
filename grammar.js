@@ -13,14 +13,17 @@ module.exports = grammar({
       optional($.delimiter),
       repeat(seq($.STMT, $.delimiter)),
       $.STMT,
-      optional($.delimiter)
+      optional($.delimiter),
     ),
-    STMT: $ => choice($.EXPR, $.nothing, $.EXPORT),
+    STMT: $ => choice($.EXPR1, $.nothing, '$.EXPORT2'),
     delimiter: $ => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $ => choice($.subExpr),
-    EXPORT: $ => seq(optional($.LHS_ELT), '⇐⇐'),
+    EXPR1: $ => choice($.subExpr1),
+    EXPORT: $ => seq(optional($.LHS_ELT), '⇐'),
+    EXPORT2: $ => seq(optional($.LHS_ELT2), '⇐⇐'),
 
     ANY: $ => choice($.atom, $.Func),
+    ANY1: $ => choice($.atom1, $.Func),
     Func: $ => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F),
       $.symbol_Fl,
@@ -28,6 +31,13 @@ module.exports = grammar({
       $.BlFunc
     ),
     atom: $ => choice(
+      seq(optional(seq($.atom, '.')), $.symbol_s),
+      $.symbol_sl,
+      seq('(', $.subExpr, ')'),
+      $.blSub,
+      $.array
+    ),
+    atom1: $ => choice(
       seq(optional(seq($.atom, '.')), $.symbol_s),
       $.symbol_sl,
       seq('(', $.subExpr, ')'),
@@ -48,20 +58,24 @@ module.exports = grammar({
         ']'
       ),
     ),
-    subject: $ => choice(
+    subject: $ => prec.right(choice(
       $.atom,
       seq($.ANY, repeat1(seq('‿', $.ANY)))
-    ),
+    )),
+    subject1: $ => prec.right(choice(
+      $.atom,
+      seq($.ANY1, repeat1(seq('‿', $.ANY)))
+    )),
 
     ASGN: $ => choice('←', '⇐', '↩'),
 
     Derv: $ => choice(
       $.Func,
     ),
-    Operand: $ => choice(
-      $.subject,
+    Operand: $ => prec.right(choice(
+      '$.subject',
       $.Derv
-    ),
+    )),
     Fork: $ => choice(
       $.Derv,
       seq($.Operand, $.Derv, $.Fork),
@@ -71,26 +85,36 @@ module.exports = grammar({
     FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
 
     arg: $ => choice(
-      $.subject,
+      '$.subject',
       seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)
     ),
     nothing: $ => choice(
       '·',
-      seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing)
+      seq(optional(choice('$.subject', $.nothing)), $.Derv, $.nothing)
     ),
     subExpr: $ => choice(
       $.arg,
       seq($.atom, $.ASGN, $.subExpr),
       seq($.atom, $.Derv, "↩", optional($.subExpr))
     ),
+    subExpr1: $ => choice(
+      $.arg,
+      seq($.atom, $.ASGN, $.subExpr),
+      seq($.atom, $.Derv, "↩", optional($.subExpr))
+    ),
 
     NAME: $     => choice($.symbol_s, $.symbol_F, $.symbol__m, $.symbol__c_),
+    NAME2: $     => choice($.symbol_s, $.symbol_F, $.symbol__m, $.symbol__c_),
     LHS_SUB: $  => choice("·", $.lhsList, $.lhsArray, $.symbol_sl),
     LHS_ANY: $  => choice($.NAME, $.LHS_SUB, seq("(", $.LHS_ELT, ")")),
+    LHS_ANY2: $  => choice($.NAME2, $.LHS_SUB, seq("(", $.LHS_ELT, ")")),
     LHS_ATOM: $ => choice($.LHS_ANY, seq("(", $.lhsStr, ")")),
+    LHS_ATOM2: $ => choice($.LHS_ANY2, seq("(", $.lhsStr, ")")),
     LHS_ELT: $  => choice($.LHS_ANY, $.lhsStr),
+    LHS_ELT2: $  => choice($.LHS_ANY, $.lhsStr2),
     LHS_ENTRY: $=> choice($.LHS_ELT, seq($.lhs, "⇐", $.NAME)),
     lhsStr: $   => seq($.LHS_ATOM, repeat1(seq("‿", $.LHS_ATOM))),
+    lhsStr2: $   => seq($.LHS_ATOM2, repeat1(seq("‿", $.LHS_ATOM))),
     lhsList: $  => seq(
       "⟨",
       optional($.delimiter),
