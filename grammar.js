@@ -6,8 +6,6 @@ module.exports = grammar({
   // word: $ => $.end_of_line,
 
   conflicts: $ => [
-    // [$.subject, $.subExpr],
-    // [$.Operand, $.arg, $.nothing],
   ],
 
   rules: {
@@ -19,35 +17,21 @@ module.exports = grammar({
     ),
     STMT: $ => choice($.EXPR, $.nothing, $.EXPORT),
     delimiter: $ => repeat1(choice('⋄', ',', $._end_of_line)),
-    EXPR: $ => choice($.subExpr, $.FuncExpr, $.m_1Expr, $.m_2Expr_),
-    EXPORT: $ => seq(optional($.atom), '⇐'),
-    // EXPORT: $ => seq(optional($.LHS_ELT), '⇐⇐'),
+    EXPR: $ => choice($.subExpr),
+    EXPORT: $ => seq(optional($.LHS_ELT), '⇐⇐'),
 
     ANY: $ => choice($.atom, $.Func),
-    // ANY: $ => choice($.atom, $.Func, $.mod_1, $.mod_2_),
-    mod_2_: $ => choice(
-      seq(optional(seq($.atom, '.')), $.symbol__c_),
-      $.symbol__cl_,
-      seq('(', $.m_2Expr_, ')'),
-      'TODO:$.blMod_2_'
-    ),
-    mod_1: $ =>  choice(
-      seq(optional(seq($.atom, '.')), $.symbol__m),
-      $.symbol__ml,
-      seq('(', $.m_1Expr, ')'),
-      'TODO:$.blMod_1'
-    ),
     Func: $ => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F),
       $.symbol_Fl,
       seq('(', $.FuncExpr, ')'),
-      'TODO:$.BlFunc'
+      $.BlFunc
     ),
     atom: $ => choice(
       seq(optional(seq($.atom, '.')), $.symbol_s),
       $.symbol_sl,
       seq('(', $.subExpr, ')'),
-      // $.blSub,
+      $.blSub,
       $.array
     ),
     array: $ => choice(
@@ -70,23 +54,14 @@ module.exports = grammar({
     ),
 
     ASGN: $ => choice('←', '⇐', '↩'),
-    m_2Expr_: $ => choice($.mod_2_, seq($.symbol__c_, $.ASGN, $.m_2Expr_)),
-    m_1Expr: $ => choice($.mod_1, seq($.symbol__m, $.ASGN, $.m_1Expr)),
 
     Derv: $ => choice(
-      // prec.left(0,$.Func),
-      // prec.left(1,seq($.Operand, $.mod_1)),
-      // prec.left(2,seq($.Operand, $.mod_2_, choice($.subject, $.Func)))
       $.Func,
-      seq($.Operand, $.mod_1),
-      seq($.Operand, $.mod_2_, choice($.subject, $.Func))
     ),
-    Operand: $ => prec.right(choice(
+    Operand: $ => choice(
       $.subject,
       $.Derv
-      // prec.left(1, $.subject),
-      // prec.left(2, $.Derv)
-    )),
+    ),
     Fork: $ => choice(
       $.Derv,
       seq($.Operand, $.Derv, $.Fork),
@@ -95,21 +70,18 @@ module.exports = grammar({
     Train: $ => choice($.Fork, seq($.Derv, $.Fork)),
     FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
 
-    arg: $ => prec.right(2, choice(
+    arg: $ => choice(
       $.subject,
       seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)
-    )),
-    nothing: $ => prec.right(choice(
+    ),
+    nothing: $ => choice(
       '·',
       seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing)
-      // prec.right(1, '·'),
-      // TODO: conflict generated here
-      // prec.right(2, seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing))
-    )),
+    ),
     subExpr: $ => choice(
       $.arg,
-      prec.right(2, seq($.atom, $.ASGN, $.subExpr)),
-      prec.right(3, seq($.atom, $.Derv, "↩", optional($.subExpr)))
+      seq($.atom, $.ASGN, $.subExpr),
+      seq($.atom, $.Derv, "↩", optional($.subExpr))
     ),
 
     NAME: $     => choice($.symbol_s, $.symbol_F, $.symbol__m, $.symbol__c_),
@@ -147,13 +119,9 @@ module.exports = grammar({
     HeadF: $    => choice($.lhs, $.symbol_F, "𝕗", "𝔽"),
     HeadG: $    => choice($.lhs, $.symbol_F, "𝕘", "𝔾"),
     FuncLab: $  => choice($.symbol_F,   "𝕊"),
-    Mod1Lab: $  => choice($.symbol__m,  "_𝕣"),
-    Mod2Lab: $  => choice($.symbol__c_, "_𝕣_"),
     FuncName: $ => $.FuncLab,
-    Mod1Name: $ => seq($.HeadF, $.Mod1Lab),
-    Mod2Name: $ => seq($.HeadF, $.Mod2Lab, $.HeadG),
-    LABEL: $    => choice(         $.FuncLab,  $.Mod1Lab,  $.Mod2Lab),
-    IMM_HEAD: $ => choice($.LABEL, $.FuncName, $.Mod1Name, $.Mod2Name),
+    LABEL: $    => choice(         $.FuncLab),
+    IMM_HEAD: $ => choice($.LABEL, $.FuncName),
 
     ARG_HEAD: $ => choice(
       $.LABEL,
@@ -164,7 +132,7 @@ module.exports = grammar({
     ),
 
     BODY: $ => seq(
-      // optional($.delimiter),
+      optional($.delimiter),
       repeat(choice(seq($.STMT, $.delimiter),
                     seq($.EXPR, optional($.delimiter), "?", optional($.delimiter)))),
       $.STMT,
@@ -186,8 +154,6 @@ module.exports = grammar({
     ARG_BLK:  $ => seq("{", repeat(seq($.A_CASE, ";")), $.A_CASE, "}"),
     blSub:    $ => seq("{", repeat(seq($.S_CASE, ";")), $.S_CASE, "}"),
     BlFunc:   $ => $.ARG_BLK,
-    blMod_1:  $ => choice($.IMM_BLK, $.ARG_BLK),
-    blMod_2_: $ => choice($.IMM_BLK, $.ARG_BLK),
 
     number: $ => seq(optional('¯',), choice(token(/¯?(\d+|\d+\.\d*|\.\d+)/), 'π','∞',)),
     symbol_sl: $ => choice(
