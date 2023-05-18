@@ -1,5 +1,5 @@
 ==================
-simple subject assignment: x←1 
+simple subject assignment:(1) x←1 
 ==================
 x←1
 ---
@@ -8,7 +8,7 @@ x←1
   (STMT
     (EXPR
       (subExpr
-        (atom (symbol_s))
+        (lhs (symbol_s))
         (ASGN)
         (subExpr
           (arg
@@ -21,9 +21,66 @@ x←1
 )
 
 ==================
-Function assignment: F←+´
+simple subject assignment:(2) x←1‿0 
 ==================
-F←+´
+x←1‿0
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (lhs (symbol_s))
+        (ASGN)
+        (subExpr
+          (arg
+            (subject 
+              (ANY (atom (symbol_sl (number))))
+              (ANY (atom (symbol_sl (number))))
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+simple subject assignment:(3) x‿y←1‿0 
+==================
+x‿y←1‿0
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (lhs 
+          (lhsComp
+            (lhsStr
+              (LHS_ATOM (LHS_ANY (NAME (symbol_s))))
+              (LHS_ATOM (LHS_ANY (NAME (symbol_s))))
+            )
+          )
+        )   
+        (ASGN)
+        (subExpr
+          (arg
+            (subject 
+              (ANY (atom (symbol_sl (number))))
+              (ANY (atom (symbol_sl (number))))
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+Function assignment: F←+
+==================
+F←+
 ---
 
 (source_file

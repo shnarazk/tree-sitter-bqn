@@ -12,6 +12,18 @@ module.exports = grammar({
     [$.Operand, $.nothing],
     [$.nothing],
     [$.Fork, $.nothing],
+    [$.nothing, $.LHS_SUB],
+    [$.atom, $.lhs],
+    [$.atom, $.NAME],
+    [$.atom, $.LHS_SUB],
+    [$.atom, $.NAME, $.lhs],
+    [$.Func, $.NAME],
+    [$.LHS_ANY, $.lhsComp],
+    [$.LHS_ATOM, $.LHS_ELT],
+    [$.LHS_ATOM, $.LHS_ELT, $.lhsComp],
+    [$.array, $.lhsList],
+    [$.ASGN, $.LHS_ENTRY],
+    [$.NAME, $.lhs],
   ],
 
   rules: {
@@ -59,7 +71,45 @@ module.exports = grammar({
     FuncExpr: $ => $.Train,
     arg: $ => choice($.subject, seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)),
     nothing: $ => choice('·', seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing)),
-    subExpr: $ => $.arg,
+    // subExpr: $ => $.arg,
+    subExpr: $ => choice(
+      $.arg,
+      seq($.lhs, $.ASGN, $.subExpr),
+      seq($.lhs, $.Derv, "↩", optional($.subExpr))
+    ),
+
+
+    NAME: $     => choice($.symbol_s, $.symbol_F, $.symbol__m, $.symbol__c_),
+    LHS_SUB: $  => choice("·", $.lhsList, $.lhsArray, $.symbol_sl),
+    LHS_ANY: $  => choice($.NAME, $.LHS_SUB, seq("(", $.LHS_ELT, ")")),
+    LHS_ATOM: $ => choice($.LHS_ANY, seq("(", $.lhsStr, ")")),
+    LHS_ELT: $  => choice($.LHS_ANY, $.lhsStr),
+    LHS_ENTRY: $=> choice($.LHS_ELT, seq($.lhs, "⇐", $.NAME)),
+    lhsStr: $   => seq($.LHS_ATOM, repeat1(seq("‿", $.LHS_ATOM))),
+    lhsList: $  => seq(
+      "⟨",
+      optional($.sep),
+      optional(seq(
+        repeat(seq($.LHS_ENTRY, $.sep)),
+        $.LHS_ENTRY,
+        optional($.sep))
+      ),
+      "⟩"
+    ),
+    lhsArray: $  => seq(
+      "[",
+      optional($.sep),
+      optional(seq(
+        repeat(seq($.LHS_ELT, $.sep)),
+        $.LHS_ELT,
+        optional($.sep))
+      ),
+      "]"
+    ),
+    lhsComp: $  => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
+    lhs: $      => choice($.symbol_s, $.lhsComp),
+
+
     number: $ => seq(optional('¯',), choice(token(/¯?(\d+|\d+\.\d*|\.\d+)/), 'π','∞',)),
     symbol_sl: $ => choice(
       '𝕨',
