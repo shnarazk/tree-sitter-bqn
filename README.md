@@ -30,7 +30,7 @@ shebangs = ["bqn", "cbqn"]
 [[grammar]]
 name = "bqn"
 source.git = "https://github.com/shnarazk/tree-sitter-bqn"
-source.rev = "20469f8dabf9c27270b1bb7ca25f2fa9beefbc54"
+source.rev = "20469f8dabf9c27270b1bb7ca25f2fa9beefbc54" # or something new
 ```
 
 2. run on shell:
