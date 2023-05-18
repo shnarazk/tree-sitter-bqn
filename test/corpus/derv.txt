@@ -54,14 +54,80 @@ arg → nothing Derv subExpr: (1) · F · F 1
 (source_file
   (STMT
     (EXPR (subExpr (arg
-      (nothing)
-      (Derv (Func (symbol_F)))
-      (subExpr (arg
-        (nothing) 
+      (nothing 
+        (nothing)
         (Derv (Func (symbol_F)))
-        (subExpr (arg (subject (atom (symbol_sl (number)))))
-      )))
+        (nothing))
+      (Derv (Func (symbol_F)))
+      (subExpr (arg (subject (atom (symbol_sl (number))))))
     )))
   )
 )
 
+==================
+Train → Func Fork Func: (1) · (+↕) 8 
+==================
+· (+↕) 8
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg
+      (nothing)
+      (Derv (Func (FuncExpr
+        (Train
+          (Derv (Func (symbol_Fl)))
+          (Fork (Derv (Func (symbol_Fl)))
+         )
+        )
+      )))
+      (subExpr (arg (subject (atom (symbol_sl (number))))) )
+    )))
+  )
+)
+
+==================
+Train → Func Fork Func: (2) · (⊑+↕) 8  
+==================
+· (⊑ + ↕) 8
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg
+      (nothing)
+      (Derv (Func (FuncExpr
+        (Train
+          (Fork
+            (Operand (Derv (Func (symbol_Fl))))
+            (Derv (Func (symbol_Fl)))
+            (Fork (Derv (Func (symbol_Fl))))
+          )
+        )
+      )))
+      (subExpr (arg (subject (atom (symbol_sl (number))))) )
+    )))
+  )
+)
+
+==================
+debug now arg → : (1) · F F
+==================
+(++) 1
+---
+
+(source_file
+  (STMT
+    (EXPR (subExpr (arg
+      (Derv 
+        (Func
+          (FuncExpr
+            (Train
+              (Derv (Func (symbol_Fl)))
+              (Fork (Derv (Func (symbol_Fl))))
+            )
+      )))
+      (subExpr (arg (subject (atom (symbol_sl (number))))))
+    )))
+  )
+)

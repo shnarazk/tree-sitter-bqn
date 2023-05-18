@@ -4,16 +4,16 @@
 ")" @punctuation.bracket
 "[" @punctuation.bracket
 "]" @punctuation.bracket
-;"⁼" @punctuation.delimiter
+;"⁼" @punctuation.sep
 "⊸" @operator
 "○" @operator
 "´" @operator
 "˘" @operator
 "⇐" @operator
 
-"⋄" @punctuation.delimiter
-"," @punctuation.delimiter
-"‿" @punctuation.delimiter
+"⋄" @punctuation.sep
+"," @punctuation.sep
+"‿" @punctuation.sep
 ; "⍟" @punctuation.bracket
 ; "⇐" @keyword
 (symbol__m) @type

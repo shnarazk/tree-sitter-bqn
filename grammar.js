@@ -4,18 +4,26 @@ module.exports = grammar({
   extras: $ => [/[ \t]+/, $.comment, $._end_of_line],
   // word: $ => $.end_of_line,
 
-  conflicts: $ => [],
+  conflicts: $ => [
+    [$.Fork, $.arg, $.nothing],
+    [$.nothing, $.arg],
+    [$.Operand, $.nothing, $.arg],
+    [$.Operand, $.nothing, $.arg, $.Train],
+    [$.Operand, $.nothing],
+    [$.nothing],
+    [$.Fork, $.nothing],
+  ],
 
   rules: {
     source_file: $ => seq(
-      optional($.delimiter),
-      repeat(seq($.STMT, $.delimiter)),
+      optional($.sep),
+      repeat(seq($.STMT, $.sep)),
       $.STMT,
-      optional($.delimiter),
+      optional($.sep),
     ),
     STMT: $ => choice($.EXPR, $.nothing),
-    delimiter: $ => repeat1(choice('⋄', ',', $._end_of_line)),
-    EXPR: $ => prec.left($.subExpr),
+    sep: $ => repeat1(choice('⋄', ',', $._end_of_line)),
+    EXPR: $ => ($.subExpr),
     ANY: $ => $.atom,
     Func: $ => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F),
@@ -31,39 +39,27 @@ module.exports = grammar({
     array: $ => choice(
       seq(
         '⟨',
-        optional($.delimiter),
-        optional(seq(repeat(seq($.EXPR, $.delimiter)), $.EXPR, optional($.delimiter))),
+        optional($.sep),
+        optional(seq(repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep))),
         '⟩'
       ),
       seq(
         '[',
-        optional($.delimiter),
-        repeat(seq($.EXPR, $.delimiter)), $.EXPR, optional($.delimiter),
+        optional($.sep),
+        repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep),
         ']'
       ),
     ),
     subject: $ => choice( $.atom, seq($.ANY, repeat1(seq('‿', $.ANY))) ), 
     ASGN: $ => choice('←', '⇐', '↩'), 
     Derv: $ => $.Func,
-    Operand: $ => prec.right(choice($.subject, $.Derv)),
-    Fork: $ => prec.right(choice(
-      $.Derv,
-      seq($.Operand, $.Derv, $.Fork),
-      seq($.nothing, $.Derv, $.Fork)
-    )),
-    Train: $ => prec.right(choice($.Fork, seq($.Derv, $.Fork))),
+    Operand: $ => (choice($.subject, $.Derv)),
+    Fork: $ => choice($.Derv, seq($.Operand, $.Derv, $.Fork), seq($.nothing, $.Derv, $.Fork)),
+    Train: $ => choice($.Fork, seq($.Derv, $.Fork)),
     FuncExpr: $ => $.Train,
-
-    arg: $ => choice(
-      $.subject,
-      seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)
-    ),
-    nothing: $ => prec.right(choice(
-      '·',
-      seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing)
-    )),
+    arg: $ => choice($.subject, seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)),
+    nothing: $ => choice('·', seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing)),
     subExpr: $ => $.arg,
-
     number: $ => seq(optional('¯',), choice(token(/¯?(\d+|\d+\.\d*|\.\d+)/), 'π','∞',)),
     symbol_sl: $ => choice(
       '𝕨',

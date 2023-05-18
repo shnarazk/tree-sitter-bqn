@@ -112,7 +112,7 @@ atom array: (4) [f,]
     (EXPR (subExpr (arg (subject (atom  
       (array
         (EXPR (subExpr (arg (subject (atom (symbol_s))))))
-        (delimiter)
+        (sep)
       ) 
     )))))
   )

@@ -9,7 +9,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "delimiter"
+              "name": "sep"
             },
             {
               "type": "BLANK"
@@ -27,7 +27,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "delimiter"
+                "name": "sep"
               }
             ]
           }
@@ -41,7 +41,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "delimiter"
+              "name": "sep"
             },
             {
               "type": "BLANK"
@@ -63,7 +63,7 @@
         }
       ]
     },
-    "delimiter": {
+    "sep": {
       "type": "REPEAT1",
       "content": {
         "type": "CHOICE",
@@ -84,12 +84,8 @@
       }
     },
     "EXPR": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SYMBOL",
-        "name": "subExpr"
-      }
+      "type": "SYMBOL",
+      "name": "subExpr"
     },
     "ANY": {
       "type": "SYMBOL",
@@ -226,7 +222,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "delimiter"
+                  "name": "sep"
                 },
                 {
                   "type": "BLANK"
@@ -250,7 +246,7 @@
                           },
                           {
                             "type": "SYMBOL",
-                            "name": "delimiter"
+                            "name": "sep"
                           }
                         ]
                       }
@@ -264,7 +260,7 @@
                       "members": [
                         {
                           "type": "SYMBOL",
-                          "name": "delimiter"
+                          "name": "sep"
                         },
                         {
                           "type": "BLANK"
@@ -296,7 +292,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "delimiter"
+                  "name": "sep"
                 },
                 {
                   "type": "BLANK"
@@ -314,7 +310,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "delimiter"
+                    "name": "sep"
                   }
                 ]
               }
@@ -328,7 +324,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "delimiter"
+                  "name": "sep"
                 },
                 {
                   "type": "BLANK"
@@ -399,94 +395,82 @@
       "name": "Func"
     },
     "Operand": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "subject"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Derv"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "subject"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Derv"
+        }
+      ]
     },
     "Fork": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "Derv"
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "Operand"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Derv"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Fork"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "nothing"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Derv"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Fork"
-              }
-            ]
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Derv"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "Operand"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Derv"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Fork"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "nothing"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Derv"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Fork"
+            }
+          ]
+        }
+      ]
     },
     "Train": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "Fork"
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "Derv"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Fork"
-              }
-            ]
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Fork"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "Derv"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Fork"
+            }
+          ]
+        }
+      ]
     },
     "FuncExpr": {
       "type": "SYMBOL",
@@ -536,51 +520,47 @@
       ]
     },
     "nothing": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "·"
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "subject"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "nothing"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Derv"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "nothing"
-              }
-            ]
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "·"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "subject"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "nothing"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Derv"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "nothing"
+            }
+          ]
+        }
+      ]
     },
     "subExpr": {
       "type": "SYMBOL",
@@ -1001,7 +981,39 @@
       "name": "_end_of_line"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "Fork",
+      "arg",
+      "nothing"
+    ],
+    [
+      "nothing",
+      "arg"
+    ],
+    [
+      "Operand",
+      "nothing",
+      "arg"
+    ],
+    [
+      "Operand",
+      "nothing",
+      "arg",
+      "Train"
+    ],
+    [
+      "Operand",
+      "nothing"
+    ],
+    [
+      "nothing"
+    ],
+    [
+      "Fork",
+      "nothing"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],

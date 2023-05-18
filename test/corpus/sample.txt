@@ -6,7 +6,7 @@ Fn ← +´
 ---
 (source_file
   (comment)
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (FuncExpr
@@ -31,7 +31,7 @@ Fn ← +´⋄
 ---
 (source_file
   (comment)
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (FuncExpr
@@ -45,7 +45,7 @@ Fn ← +´⋄
                   (Derv
                     (Func (symbol_Fl))))
                 (mod_1 (symbol__ml)))))))))
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (subExpr
@@ -63,10 +63,10 @@ Fn ← +´⋄
       )
     )
   )
-  (delimiter)
+  (sep)
 )
 ==================
-end-of-line as delimiter
+end-of-line as sep
 ==================
 # comment
 Fn ← +´
@@ -75,7 +75,7 @@ Fn ← +´
 ---
 (source_file
   (comment)
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (FuncExpr
@@ -89,7 +89,7 @@ Fn ← +´
                   (Derv
                     (Func (symbol_Fl))))
                 (mod_1 (symbol__ml)))))))))
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (subExpr
@@ -107,5 +107,5 @@ Fn ← +´
       )
     )
   )
-  (delimiter)
+  (sep)
 )
