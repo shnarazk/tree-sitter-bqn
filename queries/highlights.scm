@@ -5,23 +5,23 @@
 ")" @punctuation.bracket
 "[" @punctuation.bracket
 "]" @punctuation.bracket
-;"⁼" @punctuation.sep
+;"⁼" @punctuation.delimiter
 ; "⊸" @operator
 ; "○" @operator
 ; "´" @operator
 ; "˘" @operator
 ; "⇐" @operator
 
-"⋄" @punctuation.sep
-"," @punctuation.sep
-"‿" @punctuation.sep
+"⋄" @punctuation.delimiter
+"," @punctuation.delimiter
+"‿" @punctuation.delimiter
 ; ; "⍟" @punctuation.bracket
 
 "⇐" @keyword
 
-; (symbol__m) @keyword
-; (symbol__ml) @constructor
-; (symbol__cl_) @keyword
+(Train) @label
 (symbol_F) @function
-(symbol_Fl) @keyword
+(symbol_Fl) @function.builtin
+(symbol_s) @constant
+(symbol_sl) @constant.builtin
 

@@ -1,5 +1,5 @@
 ==================
-integer literal
+integer literal: 1, ¯1
 ==================
 1
 ¯1
@@ -31,7 +31,7 @@ integer literal
   )
 )
 ==================
-float literal
+float literal: 1.8, ¯3.01
 ==================
 1.8
 ¯3.01
@@ -63,7 +63,7 @@ float literal
   )
 )
 ==================
-infinity and constant
+infinity and constant: ∞, ¯π
 ==================
 ∞
 ¯π
