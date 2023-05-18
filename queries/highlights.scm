@@ -1,5 +1,6 @@
 (comment) @comment
 (number) @constant
+(string) @string
 
 "⟨" @punctuation.bracket
 ")" @punctuation.bracket

@@ -11,6 +11,7 @@
 4. tedious
 5. release (code name: 'Quite tedious')
 
+## A configuration for Helix
 Hey, are you a [Helix](https://helix-editor.com/) user? Then try me:
 
 1. add the following to your $CONFIG/helix/languages.toml
