@@ -1270,6 +1270,10 @@
         }
       ]
     },
+    "system_value": {
+      "type": "PATTERN",
+      "value": "•[A-Za-z0-9\\.]+"
+    },
     "symbol_Fl": {
       "type": "CHOICE",
       "members": [
@@ -1450,12 +1454,8 @@
           "value": "!"
         },
         {
-          "type": "FIELD",
-          "name": "system",
-          "content": {
-            "type": "PATTERN",
-            "value": "•[A-Za-z0-9]+"
-          }
+          "type": "SYMBOL",
+          "name": "system_value"
         }
       ]
     },

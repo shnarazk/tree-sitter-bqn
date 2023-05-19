@@ -43,8 +43,8 @@ module.exports = grammar({
       seq('⟨', optional($.sep), optional(seq(repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep))), '⟩'),
       seq('[', optional($.sep), repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep), ']'),
     ),
-    subject: $ => choice( $.atom, seq($.ANY, repeat1(seq('‿', $.ANY))) ), 
-    ASGN: $ => choice('←', '⇐', '↩'), 
+    subject: $ => choice($.atom, seq($.ANY, repeat1(seq('‿', $.ANY)))),
+    ASGN: $ => choice('←', '⇐', '↩'),
     Derv: $     => $.Func,
     Operand: $  => choice($.subject, $.Derv),
     Fork: $     => choice($.Derv, seq($.Operand, $.Derv, $.Fork), seq($.nothing, $.Derv, $.Fork)),
@@ -74,7 +74,7 @@ module.exports = grammar({
       optional("¯"), choice("∞", seq($._mantissa, optional(seq(choice("e", "E"), $._exponent))))
     ),
     _exponent: $ => prec.left(seq(optional("¯"), $._digits)),
-    _mantissa: $ => prec.right(10, choice("π", seq($._digits, optional(seq(".", $._digits))))), 
+    _mantissa: $ => prec.right(10, choice("π", seq($._digits, optional(seq(".", $._digits))))),
     _digits: $ => prec(100, /[0-9]+/),
     character: $ => choice(/'[^']'/, /'\\u[0-9a-fA-F]{4}'/),
     string: $ => seq('"', repeat(choice("''''", '"""', /[^"']+/)), '"'),
@@ -82,11 +82,12 @@ module.exports = grammar({
       '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
       $.character, $.string, $.number
     ),
+    system_value: $ => /•[A-Za-z0-9\.]+/,
     symbol_Fl: $ => choice(
       '+', '-', '×', '÷', '⋆', '√', '⌊', '⌈', '∧', '∨', '¬', '|', '≤', '<', '>', '≥', '=',
       '≠', '≡', '≢', '⊣', '⊢', '⥊', '∾', '≍', '⋈', '↑', '↓', '↕', '«', '»', '⌽', '⍉', '/',
       '⍋', '⍒', '⊏', '⊑', '⊐', '⊒', '∊', '⍷', '⊔', '!',
-      field("system", /•[A-Za-z0-9]+/)
+      $.system_value
     ),
     symbol__ml: $ => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`' ),
     symbol__cl_: $ => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟' ),
