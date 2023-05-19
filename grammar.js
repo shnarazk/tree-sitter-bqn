@@ -32,7 +32,7 @@ module.exports = grammar({
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $        => choice($.subExpr, $.FuncExpr),
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
-    ANY: $     => $.atom,
+    ANY: $     => choice($.atom, $.Func),
     Func: $    => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F), $.symbol_Fl, seq('(', $.FuncExpr, ')'),
     ),

@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "Func",
+          "named": true
+        },
+        {
           "type": "atom",
           "named": true
         }

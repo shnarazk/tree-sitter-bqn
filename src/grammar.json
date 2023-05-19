@@ -126,8 +126,17 @@
       ]
     },
     "ANY": {
-      "type": "SYMBOL",
-      "name": "atom"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "atom"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Func"
+        }
+      ]
     },
     "Func": {
       "type": "CHOICE",

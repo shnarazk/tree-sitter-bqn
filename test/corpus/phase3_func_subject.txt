@@ -1,0 +1,44 @@
+==================
+strand of functions (1) ⊑‿↕
+==================
+⊑‿↕
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (Func (symbol_Fl)))
+            (ANY (Func (symbol_Fl)))
+          )
+        )
+      )
+    )
+  )
+)
+
+
+==================
+strand of functions (2) F‿G
+==================
+F‿G
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (Func (symbol_F)))
+            (ANY (Func (symbol_F)))
+          )
+        )
+      )
+    )
+  )
+)
+
+
