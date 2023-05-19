@@ -92,17 +92,68 @@
       }
     },
     "EXPR": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "subExpr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FuncExpr"
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "arg"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "ASGN"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "EXPR"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "Derv"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "↩"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "EXPR"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "EXPORT": {
       "type": "SEQ",
@@ -135,6 +186,23 @@
         {
           "type": "SYMBOL",
           "name": "Func"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "EXPR"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
         }
       ]
     },
@@ -174,23 +242,6 @@
         {
           "type": "SYMBOL",
           "name": "symbol_Fl"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SYMBOL",
-              "name": "FuncExpr"
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
         }
       ]
     },
@@ -230,23 +281,6 @@
         {
           "type": "SYMBOL",
           "name": "symbol_sl"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SYMBOL",
-              "name": "subExpr"
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
         },
         {
           "type": "SYMBOL",
@@ -391,7 +425,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "atom"
+          "name": "ANY"
         },
         {
           "type": "SEQ",
@@ -443,111 +477,7 @@
     },
     "Derv": {
       "type": "SYMBOL",
-      "name": "Func"
-    },
-    "Operand": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "subject"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Derv"
-        }
-      ]
-    },
-    "Fork": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Derv"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "Operand"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "Derv"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "Fork"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "nothing"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "Derv"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "Fork"
-            }
-          ]
-        }
-      ]
-    },
-    "Train": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Fork"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "Derv"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "Fork"
-            }
-          ]
-        }
-      ]
-    },
-    "FuncExpr": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Train"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "symbol_F"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "ASGN"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "FuncExpr"
-            }
-          ]
-        }
-      ]
+      "name": "ANY"
     },
     "arg": {
       "type": "PREC_RIGHT",
@@ -585,11 +515,11 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "Derv"
+                "name": "ANY"
               },
               {
                 "type": "SYMBOL",
-                "name": "subExpr"
+                "name": "EXPR"
               }
             ]
           }
@@ -632,75 +562,11 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "Derv"
+                "name": "ANY"
               },
               {
                 "type": "SYMBOL",
                 "name": "nothing"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "subExpr": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "arg"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "ASGN"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "subExpr"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "Derv"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": "↩"
-                      },
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "subExpr"
-                          },
-                          {
-                            "type": "BLANK"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
               }
             ]
           }
@@ -1286,23 +1152,8 @@
   ],
   "conflicts": [
     [
-      "Operand",
-      "nothing",
-      "arg"
-    ],
-    [
-      "Operand",
-      "nothing",
+      "subject",
       "arg",
-      "Train"
-    ],
-    [
-      "Operand",
-      "nothing"
-    ],
-    [
-      "Operand",
-      "Train",
       "nothing"
     ]
   ],

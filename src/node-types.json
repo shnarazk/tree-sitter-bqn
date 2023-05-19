@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "EXPR",
+          "named": true
+        },
+        {
           "type": "Func",
           "named": true
         },
@@ -42,7 +46,7 @@
       "required": true,
       "types": [
         {
-          "type": "Func",
+          "type": "ANY",
           "named": true
         }
       ]
@@ -68,42 +72,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "FuncExpr",
-          "named": true
-        },
-        {
-          "type": "subExpr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Fork",
-    "named": true,
-    "fields": {},
-    "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "ASGN",
+          "named": true
+        },
         {
           "type": "Derv",
           "named": true
         },
         {
-          "type": "Fork",
+          "type": "EXPR",
           "named": true
         },
         {
-          "type": "Operand",
-          "named": true
-        },
-        {
-          "type": "nothing",
+          "type": "arg",
           "named": true
         }
       ]
@@ -118,10 +103,6 @@
       "required": true,
       "types": [
         {
-          "type": "FuncExpr",
-          "named": true
-        },
-        {
           "type": "atom",
           "named": true
         },
@@ -131,52 +112,6 @@
         },
         {
           "type": "symbol_Fl",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FuncExpr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "ASGN",
-          "named": true
-        },
-        {
-          "type": "FuncExpr",
-          "named": true
-        },
-        {
-          "type": "Train",
-          "named": true
-        },
-        {
-          "type": "symbol_F",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Operand",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Derv",
-          "named": true
-        },
-        {
-          "type": "subject",
           "named": true
         }
       ]
@@ -206,25 +141,6 @@
     }
   },
   {
-    "type": "Train",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "Derv",
-          "named": true
-        },
-        {
-          "type": "Fork",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "arg",
     "named": true,
     "fields": {},
@@ -233,15 +149,15 @@
       "required": true,
       "types": [
         {
-          "type": "Derv",
+          "type": "ANY",
+          "named": true
+        },
+        {
+          "type": "EXPR",
           "named": true
         },
         {
           "type": "nothing",
-          "named": true
-        },
-        {
-          "type": "subExpr",
           "named": true
         },
         {
@@ -287,10 +203,6 @@
           "named": true
         },
         {
-          "type": "subExpr",
-          "named": true
-        },
-        {
           "type": "symbol_s",
           "named": true
         },
@@ -315,7 +227,7 @@
       "required": false,
       "types": [
         {
-          "type": "Derv",
+          "type": "ANY",
           "named": true
         },
         {
@@ -364,33 +276,6 @@
     "fields": {}
   },
   {
-    "type": "subExpr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "ASGN",
-          "named": true
-        },
-        {
-          "type": "Derv",
-          "named": true
-        },
-        {
-          "type": "arg",
-          "named": true
-        },
-        {
-          "type": "subExpr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "subject",
     "named": true,
     "fields": {},
@@ -400,10 +285,6 @@
       "types": [
         {
           "type": "ANY",
-          "named": true
-        },
-        {
-          "type": "atom",
           "named": true
         }
       ]

@@ -2,39 +2,27 @@ module.exports = grammar({
   name: 'bqn',
   extras: $ => [/[ \t]+/, $.comment, $._end_of_line],
   conflicts: $ => [
-    [$.Operand, $.nothing, $.arg],
-    [$.Operand, $.nothing, $.arg, $.Train],
-    [$.Operand, $.nothing],
-    [$.Operand, $.Train, $.nothing],
+    [$.subject, $.arg, $.nothing],
   ],
   rules: {
     source_file: $ => $._PROGRAM,
     _PROGRAM: $    => seq(optional($.sep), repeat(seq($.STMT, $.sep)), $.STMT, optional($.sep)),
     STMT: $        => choice($.EXPR, $.nothing, $.EXPORT),
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
-    EXPR: $        => choice($.subExpr, $.FuncExpr),
+    EXPR: $        => prec.right(seq($.arg, optional(choice(seq($.ASGN, $.EXPR), seq($.Derv, "↩", optional($.EXPR)))))),
     EXPORT: $      => seq(optional($.arg), "⇐"),
-    ANY: $     => choice($.atom, $.Func),
-    Func: $    => choice(
-      seq(optional(seq($.atom, '.')), $.symbol_F), $.symbol_Fl, seq('(', $.FuncExpr, ')'),
-    ),
-    atom: $    => choice(
-      seq(optional(seq($.atom, '.')), $.symbol_s), $.symbol_sl, seq('(', $.subExpr, ')'), $.array
-    ),
-    array: $   => choice(
+    ANY: $         => choice($.atom, $.Func, seq('(', $.EXPR, ')')),
+    atom: $        => choice(seq(optional(seq($.atom, '.')), $.symbol_s), $.symbol_sl, $.array),
+    Func: $        => choice(seq(optional(seq($.atom, '.')), $.symbol_F), $.symbol_Fl),
+    array: $       => choice(
       seq('⟨', optional($.sep), optional(seq(repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep))), '⟩'),
       seq('[', optional($.sep), repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep), ']'),
     ),
-    subject: $ => choice($.atom, seq($.ANY, repeat1(seq('‿', $.ANY)))),
-    ASGN: $ => prec.right(choice('←', $.symbol_export, '↩')),
-    Derv: $     => $.Func,
-    Operand: $  => choice($.subject, $.Derv),
-    Fork: $     => choice($.Derv, seq($.Operand, $.Derv, $.Fork), seq($.nothing, $.Derv, $.Fork)),
-    Train: $    => choice($.Fork, seq($.Derv, $.Fork)),
-    FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
-    arg: $     => prec.right(choice($.subject, seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr))),
-    nothing: $ => prec.right(choice('·', seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing))),
-    subExpr: $ => prec.right(seq($.arg, optional(choice(seq($.ASGN, $.subExpr), seq($.Derv, "↩", optional($.subExpr)))))),
+    subject: $     => choice($.ANY, seq($.ANY, repeat1(seq('‿', $.ANY)))),
+    ASGN: $        => prec.right(choice('←', $.symbol_export, '↩')),
+    Derv: $        => $.ANY,
+    arg: $         => prec.right(choice($.subject, seq(optional(choice($.subject, $.nothing)), $.ANY, $.EXPR))),
+    nothing: $     => prec.right(choice('·', seq(optional(choice($.subject, $.nothing)), $.ANY, $.nothing))),
 
     number: $    => seq(
       optional("¯"), choice("∞", seq($._mantissa, optional(seq(choice("e", "E"), $._exponent))))
