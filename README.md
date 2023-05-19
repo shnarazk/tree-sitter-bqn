@@ -2,6 +2,7 @@
 
 - Specification [BQN grammar](https://mlochbaum.github.io/BQN/spec/grammar.html)
 - [tree-sitter](https://tree-sitter.github.io/tree-sitter/creating-parsers)
+- [target scheme](https://github.com/helix-editor/helix/blob/53f47bc47771c94dab51626ca025be28e62eba0c/runtime/themes/solarized_light.toml#L1-L23)
 
 # way to release
 
