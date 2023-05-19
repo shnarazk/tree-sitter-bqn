@@ -17,7 +17,17 @@
   {
     "type": "ASGN",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "symbol_export",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "Derv",
@@ -57,6 +67,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "FuncExpr",
+          "named": true
+        },
         {
           "type": "subExpr",
           "named": true
@@ -123,11 +137,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "ASGN",
+          "named": true
+        },
+        {
+          "type": "FuncExpr",
+          "named": true
+        },
+        {
           "type": "Train",
+          "named": true
+        },
+        {
+          "type": "symbol_F",
           "named": true
         }
       ]
@@ -212,6 +238,10 @@
         },
         {
           "type": "lhs",
+          "named": true
+        },
+        {
+          "type": "symbol_export",
           "named": true
         }
       ]
@@ -615,6 +645,21 @@
   {
     "type": "symbol_Fl",
     "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "system_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbol_export",
+    "named": true,
     "fields": {}
   },
   {
@@ -738,6 +783,10 @@
   },
   {
     "type": "symbol_s",
+    "named": true
+  },
+  {
+    "type": "system_value",
     "named": true
   },
   {

@@ -1,7 +1,4 @@
 # comment
-Fn ← +´ ⋄
-↕3 ⋄
-×3 ⋄
-# •Show 3
-# •Show ¯3‿π
-# •Show x0‿x1 ← ⟨1, ¯3⟩
+Fn ⇐ (×⟜+)´ ⋄
+x ← ↕3‿4
+•Show ⟨x,3,'a',"eeee"⟩

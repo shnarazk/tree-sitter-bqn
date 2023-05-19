@@ -2,6 +2,10 @@
   "name": "bqn",
   "rules": {
     "source_file": {
+      "type": "SYMBOL",
+      "name": "_PROGRAM"
+    },
+    "_PROGRAM": {
       "type": "SEQ",
       "members": [
         {
@@ -88,8 +92,17 @@
       }
     },
     "EXPR": {
-      "type": "SYMBOL",
-      "name": "subExpr"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "subExpr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FuncExpr"
+        }
+      ]
     },
     "EXPORT": {
       "type": "SEQ",
@@ -406,8 +419,8 @@
           "value": "←"
         },
         {
-          "type": "STRING",
-          "value": "⇐"
+          "type": "SYMBOL",
+          "name": "symbol_export"
         },
         {
           "type": "STRING",
@@ -498,8 +511,30 @@
       ]
     },
     "FuncExpr": {
-      "type": "SYMBOL",
-      "name": "Train"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Train"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol_F"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ASGN"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "FuncExpr"
+            }
+          ]
+        }
+      ]
     },
     "arg": {
       "type": "CHOICE",
@@ -768,8 +803,8 @@
               "name": "lhs"
             },
             {
-              "type": "STRING",
-              "value": "⇐"
+              "type": "SYMBOL",
+              "name": "symbol_export"
             },
             {
               "type": "SYMBOL",
@@ -1239,6 +1274,10 @@
         }
       ]
     },
+    "system_value": {
+      "type": "PATTERN",
+      "value": "•[A-Za-z0-9\\.]+"
+    },
     "symbol_Fl": {
       "type": "CHOICE",
       "members": [
@@ -1419,12 +1458,8 @@
           "value": "!"
         },
         {
-          "type": "FIELD",
-          "name": "system",
-          "content": {
-            "type": "PATTERN",
-            "value": "•[A-Za-z0-9]+"
-          }
+          "type": "SYMBOL",
+          "name": "system_value"
         }
       ]
     },
@@ -1533,6 +1568,10 @@
     "symbol__c_": {
       "type": "PATTERN",
       "value": "_[A-Za-z][A-Za-z0-9]*_"
+    },
+    "symbol_export": {
+      "type": "STRING",
+      "value": "⇐"
     },
     "comment": {
       "type": "PATTERN",
@@ -1645,6 +1684,15 @@
     [
       "LHS_ELT",
       "lhsComp"
+    ],
+    [
+      "FuncExpr",
+      "NAME"
+    ],
+    [
+      "Operand",
+      "Train",
+      "nothing"
     ]
   ],
   "precedences": [],

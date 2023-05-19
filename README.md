@@ -6,8 +6,8 @@
 
 # way to release
 
-1. (prensent status) quite simplified
-2. simplified
+1. Phase1: quite simplified
+2. (prensent phase) simplified
 3. shaping
 4. tedious
 5. release (code name: 'Quite tedious')
@@ -25,7 +25,7 @@ scope = "source.bqn"
 [[grammar]]
 name = "bqn"
 source.git = "https://github.com/shnarazk/tree-sitter-bqn"
-source.rev = "9b17030cb785d1d7cc587c93631661bfa00e9fa6"
+source.rev = "9b17030cb785d1d7cc587c93631661bfa00e9fa6" or something new
 ```
 
 2. run on shell:
