@@ -589,47 +589,51 @@
       ]
     },
     "nothing": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "·"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "subject"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "nothing"
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "Derv"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "nothing"
-            }
-          ]
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "·"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "subject"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "nothing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "Derv"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "nothing"
+              }
+            ]
+          }
+        ]
+      }
     },
     "subExpr": {
       "type": "CHOICE",
@@ -1628,13 +1632,6 @@
       "nothing",
       "arg",
       "Train"
-    ],
-    [
-      "Operand",
-      "nothing"
-    ],
-    [
-      "nothing"
     ],
     [
       "Fork",

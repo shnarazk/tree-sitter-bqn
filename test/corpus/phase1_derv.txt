@@ -54,12 +54,13 @@ arg → nothing Derv subExpr: (1) · F · F 1
 (source_file
   (STMT
     (EXPR (subExpr (arg
-      (nothing 
+      (nothing)
+      (Derv (Func (symbol_F)))
+      (subExpr (arg 
         (nothing)
         (Derv (Func (symbol_F)))
-        (nothing))
-      (Derv (Func (symbol_F)))
-      (subExpr (arg (subject (atom (symbol_sl (number))))))
+        (subExpr (arg (subject (atom (symbol_sl (number))))))
+      ))
     )))
   )
 )

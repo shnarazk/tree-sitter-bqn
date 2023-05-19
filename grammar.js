@@ -7,7 +7,6 @@ module.exports = grammar({
     [$.Operand, $.nothing, $.arg],
     [$.Operand, $.nothing, $.arg, $.Train],
     [$.Operand, $.nothing],
-    [$.nothing],
     [$.Fork, $.nothing],
     [$.nothing, $.LHS_SUB],
     [$.atom, $.lhs],
@@ -51,7 +50,7 @@ module.exports = grammar({
     Train: $    => choice($.Fork, seq($.Derv, $.Fork)),
     FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
     arg: $     => choice($.subject, seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)),
-    nothing: $ => choice('·', seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing)),
+    nothing: $ => prec.right(choice('·', seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing))),
     subExpr: $ => choice(
       $.arg, seq($.lhs, $.ASGN, $.subExpr), seq($.lhs, $.Derv, "↩", optional($.subExpr))
     ),
