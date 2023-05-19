@@ -35,18 +35,6 @@ atom sl: (1) ∞
 )
 
 ==================
-atom sl: (2) 𝕨 
-==================
-𝕨
----
-
-(source_file
-  (STMT
-    (EXPR (subExpr (arg (subject (atom (symbol_sl))))))
-  )
-)
-
-==================
 atom "(" subExpr ")": (1) (1) 
 ==================
 (f)

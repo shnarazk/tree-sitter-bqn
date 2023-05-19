@@ -19,6 +19,25 @@
     }
   },
   {
+    "type": "ANY_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Func_bl0",
+          "named": true
+        },
+        {
+          "type": "atom_bl0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ASGN",
     "named": true,
     "fields": {},
@@ -28,6 +47,33 @@
       "types": [
         {
           "type": "symbol_export",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BODY_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "EXPR_bl0",
+          "named": true
+        },
+        {
+          "type": "STMT",
+          "named": true
+        },
+        {
+          "type": "STMT_bl0",
+          "named": true
+        },
+        {
+          "type": "sep",
           "named": true
         }
       ]
@@ -49,6 +95,21 @@
     }
   },
   {
+    "type": "Derv_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Func_bl0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "EXPORT",
     "named": true,
     "fields": {},
@@ -58,6 +119,21 @@
       "types": [
         {
           "type": "LHS_ELT",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EXPORT_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "LHS_ELT_bl0",
           "named": true
         }
       ]
@@ -77,6 +153,25 @@
         },
         {
           "type": "subExpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EXPR_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FuncExpr_bl0",
+          "named": true
+        },
+        {
+          "type": "subExpr_bl0",
           "named": true
         }
       ]
@@ -104,6 +199,33 @@
         },
         {
           "type": "nothing",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Fork_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Derv_bl0",
+          "named": true
+        },
+        {
+          "type": "Fork_bl0",
+          "named": true
+        },
+        {
+          "type": "Operand_bl0",
+          "named": true
+        },
+        {
+          "type": "nothing_bl0",
           "named": true
         }
       ]
@@ -164,6 +286,60 @@
     }
   },
   {
+    "type": "FuncExpr_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ASGN",
+          "named": true
+        },
+        {
+          "type": "FuncExpr_bl0",
+          "named": true
+        },
+        {
+          "type": "Train_bl0",
+          "named": true
+        },
+        {
+          "type": "symbol_F",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Func_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "FuncExpr_bl0",
+          "named": true
+        },
+        {
+          "type": "atom_bl0",
+          "named": true
+        },
+        {
+          "type": "symbol_F",
+          "named": true
+        },
+        {
+          "type": "symbol_Fl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "LHS_ANY",
     "named": true,
     "fields": {},
@@ -181,6 +357,29 @@
         },
         {
           "type": "NAME",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "LHS_ANY_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "LHS_ELT_bl0",
+          "named": true
+        },
+        {
+          "type": "LHS_SUB_bl0",
+          "named": true
+        },
+        {
+          "type": "NAME_bl0",
           "named": true
         }
       ]
@@ -206,6 +405,25 @@
     }
   },
   {
+    "type": "LHS_ATOM_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "LHS_ANY_bl0",
+          "named": true
+        },
+        {
+          "type": "lhsStr_bl0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "LHS_ELT",
     "named": true,
     "fields": {},
@@ -219,6 +437,25 @@
         },
         {
           "type": "lhsStr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "LHS_ELT_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "LHS_ANY_bl0",
+          "named": true
+        },
+        {
+          "type": "lhsStr_bl0",
           "named": true
         }
       ]
@@ -252,6 +489,33 @@
     }
   },
   {
+    "type": "LHS_ENTRY_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "LHS_ELT_bl0",
+          "named": true
+        },
+        {
+          "type": "NAME_bl0",
+          "named": true
+        },
+        {
+          "type": "lhs_bl0",
+          "named": true
+        },
+        {
+          "type": "symbol_export",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "LHS_SUB",
     "named": true,
     "fields": {},
@@ -275,7 +539,57 @@
     }
   },
   {
+    "type": "LHS_SUB_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "lhsArray_bl0",
+          "named": true
+        },
+        {
+          "type": "lhsList_bl0",
+          "named": true
+        },
+        {
+          "type": "symbol_sl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "NAME",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "symbol_F",
+          "named": true
+        },
+        {
+          "type": "symbol__c_",
+          "named": true
+        },
+        {
+          "type": "symbol__m",
+          "named": true
+        },
+        {
+          "type": "symbol_s",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NAME_bl0",
     "named": true,
     "fields": {},
     "children": {
@@ -321,6 +635,25 @@
     }
   },
   {
+    "type": "Operand_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Derv_bl0",
+          "named": true
+        },
+        {
+          "type": "subject_bl0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "STMT",
     "named": true,
     "fields": {},
@@ -344,6 +677,52 @@
     }
   },
   {
+    "type": "STMT_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "EXPORT_bl0",
+          "named": true
+        },
+        {
+          "type": "EXPR_bl0",
+          "named": true
+        },
+        {
+          "type": "nothing_bl0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "S_CASE_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BODY_bl0",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        },
+        {
+          "type": "symbol_s",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "Train",
     "named": true,
     "fields": {},
@@ -357,6 +736,25 @@
         },
         {
           "type": "Fork",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Train_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Derv_bl0",
+          "named": true
+        },
+        {
+          "type": "Fork_bl0",
           "named": true
         }
       ]
@@ -409,6 +807,25 @@
     }
   },
   {
+    "type": "array_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "EXPR_bl0",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "atom",
     "named": true,
     "fields": {},
@@ -426,6 +843,37 @@
         },
         {
           "type": "subExpr",
+          "named": true
+        },
+        {
+          "type": "symbol_s",
+          "named": true
+        },
+        {
+          "type": "symbol_sl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "atom_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_bl0",
+          "named": true
+        },
+        {
+          "type": "atom_bl0",
+          "named": true
+        },
+        {
+          "type": "subExpr_bl0",
           "named": true
         },
         {
@@ -483,6 +931,25 @@
     }
   },
   {
+    "type": "lhsArray_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "LHS_ELT_bl0",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "lhsComp",
     "named": true,
     "fields": {},
@@ -500,6 +967,29 @@
         },
         {
           "type": "lhsStr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lhsComp_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "LHS_SUB_bl0",
+          "named": true
+        },
+        {
+          "type": "lhsStr_bl0",
+          "named": true
+        },
+        {
+          "type": "lhs_bl0",
           "named": true
         }
       ]
@@ -525,6 +1015,25 @@
     }
   },
   {
+    "type": "lhsList_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "LHS_ENTRY_bl0",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "lhsStr",
     "named": true,
     "fields": {},
@@ -534,6 +1043,40 @@
       "types": [
         {
           "type": "LHS_ATOM",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lhsStr_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "LHS_ATOM_bl0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lhs_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "lhsComp_bl0",
+          "named": true
+        },
+        {
+          "type": "symbol_s",
           "named": true
         }
       ]
@@ -557,6 +1100,29 @@
         },
         {
           "type": "subject",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nothing_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "Derv_bl0",
+          "named": true
+        },
+        {
+          "type": "nothing_bl0",
+          "named": true
+        },
+        {
+          "type": "subject_bl0",
           "named": true
         }
       ]
@@ -628,6 +1194,37 @@
     }
   },
   {
+    "type": "subExpr_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ASGN",
+          "named": true
+        },
+        {
+          "type": "Derv_bl0",
+          "named": true
+        },
+        {
+          "type": "arg",
+          "named": true
+        },
+        {
+          "type": "lhs_bl0",
+          "named": true
+        },
+        {
+          "type": "subExpr_bl0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "subject",
     "named": true,
     "fields": {},
@@ -641,6 +1238,25 @@
         },
         {
           "type": "atom",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subject_bl0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ANY_bl0",
+          "named": true
+        },
+        {
+          "type": "atom_bl0",
           "named": true
         }
       ]
@@ -734,6 +1350,14 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -743,6 +1367,10 @@
   },
   {
     "type": ">",
+    "named": false
+  },
+  {
+    "type": "?",
     "named": false
   },
   {
@@ -794,7 +1422,15 @@
     "named": true
   },
   {
+    "type": "{",
+    "named": false
+  },
+  {
     "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   },
   {
@@ -1059,50 +1695,6 @@
   },
   {
     "type": "⥊",
-    "named": false
-  },
-  {
-    "type": "𝔽",
-    "named": false
-  },
-  {
-    "type": "𝔾",
-    "named": false
-  },
-  {
-    "type": "𝕊",
-    "named": false
-  },
-  {
-    "type": "𝕎",
-    "named": false
-  },
-  {
-    "type": "𝕏",
-    "named": false
-  },
-  {
-    "type": "𝕗",
-    "named": false
-  },
-  {
-    "type": "𝕘",
-    "named": false
-  },
-  {
-    "type": "𝕣",
-    "named": false
-  },
-  {
-    "type": "𝕤",
-    "named": false
-  },
-  {
-    "type": "𝕨",
-    "named": false
-  },
-  {
-    "type": "𝕩",
     "named": false
   }
 ]
