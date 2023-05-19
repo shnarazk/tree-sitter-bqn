@@ -2,25 +2,9 @@ module.exports = grammar({
   name: 'bqn',
   extras: $ => [/[ \t]+/, $.comment, $._end_of_line],
   conflicts: $ => [
-    [$.Fork, $.arg, $.nothing],
-    [$.nothing, $.arg],
     [$.Operand, $.nothing, $.arg],
     [$.Operand, $.nothing, $.arg, $.Train],
     [$.Operand, $.nothing],
-    [$.Fork, $.nothing],
-    [$.nothing, $.LHS_SUB],
-    [$.atom, $.lhs],
-    [$.atom, $.NAME],
-    [$.atom, $.LHS_SUB],
-    [$.atom, $.NAME, $.lhs],
-    [$.Func, $.NAME],
-    [$.LHS_ANY, $.lhsComp],
-    [$.LHS_ATOM, $.LHS_ELT],
-    [$.LHS_ATOM, $.LHS_ELT, $.lhsComp],
-    [$.array, $.lhsList],
-    [$.NAME, $.lhs],
-    [$.LHS_ELT, $.lhsComp],
-    [$.FuncExpr, $.NAME],
     [$.Operand, $.Train, $.nothing],
   ],
   rules: {
@@ -29,7 +13,7 @@ module.exports = grammar({
     STMT: $        => choice($.EXPR, $.nothing, $.EXPORT),
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $        => choice($.subExpr, $.FuncExpr),
-    EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
+    EXPORT: $      => seq(optional($.arg), "⇐"),
     ANY: $     => choice($.atom, $.Func),
     Func: $    => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F), $.symbol_Fl, seq('(', $.FuncExpr, ')'),
@@ -48,26 +32,10 @@ module.exports = grammar({
     Fork: $     => choice($.Derv, seq($.Operand, $.Derv, $.Fork), seq($.nothing, $.Derv, $.Fork)),
     Train: $    => choice($.Fork, seq($.Derv, $.Fork)),
     FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
-    arg: $     => choice($.subject, seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)),
+    arg: $     => prec.right(choice($.subject, seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr))),
     nothing: $ => prec.right(choice('·', seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing))),
-    subExpr: $ => choice(
-      $.arg, seq($.lhs, $.ASGN, $.subExpr), seq($.lhs, $.Derv, "↩", optional($.subExpr))
-    ),
-    NAME: $      => choice($.symbol_s, $.symbol_F, $.symbol__m, $.symbol__c_),
-    LHS_SUB: $   => choice("·", $.lhsList, $.lhsArray, $.symbol_sl),
-    LHS_ANY: $   => choice($.NAME, $.LHS_SUB, seq("(", $.LHS_ELT, ")")),
-    LHS_ATOM: $  => choice($.LHS_ANY, seq("(", $.lhsStr, ")")),
-    LHS_ELT: $   => choice($.LHS_ANY, $.lhsStr),
-    LHS_ENTRY: $ => choice($.LHS_ELT, seq($.lhs, $.symbol_export, $.NAME)),
-    lhsStr: $    => seq($.LHS_ATOM, repeat1(seq("‿", $.LHS_ATOM))),
-    lhsList: $   => seq(
-      "⟨", optional($.sep), optional(seq(repeat(seq($.LHS_ENTRY, $.sep)), $.LHS_ENTRY, optional($.sep))), "⟩"
-    ),
-    lhsArray: $  => seq(
-      "[", optional($.sep), optional(seq(repeat(seq($.LHS_ELT, $.sep)), $.LHS_ELT, optional($.sep))), "]"
-    ),
-    lhsComp: $   => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
-    lhs: $       => choice($.symbol_s, $.lhsComp),
+    subExpr: $ => prec.right(seq($.arg, optional(choice(seq($.ASGN, $.subExpr), seq($.Derv, "↩", optional($.subExpr)))))),
+
     number: $    => seq(
       optional("¯"), choice("∞", seq($._mantissa, optional(seq(choice("e", "E"), $._exponent))))
     ),
