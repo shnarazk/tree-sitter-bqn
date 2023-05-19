@@ -7,8 +7,8 @@
 # way to release
 
 1. Phase1: quite simplified
-2. (prensent phase) simplified
-3. shaping
+2. Phase2: simplified
+3. (___prensent phase___) shaping
 4. tedious
 5. release (code name: 'Quite tedious')
 
