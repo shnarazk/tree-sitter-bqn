@@ -419,8 +419,8 @@
           "value": "←"
         },
         {
-          "type": "STRING",
-          "value": "⇐"
+          "type": "SYMBOL",
+          "name": "symbol_export"
         },
         {
           "type": "STRING",
@@ -803,8 +803,8 @@
               "name": "lhs"
             },
             {
-              "type": "STRING",
-              "value": "⇐"
+              "type": "SYMBOL",
+              "name": "symbol_export"
             },
             {
               "type": "SYMBOL",
@@ -1568,6 +1568,10 @@
     "symbol__c_": {
       "type": "PATTERN",
       "value": "_[A-Za-z][A-Za-z0-9]*_"
+    },
+    "symbol_export": {
+      "type": "STRING",
+      "value": "⇐"
     },
     "comment": {
       "type": "PATTERN",

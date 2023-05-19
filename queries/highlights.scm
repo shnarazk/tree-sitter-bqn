@@ -26,4 +26,5 @@
 (symbol_Fl) @function.builtin
 (symbol_s) @constant
 (symbol_sl) @constant.builtin
+(symbol_export) @namespace
 (system_value) @keyword

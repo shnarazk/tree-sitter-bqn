@@ -1,0 +1,111 @@
+==================
+samble.bqn LL1-2
+==================
+# comment
+Fn ← +´
+---
+(source_file
+  (comment)
+  (sep)
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand
+                  (Derv
+                    (Func
+                      (symbol_Fl))))
+                (mod_1
+                  (symbol__ml))))))))))
+==================
+samble.bqn LL1-3
+==================
+# comment
+Fn ← +´⋄
+•Show ¯3‿π⋄
+---
+(source_file
+  (comment)
+  (sep)
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand
+                  (Derv
+                    (Func (symbol_Fl))))
+                (mod_1 (symbol__ml)))))))))
+  (sep)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (Derv (Func (symbol_Fl)))
+          (subExpr
+            (arg
+              (subject
+                (ANY (atom (symbol_sl (number))))
+                (ANY (atom (symbol_sl (number))))
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (sep)
+)
+==================
+end-of-line as sep
+==================
+# comment
+Fn ← +´
+•Show ¯3‿π
+
+---
+(source_file
+  (comment)
+  (sep)
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Operand
+                  (Derv
+                    (Func (symbol_Fl))))
+                (mod_1 (symbol__ml)))))))))
+  (sep)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (Derv (Func (symbol_Fl)))
+          (subExpr
+            (arg
+              (subject
+                (ANY (atom (symbol_sl (number))))
+                (ANY (atom (symbol_sl (number))))
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (sep)
+)

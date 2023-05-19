@@ -17,7 +17,17 @@
   {
     "type": "ASGN",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "symbol_export",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "Derv",
@@ -228,6 +238,10 @@
         },
         {
           "type": "lhs",
+          "named": true
+        },
+        {
+          "type": "symbol_export",
           "named": true
         }
       ]
@@ -642,6 +656,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "symbol_export",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "symbol_sl",

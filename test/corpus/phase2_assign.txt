@@ -26,8 +26,46 @@ F←+
   )
 )
 
+
 ==================
-Function assignment (2) F⇐(×+)
+Just export ⇐
+==================
+⇐
+---
+
+(source_file
+  (STMT (EXPORT))
+)
+==================
+Export Function (1) F⇐+
+==================
+F⇐+
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN (symbol_export))
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Func
+                  (symbol_Fl)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+Export function (2) F⇐(×+)
 ==================
 F⇐(×+)
 ---
@@ -37,7 +75,7 @@ F⇐(×+)
     (EXPR
       (FuncExpr
         (symbol_F)
-        (ASGN)
+        (ASGN (symbol_export))
         (FuncExpr
           (Train
             (Fork
@@ -55,41 +93,4 @@ F⇐(×+)
       )
     )
   )
-)
-
-==================
-Export Function (1) F⇐+
-==================
-F⇐+
----
-
-(source_file
-  (STMT
-    (EXPR
-      (FuncExpr
-        (symbol_F)
-        (ASGN)
-        (FuncExpr
-          (Train
-            (Fork
-              (Derv
-                (Func
-                  (symbol_Fl)
-                )
-              )
-            )
-          )
-        )
-      )
-    )
-  )
-)
-==================
-Just export ⇐
-==================
-⇐
----
-
-(source_file
-  (STMT (EXPORT))
 )
