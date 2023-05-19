@@ -2,6 +2,10 @@
   "name": "bqn",
   "rules": {
     "source_file": {
+      "type": "SYMBOL",
+      "name": "_PROGRAM"
+    },
+    "_PROGRAM": {
       "type": "SEQ",
       "members": [
         {

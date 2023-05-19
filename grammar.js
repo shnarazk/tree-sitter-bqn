@@ -1,7 +1,6 @@
 module.exports = grammar({
   name: 'bqn',
   extras: $ => [/[ \t]+/, $.comment, $._end_of_line],
-  // word: $ => $.end_of_line,
   conflicts: $ => [
     [$.Fork, $.arg, $.nothing],
     [$.nothing, $.arg],
@@ -27,7 +26,8 @@ module.exports = grammar({
     [$.Operand, $.Train, $.nothing],
   ],
   rules: {
-    source_file: $ => seq(optional($.sep), repeat(seq($.STMT, $.sep)), $.STMT, optional($.sep)),
+    source_file: $ => $._PROGRAM,
+    _PROGRAM: $    => seq(optional($.sep), repeat(seq($.STMT, $.sep)), $.STMT, optional($.sep)),
     STMT: $        => choice($.EXPR, $.nothing, $.EXPORT),
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $        => choice($.subExpr, $.FuncExpr),

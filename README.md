@@ -5,8 +5,8 @@
 
 # way to release
 
-1. (prensent status) quite simplified
-2. simplified
+1. Phase1: quite simplified
+2. (prensent phase) simplified
 3. shaping
 4. tedious
 5. release (code name: 'Quite tedious')
