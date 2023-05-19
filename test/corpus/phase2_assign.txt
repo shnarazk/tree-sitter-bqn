@@ -43,7 +43,7 @@ F⇐(×+)
             (Fork
               (Derv
                 (Func
-                  (FuncExpr (Train 
+                  (FuncExpr (Train
                     (Derv (Func (symbol_Fl)))
                     (Fork (Derv (Func (symbol_Fl))))
                   ))
@@ -83,4 +83,13 @@ F⇐+
       )
     )
   )
+)
+==================
+Just export ⇐
+==================
+⇐
+---
+
+(source_file
+  (STMT (EXPORT))
 )

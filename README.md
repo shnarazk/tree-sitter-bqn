@@ -24,7 +24,7 @@ scope = "source.bqn"
 [[grammar]]
 name = "bqn"
 source.git = "https://github.com/shnarazk/tree-sitter-bqn"
-source.rev = "9b17030cb785d1d7cc587c93631661bfa00e9fa6"
+source.rev = "9b17030cb785d1d7cc587c93631661bfa00e9fa6" or something new
 ```
 
 2. run on shell:
