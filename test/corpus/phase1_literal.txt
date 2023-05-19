@@ -1,4 +1,70 @@
 ==================
+character literal: 'a'
+==================
+'x'
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (character)))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+string literal: "str", "string"""s", "絵文字" 
+==================
+"str"
+"string"""s"
+"絵文字"
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (string)))
+          )
+        )
+      )
+    )
+  )
+  (sep)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (string)))
+          )
+        )
+      )
+    )
+  )
+  (sep)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (string)))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
 integer literal: 1, ¯1
 ==================
 1

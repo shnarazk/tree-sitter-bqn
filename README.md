@@ -19,19 +19,12 @@ Hey, are you a [Helix](https://helix-editor.com/) user? Then try me:
 ```toml
 [[language]]
 name = "bqn"
-file-types = ["bqn"]
-injection-regex = "bqn"
-language-server = { command = "bqnlsp", language-id = "bqn" }
 scope = "source.bqn"
-roots = []
-comment-token = "#"
-indent = { tab-width = 2, unit = "  " }
-shebangs = ["bqn", "cbqn"]
 
 [[grammar]]
 name = "bqn"
 source.git = "https://github.com/shnarazk/tree-sitter-bqn"
-source.rev = "20469f8dabf9c27270b1bb7ca25f2fa9beefbc54" # or something new
+source.rev = "9b17030cb785d1d7cc587c93631661bfa00e9fa6"
 ```
 
 2. run on shell:
