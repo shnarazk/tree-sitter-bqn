@@ -1,5 +1,71 @@
 ==================
-integer literal
+character literal: 'a'
+==================
+'x'
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (character)))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+string literal: "str", "string"""s", "絵文字" 
+==================
+"str"
+"string"""s"
+"絵文字"
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (string)))
+          )
+        )
+      )
+    )
+  )
+  (sep)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (string)))
+          )
+        )
+      )
+    )
+  )
+  (sep)
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_sl (string)))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+integer literal: 1, ¯1
 ==================
 1
 ¯1
@@ -17,7 +83,7 @@ integer literal
       )
     )
   )
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (subExpr
@@ -31,7 +97,7 @@ integer literal
   )
 )
 ==================
-float literal
+float literal: 1.8, ¯3.01
 ==================
 1.8
 ¯3.01
@@ -49,7 +115,7 @@ float literal
       )
     )
   )
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (subExpr
@@ -63,7 +129,7 @@ float literal
   )
 )
 ==================
-infinity and constant
+infinity and constant: ∞, ¯π
 ==================
 ∞
 ¯π
@@ -81,7 +147,7 @@ infinity and constant
       )
     )
   )
-  (delimiter)
+  (sep)
   (STMT
     (EXPR
       (subExpr

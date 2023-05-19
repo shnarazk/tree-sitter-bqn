@@ -1,29 +1,7 @@
 ==================
-simple subject assignment
+Function assignment: F←+
 ==================
-x←1
----
-
-(source_file
-  (STMT
-    (EXPR
-      (subExpr
-        (atom (symbol_s))
-        (ASGN)
-        (subExpr
-          (arg
-            (subject (atom (symbol_sl (number))))
-          )
-        )
-      )
-    )
-  )
-)
-
-==================
-Function assignment
-==================
-F←+´
+F←+
 ---
 
 (source_file

@@ -1,21 +1,28 @@
 (comment) @comment
+(number) @constant
+(string) @string
 
 "⟨" @punctuation.bracket
 ")" @punctuation.bracket
 "[" @punctuation.bracket
 "]" @punctuation.bracket
 ;"⁼" @punctuation.delimiter
-"⊸" @operator
-"○" @operator
-"´" @operator
-"˘" @operator
-"⇐" @operator
+; "⊸" @operator
+; "○" @operator
+; "´" @operator
+; "˘" @operator
+; "⇐" @operator
 
 "⋄" @punctuation.delimiter
 "," @punctuation.delimiter
 "‿" @punctuation.delimiter
-; "⍟" @punctuation.bracket
-; "⇐" @keyword
-(symbol__m) @type
-(symbol__c_) @keyword
-(symbol_Fl) @function
+; ; "⍟" @punctuation.bracket
+
+"⇐" @keyword
+
+(Train) @label
+(symbol_F) @function
+(symbol_Fl) @function.builtin
+(symbol_s) @constant
+(symbol_sl) @constant.builtin
+
