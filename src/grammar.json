@@ -88,8 +88,17 @@
       }
     },
     "EXPR": {
-      "type": "SYMBOL",
-      "name": "subExpr"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "subExpr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FuncExpr"
+        }
+      ]
     },
     "EXPORT": {
       "type": "SEQ",
@@ -498,8 +507,30 @@
       ]
     },
     "FuncExpr": {
-      "type": "SYMBOL",
-      "name": "Train"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Train"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol_F"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ASGN"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "FuncExpr"
+            }
+          ]
+        }
+      ]
     },
     "arg": {
       "type": "CHOICE",
@@ -1645,6 +1676,15 @@
     [
       "LHS_ELT",
       "lhsComp"
+    ],
+    [
+      "FuncExpr",
+      "NAME"
+    ],
+    [
+      "Operand",
+      "Train",
+      "nothing"
     ]
   ],
   "precedences": [],

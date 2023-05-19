@@ -22,13 +22,15 @@ module.exports = grammar({
     [$.array, $.lhsList],
     [$.ASGN, $.LHS_ENTRY],
     [$.NAME, $.lhs],
-    [$.LHS_ELT, $.lhsComp]
+    [$.LHS_ELT, $.lhsComp],
+    [$.FuncExpr, $.NAME],
+    [$.Operand, $.Train, $.nothing],
   ],
   rules: {
     source_file: $ => seq(optional($.sep), repeat(seq($.STMT, $.sep)), $.STMT, optional($.sep)),
     STMT: $        => choice($.EXPR, $.nothing, $.EXPORT),
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
-    EXPR: $        => ($.subExpr),
+    EXPR: $        => choice($.subExpr, $.FuncExpr),
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
     ANY: $     => $.atom,
     Func: $    => choice(
@@ -44,10 +46,10 @@ module.exports = grammar({
     subject: $ => choice( $.atom, seq($.ANY, repeat1(seq('‿', $.ANY))) ), 
     ASGN: $ => choice('←', '⇐', '↩'), 
     Derv: $     => $.Func,
-    Operand: $  => (choice($.subject, $.Derv)),
+    Operand: $  => choice($.subject, $.Derv),
     Fork: $     => choice($.Derv, seq($.Operand, $.Derv, $.Fork), seq($.nothing, $.Derv, $.Fork)),
     Train: $    => choice($.Fork, seq($.Derv, $.Fork)),
-    FuncExpr: $ => $.Train,
+    FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
     arg: $     => choice($.subject, seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)),
     nothing: $ => choice('·', seq(optional(choice($.subject, $.nothing)), $.Derv, $.nothing)),
     subExpr: $ => choice(

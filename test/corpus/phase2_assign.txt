@@ -1,0 +1,86 @@
+==================
+Function assignment (1) F←+
+==================
+F←+
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Func
+                  (symbol_Fl)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+Function assignment (2) F⇐(×+)
+==================
+F⇐(×+)
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Func
+                  (FuncExpr (Train 
+                    (Derv (Func (symbol_Fl)))
+                    (Fork (Derv (Func (symbol_Fl))))
+                  ))
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+Export Function (1) F⇐+
+==================
+F⇐+
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (symbol_F)
+        (ASGN)
+        (FuncExpr
+          (Train
+            (Fork
+              (Derv
+                (Func
+                  (symbol_Fl)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)

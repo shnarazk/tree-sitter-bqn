@@ -58,6 +58,10 @@
       "required": true,
       "types": [
         {
+          "type": "FuncExpr",
+          "named": true
+        },
+        {
           "type": "subExpr",
           "named": true
         }
@@ -123,11 +127,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "ASGN",
+          "named": true
+        },
+        {
+          "type": "FuncExpr",
+          "named": true
+        },
+        {
           "type": "Train",
+          "named": true
+        },
+        {
+          "type": "symbol_F",
           "named": true
         }
       ]
