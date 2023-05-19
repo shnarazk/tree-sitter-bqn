@@ -421,21 +421,25 @@
       ]
     },
     "ASGN": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "←"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "symbol_export"
-        },
-        {
-          "type": "STRING",
-          "value": "↩"
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "←"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "symbol_export"
+          },
+          {
+            "type": "STRING",
+            "value": "↩"
+          }
+        ]
+      }
     },
     "Derv": {
       "type": "SYMBOL",
@@ -1634,6 +1638,10 @@
       "Train"
     ],
     [
+      "Operand",
+      "nothing"
+    ],
+    [
       "Fork",
       "nothing"
     ],
@@ -1678,10 +1686,6 @@
     [
       "array",
       "lhsList"
-    ],
-    [
-      "ASGN",
-      "LHS_ENTRY"
     ],
     [
       "NAME",
