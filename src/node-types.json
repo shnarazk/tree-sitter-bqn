@@ -902,7 +902,7 @@
       "required": false,
       "types": [
         {
-          "type": "system_value",
+          "type": "system_F",
           "named": true
         }
       ]
@@ -911,12 +911,32 @@
   {
     "type": "symbol__cl_",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "system__c_",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "symbol__ml",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "system__m",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "symbol_export",
@@ -1059,7 +1079,15 @@
     "named": true
   },
   {
-    "type": "system_value",
+    "type": "system_F",
+    "named": true
+  },
+  {
+    "type": "system__c_",
+    "named": true
+  },
+  {
+    "type": "system__m",
     "named": true
   },
   {

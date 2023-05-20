@@ -40,6 +40,7 @@ module.exports = grammar({
     [$.mod_1, $.mod_2_, $.Func],
     [$.mod_1, $.mod_2_],
     [$.mod_1, $.mod_2_, $.atom],
+    [$.HEAD, $.symbol_Fl],
   ],
   rules: {
     source_file: $ => $._PROGRAM,
@@ -125,13 +126,13 @@ module.exports = grammar({
     ),
     HEAD: $ => choice(
       seq(
-        optional(choice($.lhs, "𝕨")),
+        optional(choice($.lhs, "𝕨", "𝕎")),
         optional(choice($.lhs, $.symbol_F, "𝕗", "𝔽")),
         choice($.symbol_F, "𝕊", $.symbol__m, "_𝕣", $.symbol__c_, "_𝕣_"),
         optional('˜'),
         optional("⁼"),
         optional(choice($.lhs, $.symbol_F, "𝕘", "𝔾")),
-        optional(choice($.lhs, "𝕩")),
+        optional(choice($.lhs, "𝕩", "𝕏")),
       ),
       $.lhsComp,
     ),
@@ -150,18 +151,22 @@ module.exports = grammar({
     character: $ => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
     string: $    => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
     symbol_sl: $      => choice(
-      '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
+      '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣', '@',
+      // '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
       $.character, $.string, $.number
     ),
-    system_value: $   => /•[A-Za-z0-9\.]+/,
+    system_F: $   => /•[A-Za-z0-9\.]+/,
     symbol_Fl: $      => choice(
       '+', '-', '×', '÷', '⋆', '√', '⌊', '⌈', '∧', '∨', '¬', '|', '≤', '<', '>', '≥', '=',
       '≠', '≡', '≢', '⊣', '⊢', '⥊', '∾', '≍', '⋈', '↑', '↓', '↕', '«', '»', '⌽', '⍉', '/',
       '⍋', '⍒', '⊏', '⊑', '⊐', '⊒', '∊', '⍷', '⊔', '!',
-      $.system_value
+      '𝕎', '𝕏', '𝔽', '𝔾', '𝕊',
+      $.system_F
     ),
-    symbol__ml: $     => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`' ),
-    symbol__cl_: $    => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟' ),
+    system__m: $   => /•_[A-Za-z0-9\.]+/,
+    symbol__ml: $     => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`', $.system__m),
+    system__c_: $   => /•_[A-Za-z0-9\.]+_/,
+    symbol__cl_: $    => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟', $.system__c_),
     symbol_s: $       => /[a-z][A-Za-z0-9]*/,
     symbol_F: $       => /[A-Z][A-Za-z0-9]*/,
     symbol__m: $      => /_[A-Za-z][A-Za-z0-9]*/,

@@ -102,7 +102,7 @@ modifier block (1) {𝔽 _𝕣: 𝔽˜´}
                             (Operand 
                               (Derv 
                                 (Operand
-                                  (subject (atom (symbol_sl))))
+                                  (Derv (Func (symbol_Fl))))
                                 (mod_1 (symbol__ml))))
                             (mod_1 (symbol__ml))
                           ))))))))))))))
