@@ -3,7 +3,7 @@
 (atom) @atom.around
 (Func) @Func.around
 (Derv) @Derv.around
-(SubExpr) @EXPR.around
+(subExpr) @EXPR.around
 (FuncExpr) @EXPR.around
 (EXPR) @EXPR.around
 (STMT) @STMT.around

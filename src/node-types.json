@@ -14,6 +14,14 @@
         {
           "type": "atom",
           "named": true
+        },
+        {
+          "type": "mod_1",
+          "named": true
+        },
+        {
+          "type": "mod_2_",
+          "named": true
         }
       ]
     }
