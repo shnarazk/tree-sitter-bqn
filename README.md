@@ -6,10 +6,10 @@
 
 # way to release
 
-1. Phase1: quite simplified
-2. Phase2: simplified
-3. (___prensent phase___) shaping
-4. tedious
+1. Phase1: quite simplified -- basic expressions
+2. Phase2: simplified -- statements
+3. Phase3: shaping -- modifiers
+4. (___prensent phase___) tedious
 5. release (code name: 'Quite tedious')
 
 ## A configuration for Helix
