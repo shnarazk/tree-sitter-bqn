@@ -150,9 +150,11 @@ module.exports = grammar({
     _digits: $   => prec(100, /[0-9]+/),
     character: $ => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
     string: $    => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
+    system_s: $   => /•[a-z][A-Za-z0-9\.]*/,
     symbol_sl: $      => choice(
       '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣', '@',
       // '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
+      $.system_s,
       $.character, $.string, $.number
     ),
     system_F: $   => /•[A-Za-z0-9\.]+/,

@@ -1818,6 +1818,10 @@
         ]
       }
     },
+    "system_s": {
+      "type": "PATTERN",
+      "value": "•[a-z][A-Za-z0-9\\.]*"
+    },
     "symbol_sl": {
       "type": "CHOICE",
       "members": [
@@ -1848,6 +1852,10 @@
         {
           "type": "STRING",
           "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "system_s"
         },
         {
           "type": "SYMBOL",

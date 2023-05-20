@@ -962,6 +962,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "system_s",
+          "named": true
         }
       ]
     }
@@ -1088,6 +1092,10 @@
   },
   {
     "type": "system__m",
+    "named": true
+  },
+  {
+    "type": "system_s",
     "named": true
   },
   {
