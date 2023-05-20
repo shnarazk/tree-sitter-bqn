@@ -165,12 +165,11 @@ module.exports = grammar({
     system_s: $ => token(seq(
       "•",
       optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
-      /[a_z][A-Za-z0-9\.]*/
+      /[a-z][A-Za-z0-9]*/
     )),
     symbol_sl: $      => choice(
       '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣', '@',
       // '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
-      // $.system_s,
       $.character, $.string, $.number
     ),
     system_F: $ => token(seq(

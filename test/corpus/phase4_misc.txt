@@ -10,3 +10,15 @@ function in system (1) •file.At ".singeli"
     (subExpr (arg (subject (atom (symbol_sl (string))))))
 	)))))
 
+==================
+function in system (1) ⟨8,16‿'c'⟩•bit._cast
+==================
+⟨8,16‿'c'⟩•bit._cast
+---
+
+(source_file (STMT (EXPR (subExpr
+  (arg
+    (Derv (Func (system_F)))
+    (subExpr (arg (subject (atom (symbol_sl (string))))))
+	)))))
+
