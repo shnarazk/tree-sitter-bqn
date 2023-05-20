@@ -1,0 +1,12 @@
+==================
+function in system (1) •file.At ".singeli" 
+==================
+•file.At ".singeli"
+---
+
+(source_file (STMT (EXPR (subExpr
+  (arg
+    (Derv (Func (system_F)))
+    (subExpr (arg (subject (atom (symbol_sl (string))))))
+	)))))
+

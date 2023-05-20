@@ -218,6 +218,10 @@
         {
           "type": "symbol_Fl",
           "named": true
+        },
+        {
+          "type": "system_F",
+          "named": true
         }
       ]
     }
@@ -556,6 +560,10 @@
         {
           "type": "symbol_sl",
           "named": true
+        },
+        {
+          "type": "system_s",
+          "named": true
         }
       ]
     }
@@ -756,6 +764,10 @@
         {
           "type": "symbol__ml",
           "named": true
+        },
+        {
+          "type": "system__m",
+          "named": true
         }
       ]
     }
@@ -786,6 +798,10 @@
         },
         {
           "type": "symbol__cl_",
+          "named": true
+        },
+        {
+          "type": "system__c_",
           "named": true
         }
       ]
@@ -896,47 +912,17 @@
   {
     "type": "symbol_Fl",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "system_F",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "symbol__cl_",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "system__c_",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "symbol__ml",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "system__m",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "symbol_export",
@@ -961,10 +947,6 @@
         },
         {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "system_s",
           "named": true
         }
       ]

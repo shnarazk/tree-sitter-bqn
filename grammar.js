@@ -51,19 +51,31 @@ module.exports = grammar({
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
     ANY: $     => choice($.atom, $.Func, $.mod_1, $.mod_2_, $.block),
     mod_2_: $ => prec(5, choice(
-      seq(optional(seq($.atom, '.')), $.symbol__c_), $.symbol__cl_, seq('(', $.m2_Expr_, ')'),
+      seq(optional(seq($.atom, '.')), $.symbol__c_),
+      $.system__c_,
+      $.symbol__cl_,
+      seq('(', $.m2_Expr_, ')'),
       $.block
     )),
     mod_1: $ => prec(5, choice(
-      seq(optional(seq($.atom, '.')), $.symbol__m), $.symbol__ml, seq('(', $.m1_Expr, ')'),
+      seq(optional(seq($.atom, '.')), $.symbol__m),
+      $.system__m,
+      $.symbol__ml,
+      seq('(', $.m1_Expr, ')'),
       $.block
     )),
     Func: $    => choice(
-      seq(optional(seq($.atom, '.')), $.symbol_F), $.symbol_Fl, seq('(', $.FuncExpr, ')'),
+      seq(optional(seq($.atom, '.')), $.symbol_F),
+      $.system_F,
+      $.symbol_Fl,
+      seq('(', $.FuncExpr, ')'),
       $.block
     ),
     atom: $    => choice(
-      seq(optional(seq($.atom, '.')), $.symbol_s), $.symbol_sl, seq('(', $.subExpr, ')'),
+      seq(optional(seq($.atom, '.')), $.symbol_s),
+      $.system_s,
+      $.symbol_sl,
+      seq('(', $.subExpr, ')'),
       $.block,
       $.array
     ),
@@ -150,25 +162,40 @@ module.exports = grammar({
     _digits: $   => prec(100, /[0-9]+/),
     character: $ => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
     string: $    => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
-    system_s: $   => /•[a-z][A-Za-z0-9\.]*/,
+    system_s: $ => token(seq(
+      "•",
+      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
+      /[a_z][A-Za-z0-9\.]*/
+    )),
     symbol_sl: $      => choice(
       '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣', '@',
       // '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
-      $.system_s,
+      // $.system_s,
       $.character, $.string, $.number
     ),
-    system_F: $   => /•[A-Za-z0-9\.]+/,
+    system_F: $ => token(seq(
+      "•",
+      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
+      /[A-Z][A-Za-z0-9]*/
+    )),
     symbol_Fl: $      => choice(
       '+', '-', '×', '÷', '⋆', '√', '⌊', '⌈', '∧', '∨', '¬', '|', '≤', '<', '>', '≥', '=',
       '≠', '≡', '≢', '⊣', '⊢', '⥊', '∾', '≍', '⋈', '↑', '↓', '↕', '«', '»', '⌽', '⍉', '/',
       '⍋', '⍒', '⊏', '⊑', '⊐', '⊒', '∊', '⍷', '⊔', '!',
       '𝕎', '𝕏', '𝔽', '𝔾', '𝕊',
-      $.system_F
     ),
-    system__m: $   => /•_[A-Za-z0-9\.]+/,
-    symbol__ml: $     => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`', $.system__m),
-    system__c_: $   => /•_[A-Za-z0-9\.]+_/,
-    symbol__cl_: $    => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟', $.system__c_),
+    system__m: $ => token(seq(
+      "•",
+      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
+      /_[A-Za-z0-9]+/
+    )),
+    symbol__ml: $     => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`'),
+    system__c_: $ => token(seq(
+      "•",
+      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
+      /_[A-Za-z0-9]+_/
+    )),
+    symbol__cl_: $    => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟'),
     symbol_s: $       => /[a-z][A-Za-z0-9]*/,
     symbol_F: $       => /[A-Z][A-Za-z0-9]*/,
     symbol__m: $      => /_[A-Za-z][A-Za-z0-9]*/,
