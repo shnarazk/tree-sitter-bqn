@@ -114,8 +114,6 @@ module.exports = grammar({
     lhsComp: $   => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
     lhs: $       => choice($.symbol_s, $.lhsComp),
 
-    // --- block -----
-
     BODY: $ => seq(
       optional($.sep),
       repeat(choice(
@@ -125,14 +123,17 @@ module.exports = grammar({
       $.STMT,
       optional($.sep)
     ),
-    HEAD: $ => seq(
-      optional(choice($.lhs, "𝕨")),
-      optional(choice($.lhs, $.symbol_F, "𝕗", "𝔽")),
-      choice($.symbol_F, "𝕊", $.symbol__m, "_𝕣", $.symbol__c_, "_𝕣_"),
-      optional('˜'),
-      optional("⁼"),
-      optional(choice($.lhs, $.symbol_F, "𝕘", "𝔾")),
-      optional(choice($.lhs, "𝕩")),
+    HEAD: $ => choice(
+      seq(
+        optional(choice($.lhs, "𝕨")),
+        optional(choice($.lhs, $.symbol_F, "𝕗", "𝔽")),
+        choice($.symbol_F, "𝕊", $.symbol__m, "_𝕣", $.symbol__c_, "_𝕣_"),
+        optional('˜'),
+        optional("⁼"),
+        optional(choice($.lhs, $.symbol_F, "𝕘", "𝔾")),
+        optional(choice($.lhs, "𝕩")),
+      ),
+      $.lhsComp,
     ),
     CASE: $ => seq(
       optional(seq(optional($.sep), $.HEAD, ":")),
@@ -140,16 +141,14 @@ module.exports = grammar({
     ),
     block: $ => seq("{", repeat(seq($.CASE, ";")), $.CASE, "}"),
 
-    // --- block -----
-
     number: $    => seq(
       optional("¯"), choice("∞", seq($._mantissa, optional(seq(choice("e", "E"), $._exponent))))
     ),
     _exponent: $ => prec.left(seq(optional("¯"), $._digits)),
     _mantissa: $ => prec.right(10, choice("π", seq($._digits, optional(seq(".", $._digits))))),
     _digits: $   => prec(100, /[0-9]+/),
-    character: $ => choice(/'[^']'/, /'\\u[0-9a-fA-F]{4}'/),
-    string: $    => seq('"', repeat(choice("''''", '"""', /[^"']+/)), '"'),
+    character: $ => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
+    string: $    => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
     symbol_sl: $      => choice(
       '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
       $.character, $.string, $.number

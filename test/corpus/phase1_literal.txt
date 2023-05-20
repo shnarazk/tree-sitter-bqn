@@ -19,10 +19,10 @@ character literal: 'a'
 )
 
 ==================
-string literal: "str", "string"""s", "絵文字" 
+string literal: "str", "string""s", "絵文字" 
 ==================
 "str"
-"string"""s"
+"string""s"
 "絵文字"
 ---
 

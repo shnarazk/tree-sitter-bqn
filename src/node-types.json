@@ -262,6 +262,10 @@
           "named": true
         },
         {
+          "type": "lhsComp",
+          "named": true
+        },
+        {
           "type": "symbol_F",
           "named": true
         },
@@ -840,11 +844,6 @@
     }
   },
   {
-    "type": "string",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "subExpr",
     "named": true,
     "fields": {},
@@ -952,18 +951,6 @@
     "named": false
   },
   {
-    "type": "\"",
-    "named": false
-  },
-  {
-    "type": "\"\"\"",
-    "named": false
-  },
-  {
-    "type": "''''",
-    "named": false
-  },
-  {
     "type": "(",
     "named": false
   },
@@ -1050,6 +1037,10 @@
   {
     "type": "e",
     "named": false
+  },
+  {
+    "type": "string",
+    "named": true
   },
   {
     "type": "symbol_F",
