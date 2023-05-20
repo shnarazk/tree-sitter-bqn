@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "mod_1",
           "named": true
         },
@@ -36,6 +40,52 @@
       "types": [
         {
           "type": "symbol_export",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BODY",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "EXPR",
+          "named": true
+        },
+        {
+          "type": "STMT",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CASE",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BODY",
+          "named": true
+        },
+        {
+          "type": "HEAD",
+          "named": true
+        },
+        {
+          "type": "sep",
           "named": true
         }
       ]
@@ -158,6 +208,10 @@
           "named": true
         },
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "symbol_F",
           "named": true
         },
@@ -190,6 +244,33 @@
         },
         {
           "type": "symbol_F",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "HEAD",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "lhs",
+          "named": true
+        },
+        {
+          "type": "symbol_F",
+          "named": true
+        },
+        {
+          "type": "symbol__c_",
+          "named": true
+        },
+        {
+          "type": "symbol__m",
           "named": true
         }
       ]
@@ -457,6 +538,10 @@
           "named": true
         },
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "subExpr",
           "named": true
         },
@@ -466,6 +551,21 @@
         },
         {
           "type": "symbol_sl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "CASE",
           "named": true
         }
       ]
@@ -638,6 +738,10 @@
           "named": true
         },
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "m1_Expr",
           "named": true
         },
@@ -662,6 +766,10 @@
       "types": [
         {
           "type": "atom",
+          "named": true
+        },
+        {
+          "type": "block",
           "named": true
         },
         {
@@ -884,6 +992,14 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -893,6 +1009,10 @@
   },
   {
     "type": ">",
+    "named": false
+  },
+  {
+    "type": "?",
     "named": false
   },
   {
@@ -909,6 +1029,14 @@
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "_𝕣",
+    "named": false
+  },
+  {
+    "type": "_𝕣_",
     "named": false
   },
   {
@@ -944,7 +1072,15 @@
     "named": true
   },
   {
+    "type": "{",
+    "named": false
+  },
+  {
     "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   },
   {

@@ -30,6 +30,16 @@ module.exports = grammar({
     [$.m2_Expr_, $.NAME],
     [$.mod_1, $.NAME],
     [$.mod_2_, $.NAME],
+    [$.HEAD, $.symbol_sl],
+    [$.Func, $.HEAD],
+    [$.STMT, $.BODY],
+    [$.STMT],
+    [$.mod_1, $.mod_2_, $.Func, $.atom],
+    [$.Func, $.atom],
+    [$.ANY, $.mod_1, $.mod_2_, $.Func, $.atom],
+    [$.mod_1, $.mod_2_, $.Func],
+    [$.mod_1, $.mod_2_],
+    [$.mod_1, $.mod_2_, $.atom],
   ],
   rules: {
     source_file: $ => $._PROGRAM,
@@ -38,18 +48,23 @@ module.exports = grammar({
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $        => choice($.subExpr, $.FuncExpr, $.m1_Expr, $.m2_Expr_),
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
-    ANY: $     => choice($.atom, $.Func, $.mod_1, $.mod_2_),
+    ANY: $     => choice($.atom, $.Func, $.mod_1, $.mod_2_, $.block),
     mod_2_: $ => prec(5, choice(
       seq(optional(seq($.atom, '.')), $.symbol__c_), $.symbol__cl_, seq('(', $.m2_Expr_, ')'),
+      $.block
     )),
     mod_1: $ => prec(5, choice(
       seq(optional(seq($.atom, '.')), $.symbol__m), $.symbol__ml, seq('(', $.m1_Expr, ')'),
+      $.block
     )),
     Func: $    => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F), $.symbol_Fl, seq('(', $.FuncExpr, ')'),
+      $.block
     ),
     atom: $    => choice(
-      seq(optional(seq($.atom, '.')), $.symbol_s), $.symbol_sl, seq('(', $.subExpr, ')'), $.array
+      seq(optional(seq($.atom, '.')), $.symbol_s), $.symbol_sl, seq('(', $.subExpr, ')'),
+      $.block,
+      $.array
     ),
     array: $   => choice(
       seq('⟨', optional($.sep), optional(seq(repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep))), '⟩'),
@@ -100,6 +115,30 @@ module.exports = grammar({
     lhs: $       => choice($.symbol_s, $.lhsComp),
 
     // --- block -----
+
+    BODY: $ => seq(
+      optional($.sep),
+      repeat(choice(
+        seq($.STMT, $.sep),
+        seq($.EXPR, optional($.sep), "?", optional($.sep))
+      )),
+      $.STMT,
+      optional($.sep)
+    ),
+    HEAD: $ => seq(
+      optional(choice($.lhs, "𝕨")),
+      optional(choice($.lhs, $.symbol_F, "𝕗", "𝔽")),
+      choice($.symbol_F, "𝕊", $.symbol__m, "_𝕣", $.symbol__c_, "_𝕣_"),
+      optional('˜'),
+      optional("⁼"),
+      optional(choice($.lhs, $.symbol_F, "𝕘", "𝔾")),
+      optional(choice($.lhs, "𝕩")),
+    ),
+    CASE: $ => seq(
+      optional(seq(optional($.sep), $.HEAD, ":")),
+      $.BODY
+    ),
+    block: $ => seq("{", repeat(seq($.CASE, ";")), $.CASE, "}"),
 
     // --- block -----
 

@@ -1,0 +1,108 @@
+==================
+block (1) {+}
+==================
+{+}
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE
+              (BODY
+                (STMT
+                  (EXPR
+                    (FuncExpr
+                      (Train
+                        (Fork
+                          (Derv
+                            (Func
+                              (symbol_Fl))))))))))))))))
+
+==================
+block (2) {-;+}
+==================
+{-;+}
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE
+              (BODY
+                (STMT
+                  (EXPR
+                    (FuncExpr
+                      (Train
+                        (Fork
+                          (Derv
+                            (Func
+                              (symbol_Fl))))))))))
+            (CASE
+              (BODY
+                (STMT
+                  (EXPR
+                    (FuncExpr
+                      (Train
+                        (Fork
+                          (Derv
+                            (Func
+                              (symbol_Fl))))))))))))))))
+
+==================
+block (3) { 𝕨 F 𝕩 : 𝕨+𝕩 }
+==================
+{ 𝕨 F 𝕩 : 𝕨+𝕩 }
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE
+      			  (HEAD (symbol_F))
+              (BODY
+                (STMT
+                  (EXPR
+                    (subExpr
+          					  (arg
+                        (subject (atom (symbol_sl)))
+	                      (Derv (Func (symbol_Fl)))
+                        (subExpr (arg (subject (atom (symbol_sl)))))
+                      ))))))))))))
+
+==================
+modifier block (1) {𝔽 _𝕣: 𝔽˜´}
+==================
+{𝔽 _𝕣: 𝔽˜´}
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE
+              (HEAD)
+              (BODY
+                (STMT
+                  (EXPR
+                    (FuncExpr
+                      (Train
+                        (Fork
+                          (Derv
+                            (Operand 
+                              (Derv 
+                                (Operand
+                                  (subject (atom (symbol_sl))))
+                                (mod_1 (symbol__ml))))
+                            (mod_1 (symbol__ml))
+                          ))))))))))))))
