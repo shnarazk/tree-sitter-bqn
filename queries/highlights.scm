@@ -6,10 +6,14 @@
 (symbol_export) @special
 (ASGN) @tag
 (system_value) @keyword
-(symbol_Fl) @function.builtin
-(symbol_F) @function
 (symbol_sl) @constant.builtin
 (symbol_s) @constant
+(symbol_Fl) @function.builtin
+(symbol_F) @function
+; (symbol__ml) @function.builtin
+(symbol__m) @keyword.directive
+(symbol__cl_) @special
+(symbol__c_) @special
 (comment) @comment
 (character) @constant
 (number) @constant

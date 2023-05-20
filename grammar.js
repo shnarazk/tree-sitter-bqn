@@ -22,6 +22,10 @@ module.exports = grammar({
     [$.LHS_ELT, $.lhsComp],
     [$.FuncExpr, $.NAME],
     [$.Operand, $.Train, $.nothing],
+    [$.Operand, $.arg],
+    [$.Operand, $.Fork],
+    [$.Operand, $.arg, $.Fork, $.nothing],
+    [$.Operand, $.Fork, $.nothing],
   ],
   rules: {
     source_file: $ => $._PROGRAM,
@@ -31,6 +35,12 @@ module.exports = grammar({
     EXPR: $        => choice($.subExpr, $.FuncExpr),
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
     ANY: $     => choice($.atom, $.Func),
+    mod_2_: $ => choice(
+      seq(optional(seq($.atom, '.')), $.symbol__c_), $.symbol__cl_, seq('(', 'TODO:$.m2Expr', ')'),
+    ),
+    mod_1: $ => choice(
+      seq(optional(seq($.atom, '.')), $.symbol__m), $.symbol__ml, seq('(', 'TDOD:$.m1Expr', ')'),
+    ),
     Func: $    => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F), $.symbol_Fl, seq('(', $.FuncExpr, ')'),
     ),
@@ -43,7 +53,7 @@ module.exports = grammar({
     ),
     subject: $ => choice($.atom, seq($.ANY, repeat1(seq('‿', $.ANY)))),
     ASGN: $ => prec.right(choice('←', $.symbol_export, '↩')),
-    Derv: $     => $.Func,
+    Derv: $     => choice($.Func, seq($.Operand, $.mod_1), seq($.Operand, $.mod_2_, choice($.subject, $.Func))),
     Operand: $  => choice($.subject, $.Derv),
     Fork: $     => choice($.Derv, seq($.Operand, $.Derv, $.Fork), seq($.nothing, $.Derv, $.Fork)),
     Train: $    => choice($.Fork, seq($.Derv, $.Fork)),

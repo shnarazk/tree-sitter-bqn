@@ -38,11 +38,27 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "Func",
+          "named": true
+        },
+        {
+          "type": "Operand",
+          "named": true
+        },
+        {
+          "type": "mod_1",
+          "named": true
+        },
+        {
+          "type": "mod_2_",
+          "named": true
+        },
+        {
+          "type": "subject",
           "named": true
         }
       ]
@@ -540,6 +556,52 @@
     }
   },
   {
+    "type": "mod_1",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "symbol__m",
+          "named": true
+        },
+        {
+          "type": "symbol__ml",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mod_2_",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "symbol__c_",
+          "named": true
+        },
+        {
+          "type": "symbol__cl_",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "nothing",
     "named": true,
     "fields": {},
@@ -662,6 +724,16 @@
     }
   },
   {
+    "type": "symbol__cl_",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "symbol__ml",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "symbol_export",
     "named": true,
     "fields": {}
@@ -751,6 +823,14 @@
   },
   {
     "type": "E",
+    "named": false
+  },
+  {
+    "type": "TDOD:$.m1Expr",
+    "named": false
+  },
+  {
+    "type": "TODO:$.m2Expr",
     "named": false
   },
   {

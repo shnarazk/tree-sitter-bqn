@@ -138,6 +138,118 @@
         }
       ]
     },
+    "mod_2_": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "atom"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol__c_"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol__cl_"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "STRING",
+              "value": "TODO:$.m2Expr"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        }
+      ]
+    },
+    "mod_1": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "atom"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol__m"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol__ml"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "STRING",
+              "value": "TDOD:$.m1Expr"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        }
+      ]
+    },
     "Func": {
       "type": "CHOICE",
       "members": [
@@ -442,8 +554,52 @@
       }
     },
     "Derv": {
-      "type": "SYMBOL",
-      "name": "Func"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Func"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "Operand"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mod_1"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "Operand"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mod_2_"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "subject"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "Func"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "Operand": {
       "type": "CHOICE",
@@ -1702,6 +1858,25 @@
     [
       "Operand",
       "Train",
+      "nothing"
+    ],
+    [
+      "Operand",
+      "arg"
+    ],
+    [
+      "Operand",
+      "Fork"
+    ],
+    [
+      "Operand",
+      "arg",
+      "Fork",
+      "nothing"
+    ],
+    [
+      "Operand",
+      "Fork",
       "nothing"
     ]
   ],
