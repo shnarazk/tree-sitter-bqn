@@ -1,0 +1,123 @@
+==================
+strand of functions (1) ⊑‿↕
+==================
+⊑‿↕
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (Func (symbol_Fl)))
+            (ANY (Func (symbol_Fl)))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+strand of functions (2) F‿G
+==================
+F‿G
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (Func (symbol_F)))
+            (ANY (Func (symbol_F)))
+          )
+        )
+      )
+    )
+  )
+)
+
+==================
+modifier (1) F¨
+==================
+F¨
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (Train
+          (Fork
+            (Derv
+              (Operand (Derv (Func (symbol_F))))
+              (mod_1 (symbol__ml)))))))))
+
+==================
+modifier (2) F¨˜
+==================
+F¨˜
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (Train
+          (Fork
+            (Derv
+              (Operand
+                (Derv
+                  (Operand (Derv (Func (symbol_F))))
+                  (mod_1 (symbol__ml))))
+              (mod_1 (symbol__ml)))))))))
+
+==================
+combinators (1) ⊑∘↕
+==================
+⊑∘↕
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (Train
+          (Fork
+            (Derv
+              (Operand (Derv (Func (symbol_Fl))))
+              (mod_2_ (symbol__cl_))
+              (Func (symbol_Fl))
+            )))))))
+
+==================
+combinators (2) ×⊸⊑∘↕
+==================
+×⊸⊑∘↕
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (Train
+          (Fork
+            (Derv
+              (Operand
+                (Derv
+                  (Operand
+                    (Derv
+                      (Func
+                        (symbol_Fl))))
+                  (mod_2_
+                    (symbol__cl_))
+                  (Func
+                    (symbol_Fl))))
+              (mod_2_
+                (symbol__cl_))
+              (Func
+                (symbol_Fl)))))))))
+

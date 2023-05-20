@@ -101,6 +101,14 @@
         {
           "type": "SYMBOL",
           "name": "FuncExpr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "m1_Expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "m2_Expr_"
         }
       ]
     },
@@ -126,8 +134,145 @@
       ]
     },
     "ANY": {
-      "type": "SYMBOL",
-      "name": "atom"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "atom"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Func"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mod_1"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mod_2_"
+        }
+      ]
+    },
+    "mod_2_": {
+      "type": "PREC",
+      "value": 5,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "atom"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "symbol__c_"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "symbol__cl_"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "m2_Expr_"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mod_1": {
+      "type": "PREC",
+      "value": 5,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "atom"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "symbol__m"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "symbol__ml"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "m1_Expr"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              }
+            ]
+          }
+        ]
+      }
     },
     "Func": {
       "type": "CHOICE",
@@ -412,25 +557,125 @@
       ]
     },
     "ASGN": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "←"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "symbol_export"
+          },
+          {
+            "type": "STRING",
+            "value": "↩"
+          }
+        ]
+      }
+    },
+    "m2_Expr_": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "←"
+          "type": "SYMBOL",
+          "name": "mod_2_"
         },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol__c_"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ASGN"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "m2_Expr_"
+            }
+          ]
+        }
+      ]
+    },
+    "m1_Expr": {
+      "type": "CHOICE",
+      "members": [
         {
           "type": "SYMBOL",
-          "name": "symbol_export"
+          "name": "mod_1"
         },
         {
-          "type": "STRING",
-          "value": "↩"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol__m"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ASGN"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "m1_Expr"
+            }
+          ]
         }
       ]
     },
     "Derv": {
-      "type": "SYMBOL",
-      "name": "Func"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Func"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "Operand"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mod_1"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "Operand"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mod_2_"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "subject"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "Func"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "Operand": {
       "type": "CHOICE",
@@ -580,47 +825,51 @@
       ]
     },
     "nothing": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "·"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "subject"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "nothing"
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "Derv"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "nothing"
-            }
-          ]
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "·"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "subject"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "nothing"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "Derv"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "nothing"
+              }
+            ]
+          }
+        ]
+      }
     },
     "subExpr": {
       "type": "CHOICE",
@@ -1625,9 +1874,6 @@
       "nothing"
     ],
     [
-      "nothing"
-    ],
-    [
       "Fork",
       "nothing"
     ],
@@ -1674,10 +1920,6 @@
       "lhsList"
     ],
     [
-      "ASGN",
-      "LHS_ENTRY"
-    ],
-    [
       "NAME",
       "lhs"
     ],
@@ -1693,6 +1935,41 @@
       "Operand",
       "Train",
       "nothing"
+    ],
+    [
+      "Operand",
+      "arg"
+    ],
+    [
+      "Operand",
+      "Fork"
+    ],
+    [
+      "Operand",
+      "arg",
+      "Fork",
+      "nothing"
+    ],
+    [
+      "Operand",
+      "Fork",
+      "nothing"
+    ],
+    [
+      "m1_Expr",
+      "NAME"
+    ],
+    [
+      "m2_Expr_",
+      "NAME"
+    ],
+    [
+      "mod_1",
+      "NAME"
+    ],
+    [
+      "mod_2_",
+      "NAME"
     ]
   ],
   "precedences": [],
