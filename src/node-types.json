@@ -92,6 +92,14 @@
           "named": true
         },
         {
+          "type": "m1_Expr",
+          "named": true
+        },
+        {
+          "type": "m2_Expr_",
+          "named": true
+        },
+        {
           "type": "subExpr",
           "named": true
         }
@@ -556,15 +564,73 @@
     }
   },
   {
+    "type": "m1_Expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ASGN",
+          "named": true
+        },
+        {
+          "type": "m1_Expr",
+          "named": true
+        },
+        {
+          "type": "mod_1",
+          "named": true
+        },
+        {
+          "type": "symbol__m",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "m2_Expr_",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ASGN",
+          "named": true
+        },
+        {
+          "type": "m2_Expr_",
+          "named": true
+        },
+        {
+          "type": "mod_2_",
+          "named": true
+        },
+        {
+          "type": "symbol__c_",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "mod_1",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "atom",
+          "named": true
+        },
+        {
+          "type": "m1_Expr",
           "named": true
         },
         {
@@ -584,10 +650,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "atom",
+          "named": true
+        },
+        {
+          "type": "m2_Expr_",
           "named": true
         },
         {
@@ -823,14 +893,6 @@
   },
   {
     "type": "E",
-    "named": false
-  },
-  {
-    "type": "TDOD:$.m1Expr",
-    "named": false
-  },
-  {
-    "type": "TODO:$.m2Expr",
     "named": false
   },
   {

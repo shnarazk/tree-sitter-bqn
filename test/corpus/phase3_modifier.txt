@@ -1,0 +1,36 @@
+==================
+modifier assignment (1) _m ← ´
+==================
+_m ← ´
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m1_Expr
+        (symbol__m)
+    		(ASGN)
+    		(m1_Expr (mod_1 (symbol__ml)))
+      )
+    )
+  )
+)
+
+==================
+combinator assignment (1) _c_ ← (○)
+==================
+_c_ ← (○)
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (symbol__c_)
+    		(ASGN)
+    		(m2_Expr_ (mod_2_ (m2_Expr_ (mod_2_ (symbol__cl_)))))
+      )
+    )
+  )
+)
+

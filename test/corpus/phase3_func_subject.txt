@@ -19,7 +19,6 @@ strand of functions (1) ⊑‿↕
   )
 )
 
-
 ==================
 strand of functions (2) F‿G
 ==================
@@ -40,7 +39,6 @@ F‿G
     )
   )
 )
-
 
 ==================
 modifier (1) F¨

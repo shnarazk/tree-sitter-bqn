@@ -101,6 +101,14 @@
         {
           "type": "SYMBOL",
           "name": "FuncExpr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "m1_Expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "m2_Expr_"
         }
       ]
     },
@@ -183,8 +191,8 @@
               "value": "("
             },
             {
-              "type": "STRING",
-              "value": "TODO:$.m2Expr"
+              "type": "SYMBOL",
+              "name": "m2_Expr_"
             },
             {
               "type": "STRING",
@@ -239,8 +247,8 @@
               "value": "("
             },
             {
-              "type": "STRING",
-              "value": "TDOD:$.m1Expr"
+              "type": "SYMBOL",
+              "name": "m1_Expr"
             },
             {
               "type": "STRING",
@@ -527,6 +535,58 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      ]
+    },
+    "m2_Expr_": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mod_2_"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol__c_"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ASGN"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "m2_Expr_"
+            }
+          ]
+        }
+      ]
+    },
+    "m1_Expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mod_1"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "symbol__m"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ASGN"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "m1_Expr"
             }
           ]
         }
@@ -1878,6 +1938,22 @@
       "Operand",
       "Fork",
       "nothing"
+    ],
+    [
+      "m1_Expr",
+      "NAME"
+    ],
+    [
+      "m2_Expr_",
+      "NAME"
+    ],
+    [
+      "mod_1",
+      "NAME"
+    ],
+    [
+      "mod_2_",
+      "NAME"
     ]
   ],
   "precedences": [],
