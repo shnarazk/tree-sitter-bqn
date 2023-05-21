@@ -1,5 +1,5 @@
 ==================
-atom "."?: s(1) f 
+atom "."?: s(1) f
 ==================
 f
 ---
@@ -11,7 +11,7 @@ f
 )
 
 ==================
-atom "."? s: (2) f.g 
+atom "."? s: (2) f.g
 ==================
 f.g
 ---
@@ -23,7 +23,7 @@ f.g
 )
 
 ==================
-atom sl: (1) ∞ 
+atom sl: (1) ∞
 ==================
 ∞
 ---
@@ -35,7 +35,7 @@ atom sl: (1) ∞
 )
 
 ==================
-atom sl: (2) 𝕨 
+atom sl: (2) 𝕨
 ==================
 𝕨
 ---
@@ -47,73 +47,73 @@ atom sl: (2) 𝕨
 )
 
 ==================
-atom "(" subExpr ")": (1) (1) 
+atom "(" subExpr ")": (1) (1)
 ==================
 (f)
 ---
 
 (source_file
   (STMT
-    (EXPR (subExpr (arg (subject (atom  
-      (subExpr (arg (subject (atom (symbol_s))))) 
+    (EXPR (subExpr (arg (subject (atom
+      (subExpr (arg (subject (atom (symbol_s)))))
     )))))
   )
 )
 
 ==================
-atom array: (1) ⟨⟩ 
+atom array: (1) ⟨⟩
 ==================
 ⟨⟩
 ---
 
 (source_file
   (STMT
-    (EXPR (subExpr (arg (subject (atom  
-      (array) 
+    (EXPR (subExpr (arg (subject (atom
+      (array)
     )))))
   )
 )
 
 ==================
-atom array: (2) ⟨f⟩ 
+atom array: (2) ⟨f⟩
 ==================
 ⟨f⟩
 ---
 
 (source_file
   (STMT
-    (EXPR (subExpr (arg (subject (atom  
-      (array (EXPR (subExpr (arg (subject (atom (symbol_s))))))) 
+    (EXPR (subExpr (arg (subject (atom
+      (array (EXPR (subExpr (arg (subject (atom (symbol_s)))))))
     )))))
   )
 )
 
 ==================
-atom array: (3) [f] 
+atom array: (3) [f]
 ==================
 [f]
 ---
 
 (source_file
   (STMT
-    (EXPR (subExpr (arg (subject (atom  
-      (array (EXPR (subExpr (arg (subject (atom (symbol_s))))))) 
+    (EXPR (subExpr (arg (subject (atom
+      (array (EXPR (subExpr (arg (subject (atom (symbol_s)))))))
     )))))
   )
 )
 ==================
-atom array: (4) [f,] 
+atom array: (4) [f,]
 ==================
 [f,]
 ---
 
 (source_file
   (STMT
-    (EXPR (subExpr (arg (subject (atom  
+    (EXPR (subExpr (arg (subject (atom
       (array
         (EXPR (subExpr (arg (subject (atom (symbol_s))))))
         (sep)
-      ) 
+      )
     )))))
   )
 )

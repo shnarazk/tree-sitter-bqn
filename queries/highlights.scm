@@ -5,7 +5,7 @@
 
 (symbol_export) @special
 (ASGN) @tag
-(system_value) @keyword
+[(system_F) (system__m) (system__c_)] @keyword
 (symbol_sl) @constant.builtin
 ; (symbol_s) @constant
 (symbol_Fl) @function.builtin

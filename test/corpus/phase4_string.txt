@@ -1,0 +1,16 @@
+==================
+string with no sigle quote (1) "Don not output final status line (or any, combined with notui)"
+==================
+"Don't output final status line (or any, combined with notui)"
+---
+
+(source_file (STMT (EXPR (subExpr (arg (subject (atom (symbol_sl (string)))))))))
+
+==================
+string with sigle quotes (2) "Don't output final status line (or any, combined with notui)"
+==================
+"Don't output final status line (or any, combined with notui)"
+---
+
+(source_file (STMT (EXPR (subExpr (arg (subject (atom (symbol_sl (string)))))))))
+

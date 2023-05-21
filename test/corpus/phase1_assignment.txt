@@ -1,5 +1,5 @@
 ==================
-simple subject assignment:(1) x←1 
+simple subject assignment:(1) x←1
 ==================
 x←1
 ---
@@ -21,7 +21,7 @@ x←1
 )
 
 ==================
-simple subject assignment:(2) x←1‿0 
+simple subject assignment:(2) x←1‿0
 ==================
 x←1‿0
 ---
@@ -34,7 +34,7 @@ x←1‿0
         (ASGN)
         (subExpr
           (arg
-            (subject 
+            (subject
               (ANY (atom (symbol_sl (number))))
               (ANY (atom (symbol_sl (number))))
             )
@@ -46,7 +46,7 @@ x←1‿0
 )
 
 ==================
-simple subject assignment:(3) x‿y←1‿0 
+simple subject assignment:(3) x‿y←1‿0
 ==================
 x‿y←1‿0
 ---
@@ -55,18 +55,18 @@ x‿y←1‿0
   (STMT
     (EXPR
       (subExpr
-        (lhs 
+        (lhs
           (lhsComp
             (lhsStr
               (LHS_ATOM (LHS_ANY (NAME (symbol_s))))
               (LHS_ATOM (LHS_ANY (NAME (symbol_s))))
             )
           )
-        )   
+        )
         (ASGN)
         (subExpr
           (arg
-            (subject 
+            (subject
               (ANY (atom (symbol_sl (number))))
               (ANY (atom (symbol_sl (number))))
             )
