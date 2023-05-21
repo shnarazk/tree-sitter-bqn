@@ -1,6 +1,14 @@
+; Only select defintions as blocks
 (block
   (CASE
     (HEAD) @parameter.inside
+    (BODY) @function.inside
+  )
+) @function.around
+
+; Only select defintions as blocks
+(block
+  (CASE
     (BODY) @function.inside
   )
 ) @function.around
