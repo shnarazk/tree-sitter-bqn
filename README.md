@@ -9,10 +9,10 @@
 1. Phase1: quite simplified -- basic expressions
 2. Phase2: simplified -- statements
 3. Phase3: shaping -- modifiers
-4. (___prensent phase___) tedious
-5. release (code name: 'Quite tedious')
+4. Phase4: tedious
+5. ___current phase___ : 'Quite tedious'
 
-## A configuration for Helix
+# A configuration for Helix
 Hey, are you a [Helix](https://helix-editor.com/) user? Then try me:
 
 1. add the following to your $CONFIG/helix/languages.toml
@@ -25,7 +25,7 @@ scope = "source.bqn"
 [[grammar]]
 name = "bqn"
 source.git = "https://github.com/shnarazk/tree-sitter-bqn"
-source.rev = "9b17030cb785d1d7cc587c93631661bfa00e9fa6" or something new
+source.rev = "e7ebc1e9efb688c9fc5e7a061ed9bad3c15a2640" or something new
 ```
 
 2. run on shell:
