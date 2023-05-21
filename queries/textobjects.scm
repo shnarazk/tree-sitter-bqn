@@ -1,3 +1,10 @@
+(block
+  (CASE
+    (HEAD) @parameter.around
+    (BODY) @function.inside
+  )
+) @function.around
+
 (comment) @comment.inside
 (comment)+ @comment.around
 (atom) @atom.around
