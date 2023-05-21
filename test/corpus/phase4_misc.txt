@@ -1,5 +1,5 @@
 ==================
-function in system (1) •file.At ".singeli" 
+function in system (1) •file.At ".singeli"
 ==================
 •file.At ".singeli"
 ---
@@ -16,7 +16,7 @@ function in system (1) ⟨8,16‿'c'⟩•bit._cast
 ⟨8,16‿'c'⟩•bit._cast
 ---
 
-(source_file (STMT (EXPR  
+(source_file (STMT (EXPR
   (FuncExpr
     (Train
       (Fork
@@ -46,7 +46,7 @@ function in system (1) ⟨8,16‿'c'⟩•bit._cast
                               (symbol_sl
                                 (character))))))))))))
           (mod_1
-            (system__m))))))))) 
+            (system__m)))))))))
 
 ==================
 number (1) 1e1
@@ -60,3 +60,15 @@ number (1) 1e1
 	)
 ))))
 
+==================
+indentifier with underscore (1) a_b ← 1
+==================
+a_b ← 1
+---
+
+(source_file (STMT (EXPR
+  (subExpr
+    (lhs (symbol_s))
+    (ASGN)
+    (subExpr (arg (subject (atom (symbol_sl (number))))))
+  ))))

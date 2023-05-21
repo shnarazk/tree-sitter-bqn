@@ -1732,7 +1732,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z0-9]+"
+                      "value": "[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
                     },
                     {
                       "type": "STRING",
@@ -1748,7 +1748,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[a-z][A-Za-z0-9]*"
+            "value": "[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
           }
         ]
       }
@@ -1817,7 +1817,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z0-9]+"
+                      "value": "[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
                     },
                     {
                       "type": "STRING",
@@ -1833,7 +1833,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[A-Z][A-Za-z0-9]*"
+            "value": "[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
           }
         ]
       }
@@ -2058,7 +2058,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z0-9]+"
+                      "value": "[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
                     },
                     {
                       "type": "STRING",
@@ -2074,7 +2074,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "_[A-Za-z0-9]+"
+            "value": "_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
           }
         ]
       }
@@ -2139,7 +2139,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z0-9]+"
+                      "value": "[A-Za-z0-9]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
                     },
                     {
                       "type": "STRING",
@@ -2155,7 +2155,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "_[A-Za-z0-9]+_"
+            "value": "_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_"
           }
         ]
       }
@@ -2211,19 +2211,19 @@
     },
     "symbol_s": {
       "type": "PATTERN",
-      "value": "[a-z][A-Za-z0-9]*"
+      "value": "[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
     },
     "symbol_F": {
       "type": "PATTERN",
-      "value": "[A-Z][A-Za-z0-9]*"
+      "value": "[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
     },
     "symbol__m": {
       "type": "PATTERN",
-      "value": "_[A-Za-z][A-Za-z0-9]*"
+      "value": "_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
     },
     "symbol__c_": {
       "type": "PATTERN",
-      "value": "_[A-Za-z][A-Za-z0-9]*_"
+      "value": "_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_"
     },
     "symbol_export": {
       "type": "STRING",

@@ -159,8 +159,8 @@ module.exports = grammar({
     string: $    => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
     system_s: $ => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
-      /[a-z][A-Za-z0-9]*/
+      optional(repeat(seq(/[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
+      /[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/
     )),
     symbol_sl: $      => choice(
       '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣', '@',
@@ -169,8 +169,8 @@ module.exports = grammar({
     ),
     system_F: $ => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
-      /[A-Z][A-Za-z0-9]*/
+      optional(repeat(seq(/[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
+      /[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/
     )),
     symbol_Fl: $      => choice(
       '+', '-', '×', '÷', '⋆', '√', '⌊', '⌈', '∧', '∨', '¬', '|', '≤', '<', '>', '≥', '=',
@@ -180,20 +180,20 @@ module.exports = grammar({
     ),
     system__m: $ => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
-      /_[A-Za-z0-9]+/
+      optional(repeat(seq(/[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
+      /_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/
     )),
     symbol__ml: $     => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`'),
     system__c_: $ => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z0-9]+/, '.'))),
-      /_[A-Za-z0-9]+_/
+      optional(repeat(seq(/[A-Za-z0-9]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
+      /_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_/
     )),
     symbol__cl_: $    => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟'),
-    symbol_s: $       => /[a-z][A-Za-z0-9]*/,
-    symbol_F: $       => /[A-Z][A-Za-z0-9]*/,
-    symbol__m: $      => /_[A-Za-z][A-Za-z0-9]*/,
-    symbol__c_: $     => /_[A-Za-z][A-Za-z0-9]*_/,
+    symbol_s: $       => /[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
+    symbol_F: $       => /[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
+    symbol__m: $      => /_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
+    symbol__c_: $     => /_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_/,
     symbol_export: $ => "⇐",
     comment: $        => /#.*/,
     _end_of_line: $   => token(/\r?\n/),
