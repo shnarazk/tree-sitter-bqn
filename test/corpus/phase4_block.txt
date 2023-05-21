@@ -99,8 +99,8 @@ modifier block (1) {𝔽 _𝕣: 𝔽˜´}
                       (Train
                         (Fork
                           (Derv
-                            (Operand 
-                              (Derv 
+                            (Operand
+                              (Derv
                                 (Operand
                                   (Derv (Func (symbol_Fl))))
                                 (mod_1 (symbol__ml))))
