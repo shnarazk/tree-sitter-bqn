@@ -1,6 +1,6 @@
 (block
   (CASE
-    (HEAD) @parameter.around
+    (HEAD) @parameter.inside
     (BODY) @function.inside
   )
 ) @function.around
