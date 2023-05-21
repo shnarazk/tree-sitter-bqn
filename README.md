@@ -103,3 +103,9 @@ source.rev = "e7ebc1e9efb688c9fc5e7a061ed9bad3c15a2640" or something new
 $ hx -g fetch
 $ hx -g build
 ```
+
+3. copy queries:
+
+```
+$ cp -r queries $HELIX/runtime/queries/bqn
+```
