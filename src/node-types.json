@@ -831,11 +831,6 @@
     }
   },
   {
-    "type": "number",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "sep",
     "named": true,
     "fields": {}
@@ -1013,10 +1008,6 @@
     "named": false
   },
   {
-    "type": "E",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -1041,8 +1032,8 @@
     "named": true
   },
   {
-    "type": "e",
-    "named": false
+    "type": "number",
+    "named": true
   },
   {
     "type": "string",
@@ -1105,10 +1096,6 @@
     "named": false
   },
   {
-    "type": "¯",
-    "named": false
-  },
-  {
     "type": "´",
     "named": false
   },
@@ -1142,10 +1129,6 @@
   },
   {
     "type": "˝",
-    "named": false
-  },
-  {
-    "type": "π",
     "named": false
   },
   {
@@ -1190,10 +1173,6 @@
   },
   {
     "type": "√",
-    "named": false
-  },
-  {
-    "type": "∞",
     "named": false
   },
   {

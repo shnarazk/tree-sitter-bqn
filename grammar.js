@@ -154,12 +154,7 @@ module.exports = grammar({
     ),
     block: $ => seq("{", repeat(seq($.CASE, ";")), $.CASE, "}"),
 
-    number: $    => seq(
-      optional("¯"), choice("∞", seq($._mantissa, optional(seq(choice("e", "E"), $._exponent))))
-    ),
-    _exponent: $ => prec.left(seq(optional("¯"), $._digits)),
-    _mantissa: $ => prec.right(10, choice("π", seq($._digits, optional(seq(".", $._digits))))),
-    _digits: $   => prec(100, /[0-9]+/),
+    number: $    => token(choice(/¯?[∞]/, /¯π([eE]¯?\d+)?/, /¯?\d+(\.\d+)?([eE]¯?\d+)?/)),
     character: $ => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
     string: $    => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
     system_s: $ => token(seq(

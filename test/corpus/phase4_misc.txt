@@ -16,9 +16,47 @@ function in system (1) ⟨8,16‿'c'⟩•bit._cast
 ⟨8,16‿'c'⟩•bit._cast
 ---
 
+(source_file (STMT (EXPR  
+  (FuncExpr
+    (Train
+      (Fork
+        (Derv
+          (Operand
+            (subject
+              (atom
+                (array
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number)))))))
+                  (sep)
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (ANY
+                            (atom
+                              (symbol_sl
+                                (number))))
+                          (ANY
+                            (atom
+                              (symbol_sl
+                                (character))))))))))))
+          (mod_1
+            (system__m))))))))) 
+
+==================
+number (1) 1e1
+==================
+1e1
+---
+
 (source_file (STMT (EXPR (subExpr
   (arg
-    (Derv (Func (system_F)))
-    (subExpr (arg (subject (atom (symbol_sl (string))))))
-	)))))
+    (subject (atom (symbol_sl (number))))
+	)
+))))
 
