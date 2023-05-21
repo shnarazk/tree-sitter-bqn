@@ -19,5 +19,8 @@
   (subExpr) @class.around
 )
 
+; This enable to select a list surrounded by '⟨⟩' (or '[]' accidently) by `[T` and `]T`
+(array) @test.around
+
 (comment)+ @comment.around
 (comment) @comment.inside
