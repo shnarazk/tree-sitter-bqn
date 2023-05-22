@@ -3,7 +3,6 @@ module.exports = grammar({
   extras: $ => [/[ \t]+/, $.comment, $._end_of_line],
   conflicts: $ => [
     [$.Fork, $.arg, $.nothing],
-    [$.nothing, $.arg],
     [$.Operand, $.nothing, $.arg],
     [$.Operand, $.nothing, $.arg, $.Train],
     [$.Operand, $.nothing],
@@ -28,8 +27,6 @@ module.exports = grammar({
     [$.Operand, $.Fork, $.nothing],
     [$.m1_Expr, $.NAME],
     [$.m2_Expr_, $.NAME],
-    [$.mod_1, $.NAME],
-    [$.mod_2_, $.NAME],
     [$.HEAD, $.symbol_sl],
     [$.Func, $.HEAD],
     [$.mod_1, $.mod_2_, $.Func, $.atom],
