@@ -2303,11 +2303,6 @@
   ],
   "conflicts": [
     [
-      "Fork",
-      "arg",
-      "nothing"
-    ],
-    [
       "Operand",
       "nothing",
       "arg"
@@ -2320,10 +2315,6 @@
     ],
     [
       "Operand",
-      "nothing"
-    ],
-    [
-      "Fork",
       "nothing"
     ],
     [
@@ -2413,10 +2404,6 @@
       "NAME"
     ],
     [
-      "HEAD",
-      "symbol_sl"
-    ],
-    [
       "Func",
       "HEAD"
     ],
@@ -2450,10 +2437,6 @@
       "mod_1",
       "mod_2_",
       "atom"
-    ],
-    [
-      "HEAD",
-      "symbol_Fl"
     ],
     [
       "HEAD",
