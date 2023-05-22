@@ -22,3 +22,7 @@
 "‿" @special
 "⟨" @special
 "⟩" @special
+
+(Func (FuncExpr)) @function.builtin
+(mod_1 (m1_Expr)) @type.builtin
+(mod_2_ (m2_Expr_)) @function.special
