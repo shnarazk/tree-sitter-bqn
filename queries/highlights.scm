@@ -9,7 +9,7 @@
 [(system_F) (system__m) (system__c_)] @keyword
 
 [(specialname_s) (symbol_sl)] @constant.builtin
-(symbol_s) @constant
+; (symbol_s) @constant
 
 [(specialname_F) (symbol_Fl)] @function.builtin
 (symbol_F) @function
