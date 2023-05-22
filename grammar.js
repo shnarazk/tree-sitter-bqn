@@ -32,8 +32,6 @@ module.exports = grammar({
     [$.mod_2_, $.NAME],
     [$.HEAD, $.symbol_sl],
     [$.Func, $.HEAD],
-    [$.STMT, $.BODY],
-    [$.STMT],
     [$.mod_1, $.mod_2_, $.Func, $.atom],
     [$.Func, $.atom],
     [$.ANY, $.mod_1, $.mod_2_, $.Func, $.atom],
@@ -45,7 +43,7 @@ module.exports = grammar({
   rules: {
     source_file: $ => $._PROGRAM,
     _PROGRAM: $    => seq(optional($.sep), repeat(seq($.STMT, $.sep)), $.STMT, optional($.sep)),
-    STMT: $        => choice($.EXPR, $.nothing, $.EXPORT),
+    STMT: $        => prec.left(choice($.EXPR, $.nothing, $.EXPORT)),
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $        => choice($.subExpr, $.FuncExpr, $.m1_Expr, $.m2_Expr_),
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
@@ -127,7 +125,7 @@ module.exports = grammar({
     lhsComp: $   => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
     lhs: $       => choice($.symbol_s, $.lhsComp),
 
-    BODY: $ => seq(
+    BODY: $ => prec.left(seq(
       optional($.sep),
       repeat(choice(
         seq($.STMT, $.sep),
@@ -135,7 +133,7 @@ module.exports = grammar({
       )),
       $.STMT,
       optional($.sep)
-    ),
+    )),
     HEAD: $ => choice(
       seq(
         optional(choice($.lhs, "𝕨", "𝕎")),
