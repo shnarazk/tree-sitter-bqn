@@ -212,6 +212,10 @@
           "named": true
         },
         {
+          "type": "specialname_F",
+          "named": true
+        },
+        {
           "type": "symbol_F",
           "named": true
         },
@@ -267,6 +271,14 @@
         },
         {
           "type": "lhsComp",
+          "named": true
+        },
+        {
+          "type": "specialname__c_",
+          "named": true
+        },
+        {
+          "type": "specialname__m",
           "named": true
         },
         {
@@ -386,6 +398,10 @@
         },
         {
           "type": "lhsList",
+          "named": true
+        },
+        {
+          "type": "specialname_s",
           "named": true
         },
         {
@@ -547,6 +563,10 @@
         },
         {
           "type": "block",
+          "named": true
+        },
+        {
+          "type": "specialname_s",
           "named": true
         },
         {
@@ -758,6 +778,10 @@
           "named": true
         },
         {
+          "type": "specialname__m",
+          "named": true
+        },
+        {
           "type": "symbol__m",
           "named": true
         },
@@ -790,6 +814,10 @@
         },
         {
           "type": "m2_Expr_",
+          "named": true
+        },
+        {
+          "type": "specialname__c_",
           "named": true
         },
         {
@@ -853,6 +881,16 @@
         }
       ]
     }
+  },
+  {
+    "type": "specialname_F",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "specialname_s",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "subExpr",
@@ -1016,14 +1054,6 @@
     "named": false
   },
   {
-    "type": "_𝕣",
-    "named": false
-  },
-  {
-    "type": "_𝕣_",
-    "named": false
-  },
-  {
     "type": "`",
     "named": false
   },
@@ -1033,6 +1063,14 @@
   },
   {
     "type": "number",
+    "named": true
+  },
+  {
+    "type": "specialname__c_",
+    "named": true
+  },
+  {
+    "type": "specialname__m",
     "named": true
   },
   {

@@ -5,15 +5,21 @@
 
 (symbol_export) @special
 (ASGN) @tag
+
 [(system_F) (system__m) (system__c_)] @keyword
-(symbol_sl) @constant.builtin
-; (symbol_s) @constant
-(symbol_Fl) @function.builtin
-; (symbol_F) @function
-(symbol__ml) @type.builtin
+
+[(specialname_s) (symbol_sl)] @constant.builtin
+(symbol_s) @constant
+
+[(specialname_F) (symbol_Fl)] @function.builtin
+(symbol_F) @function
+
+[(specialname__m) (symbol__ml)] @type.builtin
 (symbol__m) @type
-(symbol__cl_) @function.special
+
+[(specialname__c_) (symbol__cl_)] @function.special
 (symbol__c_) @function.special
+
 (comment) @comment
 (character) @constant
 (number) @constant

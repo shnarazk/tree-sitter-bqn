@@ -42,7 +42,7 @@ atom sl: (2) 𝕨
 
 (source_file
   (STMT
-    (EXPR (subExpr (arg (subject (atom (symbol_sl))))))
+    (EXPR (subExpr (arg (subject (atom (specialname_s))))))
   )
 )
 

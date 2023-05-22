@@ -67,15 +67,15 @@ block (3) { 𝕨 F 𝕩 : 𝕨+𝕩 }
         (mod_2_
           (block
             (CASE
-      			  (HEAD (symbol_F))
+  			  (HEAD (symbol_F))
               (BODY
                 (STMT
                   (EXPR
                     (subExpr
-          					  (arg
-                        (subject (atom (symbol_sl)))
+  					  (arg
+                        (subject (atom (specialname_s)))
 	                      (Derv (Func (symbol_Fl)))
-                        (subExpr (arg (subject (atom (symbol_sl)))))
+                        (subExpr (arg (subject (atom (specialname_s)))))
                       ))))))))))))
 
 ==================
@@ -91,7 +91,7 @@ modifier block (1) {𝔽 _𝕣: 𝔽˜´}
         (mod_2_
           (block
             (CASE
-              (HEAD)
+              (HEAD (specialname__m))
               (BODY
                 (STMT
                   (EXPR
@@ -102,7 +102,7 @@ modifier block (1) {𝔽 _𝕣: 𝔽˜´}
                             (Operand
                               (Derv
                                 (Operand
-                                  (Derv (Func (symbol_Fl))))
+                                  (Derv (Func (specialname_F))))
                                 (mod_1 (symbol__ml))))
                             (mod_1 (symbol__ml))
                           ))))))))))))))
