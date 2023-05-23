@@ -3,7 +3,7 @@
 ;; recursive. Categorizing them by the depth from the top node would be nice if
 ;; color themes provide good bg labels.
 
-[(symbol_export) "⋄"] @keyword.directive
+["?" ";" ":" "⋄"] @keyword.directive
 ["‿" "⟨" "⟩"] @type
 (ASGN) @tag
 
