@@ -1,8 +1,3 @@
-;; Note: Helix uses the first match.
-;; Probably coloring non-terminal nodes is not realistic because they are deeply
-;; recursive. Categorizing them by the depth from the top node would be nice if
-;; color themes provide good bg labels.
-
 ["?" ";" ":" "⋄"] @keyword.directive
 ["‿" "⟨" "⟩"] @type
 (ASGN) @tag
