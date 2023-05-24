@@ -2,12 +2,9 @@ module.exports = grammar({
   name: 'bqn',
   extras: $ => [/[ \t]+/, $.comment, $._end_of_line],
   conflicts: $ => [
-    [$.Fork, $.arg, $.nothing],
-    [$.nothing, $.arg],
     [$.Operand, $.nothing, $.arg],
     [$.Operand, $.nothing, $.arg, $.Train],
     [$.Operand, $.nothing],
-    [$.Fork, $.nothing],
     [$.nothing, $.LHS_SUB],
     [$.atom, $.lhs],
     [$.atom, $.NAME],
@@ -28,37 +25,36 @@ module.exports = grammar({
     [$.Operand, $.Fork, $.nothing],
     [$.m1_Expr, $.NAME],
     [$.m2_Expr_, $.NAME],
-    [$.mod_1, $.NAME],
-    [$.mod_2_, $.NAME],
-    [$.HEAD, $.symbol_sl],
     [$.Func, $.HEAD],
-    [$.STMT, $.BODY],
-    [$.STMT],
     [$.mod_1, $.mod_2_, $.Func, $.atom],
     [$.Func, $.atom],
     [$.ANY, $.mod_1, $.mod_2_, $.Func, $.atom],
     [$.mod_1, $.mod_2_, $.Func],
     [$.mod_1, $.mod_2_],
     [$.mod_1, $.mod_2_, $.atom],
-    [$.HEAD, $.symbol_Fl],
+    [$.HEAD, $.specialname_s],
+    [$.HEAD, $.specialname_F],
   ],
   rules: {
     source_file: $ => $._PROGRAM,
     _PROGRAM: $    => seq(optional($.sep), repeat(seq($.STMT, $.sep)), $.STMT, optional($.sep)),
-    STMT: $        => choice($.EXPR, $.nothing, $.EXPORT),
+    STMT: $        => prec.left(choice($.EXPR, $.nothing, $.EXPORT)),
     sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
     EXPR: $        => choice($.subExpr, $.FuncExpr, $.m1_Expr, $.m2_Expr_),
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
+
     ANY: $     => choice($.atom, $.Func, $.mod_1, $.mod_2_, $.block),
-    mod_2_: $ => prec(5, choice(
+    mod_2_: $  => prec(5, choice(
       seq(optional(seq($.atom, '.')), $.symbol__c_),
+      $.specialname__c_,
       $.system__c_,
       $.symbol__cl_,
       seq('(', $.m2_Expr_, ')'),
       $.block
     )),
-    mod_1: $ => prec(5, choice(
+    mod_1: $   => prec(5, choice(
       seq(optional(seq($.atom, '.')), $.symbol__m),
+      $.specialname__m,
       $.system__m,
       $.symbol__ml,
       seq('(', $.m1_Expr, ')'),
@@ -66,6 +62,7 @@ module.exports = grammar({
     )),
     Func: $    => choice(
       seq(optional(seq($.atom, '.')), $.symbol_F),
+      $.specialname_F,
       $.system_F,
       $.symbol_Fl,
       seq('(', $.FuncExpr, ')'),
@@ -73,6 +70,7 @@ module.exports = grammar({
     ),
     atom: $    => choice(
       seq(optional(seq($.atom, '.')), $.symbol_s),
+      $.specialname_s,
       $.system_s,
       $.symbol_sl,
       seq('(', $.subExpr, ')'),
@@ -84,9 +82,11 @@ module.exports = grammar({
       seq('[', optional($.sep), repeat(seq($.EXPR, $.sep)), $.EXPR, optional($.sep), ']'),
     ),
     subject: $ => choice($.atom, seq($.ANY, repeat1(seq('‿', $.ANY)))),
-    ASGN: $ => prec.right(choice('←', $.symbol_export, '↩')),
+
+    ASGN: $     => prec.right(choice('←', $.symbol_export, '↩')),
     m2_Expr_: $ => choice($.mod_2_, seq($.symbol__c_, $.ASGN, $.m2_Expr_)),
-    m1_Expr: $ => choice($.mod_1, seq($.symbol__m, $.ASGN, $.m1_Expr)),
+    m1_Expr: $  => choice($.mod_1, seq($.symbol__m, $.ASGN, $.m1_Expr)),
+
     Derv: $     => choice(
       $.Func,
       seq($.Operand, $.mod_1),
@@ -100,6 +100,7 @@ module.exports = grammar({
     ),
     Train: $    => choice($.Fork, seq($.Derv, $.Fork)),
     FuncExpr: $ => choice($.Train, seq($.symbol_F, $.ASGN, $.FuncExpr)),
+
     arg: $     => choice(
       $.subject,
       seq(optional(choice($.subject, $.nothing)), $.Derv, $.subExpr)
@@ -111,8 +112,9 @@ module.exports = grammar({
     subExpr: $ => choice(
       $.arg, seq($.lhs, $.ASGN, $.subExpr), seq($.lhs, $.Derv, "↩", optional($.subExpr))
     ),
+
     NAME: $      => choice($.symbol_s, $.symbol_F, $.symbol__m, $.symbol__c_),
-    LHS_SUB: $   => choice("·", $.lhsList, $.lhsArray, $.symbol_sl),
+    LHS_SUB: $   => choice("·", $.lhsList, $.lhsArray, $.symbol_sl, $.specialname_s),
     LHS_ANY: $   => choice($.NAME, $.LHS_SUB, seq("(", $.LHS_ELT, ")")),
     LHS_ATOM: $  => choice($.LHS_ANY, seq("(", $.lhsStr, ")")),
     LHS_ELT: $   => choice($.LHS_ANY, $.lhsStr),
@@ -127,7 +129,7 @@ module.exports = grammar({
     lhsComp: $   => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
     lhs: $       => choice($.symbol_s, $.lhsComp),
 
-    BODY: $ => seq(
+    BODY: $  => prec.left(seq(
       optional($.sep),
       repeat(choice(
         seq($.STMT, $.sep),
@@ -135,12 +137,12 @@ module.exports = grammar({
       )),
       $.STMT,
       optional($.sep)
-    ),
-    HEAD: $ => choice(
+    )),
+    HEAD: $  => choice(
       seq(
         optional(choice($.lhs, "𝕨", "𝕎")),
         optional(choice($.lhs, $.symbol_F, "𝕗", "𝔽")),
-        choice($.symbol_F, "𝕊", $.symbol__m, "_𝕣", $.symbol__c_, "_𝕣_"),
+        choice($.symbol_F, "𝕊", $.symbol__m, $.specialname__m, $.symbol__c_, $.specialname__c_),
         optional('˜'),
         optional("⁼"),
         optional(choice($.lhs, $.symbol_F, "𝕘", "𝔾")),
@@ -148,54 +150,60 @@ module.exports = grammar({
       ),
       $.lhsComp,
     ),
-    CASE: $ => seq(
+    CASE: $  => seq(
       optional(seq(optional($.sep), $.HEAD, ":")),
       $.BODY
     ),
     block: $ => seq("{", repeat(seq($.CASE, ";")), $.CASE, "}"),
 
-    number: $    => token(choice(/¯?[∞]/, /¯π([eE]¯?\d+)?/, /¯?\d+(\.\d+)?([eE]¯?\d+)?/)),
-    character: $ => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
-    string: $    => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
-    system_s: $ => token(seq(
+    number: $          => token(choice(/¯?[∞]/, /¯π([eE]¯?\d+)?/, /¯?\d+(\.\d+)?([eE]¯?\d+)?/)),
+    character: $       => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
+    string: $          => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
+    system_s: $        => token(seq(
       "•",
       optional(repeat(seq(/[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
       /[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/
     )),
-    symbol_sl: $      => choice(
-      '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣', '@',
-      // '𝕨', '𝕎', '𝕩', '𝕏', '𝕗', '𝔽', '𝕘', '𝔾', '𝕤', '𝕊', '𝕣', '@',
+    specialname_s: $   => choice(
+      '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣'
+    ),
+    symbol_sl: $       => choice(
+      '@',
       $.character, $.string, $.number
     ),
-    system_F: $ => token(seq(
+    system_F: $        => token(seq(
       "•",
       optional(repeat(seq(/[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
       /[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/
     )),
-    symbol_Fl: $      => choice(
+    specialname_F: $   => choice(
+      '𝕎', '𝕏', '𝔽', '𝔾', '𝕊',
+    ),
+    symbol_Fl: $       => choice(
       '+', '-', '×', '÷', '⋆', '√', '⌊', '⌈', '∧', '∨', '¬', '|', '≤', '<', '>', '≥', '=',
       '≠', '≡', '≢', '⊣', '⊢', '⥊', '∾', '≍', '⋈', '↑', '↓', '↕', '«', '»', '⌽', '⍉', '/',
       '⍋', '⍒', '⊏', '⊑', '⊐', '⊒', '∊', '⍷', '⊔', '!',
-      '𝕎', '𝕏', '𝔽', '𝔾', '𝕊',
     ),
-    system__m: $ => token(seq(
+    system__m: $       => token(seq(
       "•",
       optional(repeat(seq(/[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
       /_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/
     )),
-    symbol__ml: $     => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`'),
-    system__c_: $ => token(seq(
+    specialname__m: $  => "_𝕣",
+    symbol__ml: $      => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`'),
+    system__c_: $      => token(seq(
       "•",
       optional(repeat(seq(/[A-Za-z0-9]([A-Za-z0-9_]*[A-Za-z0-9]+)?/, '.'))),
       /_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_/
     )),
-    symbol__cl_: $    => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟'),
-    symbol_s: $       => /[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
-    symbol_F: $       => /[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
-    symbol__m: $      => /_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
-    symbol__c_: $     => /_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_/,
-    symbol_export: $ => "⇐",
-    comment: $        => /#.*/,
-    _end_of_line: $   => token(/\r?\n/),
+    specialname__c_: $ => "_𝕣_",
+    symbol__cl_: $     => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟'),
+    symbol_s: $        => /[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
+    symbol_F: $        => /[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
+    symbol__m: $       => /_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/,
+    symbol__c_: $      => /_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_/,
+    symbol_export: $   => "⇐",
+    comment: $         => /#.*/,
+    _end_of_line: $    => token(/\r?\n/),
   }
 });
