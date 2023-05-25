@@ -54,11 +54,11 @@
       "required": true,
       "types": [
         {
-          "type": "EXPR",
+          "type": "STMT",
           "named": true
         },
         {
-          "type": "STMT",
+          "type": "guardedSTMT",
           "named": true
         },
         {
@@ -607,6 +607,29 @@
     "type": "character",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "guardedSTMT",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "EXPR",
+          "named": true
+        },
+        {
+          "type": "STMT",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "lhs",

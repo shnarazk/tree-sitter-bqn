@@ -129,15 +129,29 @@ module.exports = grammar({
     lhsComp: $   => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
     lhs: $       => choice($.symbol_s, $.lhsComp),
 
-    BODY: $  => prec.left(seq(
+    guardedSTMT: $ => prec.left(seq(
+      $.EXPR,
       optional($.sep),
-      repeat(choice(
-        seq($.STMT, $.sep),
-        seq($.EXPR, optional($.sep), "?", optional($.sep))
-      )),
-      $.STMT,
+      "?",
+      optional($.sep),
+      optional(repeat(seq($.STMT, $.sep))),
+      $.STMT
+    )),
+    BODY: $ => prec.left(seq(
+      optional($.sep),
+      repeat(seq(choice($.STMT, $.guardedSTMT), $.sep)),
+      choice($.STMT, $.guardedSTMT),
       optional($.sep)
     )),
+    // BODY: $  => prec.left(seq(
+    //   optional($.sep),
+    //   repeat(choice(
+    //     seq($.STMT, $.sep),
+    //     seq($.EXPR, optional($.sep), "?", optional($.sep))
+    //   )),
+    //   $.STMT,
+    //   optional($.sep)
+    // )),
     HEAD: $  => choice(
       seq(
         optional(choice($.lhs, "𝕨", "𝕎")),
