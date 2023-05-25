@@ -76,23 +76,27 @@
       }
     },
     "sep": {
-      "type": "REPEAT1",
+      "type": "PREC_LEFT",
+      "value": 0,
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "⋄"
-          },
-          {
-            "type": "STRING",
-            "value": ","
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_end_of_line"
-          }
-        ]
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "⋄"
+            },
+            {
+              "type": "STRING",
+              "value": ","
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_end_of_line"
+            }
+          ]
+        }
       }
     },
     "EXPR": {
@@ -1646,6 +1650,23 @@
         }
       ]
     },
+    "headedBODY": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "HEAD"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "BODY"
+        }
+      ]
+    },
     "CASE": {
       "type": "SEQ",
       "members": [
@@ -1653,29 +1674,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "sep"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "HEAD"
-                },
-                {
-                  "type": "STRING",
-                  "value": ":"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "sep"
             },
             {
               "type": "BLANK"
@@ -1683,8 +1683,17 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "BODY"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "headedBODY"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "BODY"
+            }
+          ]
         }
       ]
     },
@@ -2486,6 +2495,9 @@
     [
       "HEAD",
       "specialname_F"
+    ],
+    [
+      "BODY"
     ]
   ],
   "precedences": [],

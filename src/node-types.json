@@ -81,7 +81,7 @@
           "named": true
         },
         {
-          "type": "HEAD",
+          "type": "headedBODY",
           "named": true
         },
         {
@@ -626,6 +626,25 @@
         },
         {
           "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "headedBODY",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BODY",
+          "named": true
+        },
+        {
+          "type": "HEAD",
           "named": true
         }
       ]
