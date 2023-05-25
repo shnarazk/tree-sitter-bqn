@@ -165,7 +165,7 @@ module.exports = grammar({
       /[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?/
     )),
     specialname_s: $   => choice(
-      '𝕨', '𝕩', '𝕗', '𝕘', '𝕤', '𝕣'
+      '𝕨', '𝕩', '𝕗', '𝕘', '𝕤',
     ),
     symbol_sl: $       => choice(
       '@',
