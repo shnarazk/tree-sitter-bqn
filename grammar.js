@@ -170,10 +170,6 @@ module.exports = grammar({
       optional($.sep),
       choice($.headedBODY, $.BODY)
     ),
-    // CASE: $  => seq(
-    //   optional(seq(optional($.sep), $.HEAD, ":")),
-    //   $.BODY
-    // ),
     block: $ => seq("{", repeat($.CASE_0), $.CASE, "}"),
 
     number: $          => token(choice(/¯?[∞]/, /¯π([eE]¯?\d+)?/, /¯?\d+(\.\d+)?([eE]¯?\d+)?/)),
