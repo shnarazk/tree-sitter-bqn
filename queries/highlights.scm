@@ -1,6 +1,6 @@
 ["·" "@"] @constant.builtin
 ["‿" "⟨" "⟩" "[" "]"] @operator
-["," "?" ";" ":" "⋄"] @punctuaton.delimiter
+["," "?" ";" ":" "⋄"] @punctuation.delimiter
 ["(" ")" "{" "}"] @punctuation.bracket
 (ASGN) @keyword.directive
 
