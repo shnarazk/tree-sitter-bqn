@@ -1,10 +1,13 @@
 # tree-sitter-bqn
-'finally, a BQN highlighting for your favorite editor'
+Structual editing and highlighting [BQN](https://mlochbaum.github.io/BQN) programs with editors powered by [tree-sitter](https://tree-sitter.github.io/)
 
 - [Specification BQN grammar](https://mlochbaum.github.io/BQN/spec/grammar.html)
-- [tree-sitter](https://tree-sitter.github.io/tree-sitter/creating-parsers)
-- [target schema](https://github.com/helix-editor/helix/blob/53f47bc47771c94dab51626ca025be28e62eba0c/runtime/themes/solarized_light.toml#L1-L23)
+- [tree-sitter tutorial](https://tree-sitter.github.io/tree-sitter/creating-parsers)
+- [target color schema](https://github.com/helix-editor/helix/blob/53f47bc47771c94dab51626ca025be28e62eba0c/runtime/themes/solarized_light.toml#L1-L23)
 - [textobjects](https://docs.helix-editor.com/guides/textobject.html)
+
+`tree-sitter-bqn` provides a parser for a simplified BQN grammar, in which blocks (`subExpr`, `FuncExpr`, `_m1Expr` and `_m2_Expr`) are unified as a typeless `block `type.
+So you get the following:
 
 ```
 $ cat check.bqn
@@ -73,16 +76,18 @@ $ tree-sitter parse check.bqn
                                 (number [0, 28] - [0, 30])))))))))))))))))
 ```
 
-# way to release
+# Loadmap
 
 1. Phase1: quite simplified -- basic expressions
 2. Phase2: simplified -- statements
 3. Phase3: shaping -- modifiers
 4. Phase4: tedious -- untyped blocks
-5. ___current phase___ : 'Quite tedious'
+5. Phase5: 'Quite tedious' -- fix errors, give up a better grammar
+6. Release 0.1.0
 
 # A configuration for Helix
-Hey, are you a [Helix](https://helix-editor.com/) user? Then try me:
+
+Are you a [Helix](https://helix-editor.com/) user? Then try (I'm making a PR nwo):
 
 1. add the following to your $CONFIG/helix/languages.toml
 
@@ -94,18 +99,19 @@ scope = "source.bqn"
 [[grammar]]
 name = "bqn"
 source.git = "https://github.com/shnarazk/tree-sitter-bqn"
-source.rev = "e7ebc1e9efb688c9fc5e7a061ed9bad3c15a2640" or something new
+source.rev = "20fbe4cc2b4f6d398421f570fa80dd383a6ef956" or something new
 ```
 
-2. run on shell:
+2. build up on shell:
 
 ```
 $ hx -g fetch
 $ hx -g build
 ```
 
-3. copy queries:
+3. copy query files:
 
 ```
 $ cp -r queries $HELIX/runtime/queries/bqn
 ```
+
