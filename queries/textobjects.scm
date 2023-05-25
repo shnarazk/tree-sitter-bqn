@@ -15,5 +15,5 @@
 ; This selects a list surrounded by '⟨⟩' (or '[]' accidently)
 (array) @test.around
 
-(comment)+ @comment.around
 (comment) @comment.inside
+(comment)+ @comment.around
