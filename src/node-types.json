@@ -92,6 +92,29 @@
     }
   },
   {
+    "type": "CASE_0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BODY",
+          "named": true
+        },
+        {
+          "type": "headedBODY",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "Derv",
     "named": true,
     "fields": {},
@@ -598,6 +621,10 @@
       "types": [
         {
           "type": "CASE",
+          "named": true
+        },
+        {
+          "type": "CASE_0",
           "named": true
         }
       ]
