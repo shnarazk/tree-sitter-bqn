@@ -54,7 +54,7 @@
       "required": true,
       "types": [
         {
-          "type": "EXPR",
+          "type": "GuardedSTMT",
           "named": true
         },
         {
@@ -69,7 +69,7 @@
     }
   },
   {
-    "type": "CASE",
+    "type": "CASE_end",
     "named": true,
     "fields": {},
     "children": {
@@ -81,7 +81,30 @@
           "named": true
         },
         {
-          "type": "HEAD",
+          "type": "HeadedBODY",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CASE_opt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BODY",
+          "named": true
+        },
+        {
+          "type": "HeadedBODY",
           "named": true
         },
         {
@@ -258,6 +281,29 @@
     }
   },
   {
+    "type": "GuardedSTMT",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "EXPR",
+          "named": true
+        },
+        {
+          "type": "STMT",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "HEAD",
     "named": true,
     "fields": {},
@@ -291,6 +337,25 @@
         },
         {
           "type": "symbol__m",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "HeadedBODY",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BODY",
+          "named": true
+        },
+        {
+          "type": "HEAD",
           "named": true
         }
       ]
@@ -597,7 +662,11 @@
       "required": true,
       "types": [
         {
-          "type": "CASE",
+          "type": "CASE_end",
+          "named": true
+        },
+        {
+          "type": "CASE_opt",
           "named": true
         }
       ]

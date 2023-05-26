@@ -34,12 +34,14 @@ module.exports = grammar({
     [$.mod_1, $.mod_2_, $.atom],
     [$.HEAD, $.specialname_s],
     [$.HEAD, $.specialname_F],
+    [$.BODY],
+    [$.GuardedSTMT],
   ],
   rules: {
     source_file: $ => $._PROGRAM,
     _PROGRAM: $    => seq(optional($.sep), repeat(seq($.STMT, $.sep)), $.STMT, optional($.sep)),
     STMT: $        => prec.left(choice($.EXPR, $.nothing, $.EXPORT)),
-    sep: $         => repeat1(choice('⋄', ',', $._end_of_line)),
+    sep: $         => prec.left(repeat1(choice('⋄', ',', $._end_of_line))),
     EXPR: $        => choice($.subExpr, $.FuncExpr, $.m1_Expr, $.m2_Expr_),
     EXPORT: $      => seq(optional($.LHS_ELT), "⇐"),
 
@@ -129,13 +131,20 @@ module.exports = grammar({
     lhsComp: $   => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
     lhs: $       => choice($.symbol_s, $.lhsComp),
 
-    BODY: $  => prec.left(seq(
-      optional($.sep),
-      repeat(choice(
-        seq($.STMT, $.sep),
-        seq($.EXPR, optional($.sep), "?", optional($.sep))
+    GuardedSTMT: $ => seq(
+      repeat1(seq(
+        $.EXPR,
+        optional($.sep),
+        "?",
+        optional($.sep),
       )),
-      $.STMT,
+      optional(repeat(seq($.STMT, $.sep))),
+      $.STMT
+    ),
+    BODY: $ => prec.left(seq(
+      optional($.sep),
+      repeat(seq(choice($.STMT, $.GuardedSTMT), $.sep)),
+      choice($.STMT, $.GuardedSTMT),
       optional($.sep)
     )),
     HEAD: $  => choice(
@@ -150,11 +159,21 @@ module.exports = grammar({
       ),
       $.lhsComp,
     ),
-    CASE: $  => seq(
-      optional(seq(optional($.sep), $.HEAD, ":")),
+    HeadedBODY: $ => seq(
+      $.HEAD,
+      ":",
       $.BODY
     ),
-    block: $ => seq("{", repeat(seq($.CASE, ";")), $.CASE, "}"),
+    CASE_opt: $  => seq(
+      optional($.sep),
+      choice($.HeadedBODY, $.BODY),
+      ";"
+    ),
+    CASE_end: $  => seq(
+      optional($.sep),
+      choice($.HeadedBODY, $.BODY)
+    ),
+    block: $ => seq("{", repeat($.CASE_opt), $.CASE_end, "}"),
 
     number: $          => token(choice(/¯?[∞]/, /¯π([eE]¯?\d+)?/, /¯?\d+(\.\d+)?([eE]¯?\d+)?/)),
     character: $       => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
