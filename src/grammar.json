@@ -1335,74 +1335,78 @@
         }
       ]
     },
-    "guardedSTMT": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "EXPR"
-          },
-          {
-            "type": "CHOICE",
+    "GuardedSTMT": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "sep"
+                "name": "EXPR"
               },
               {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "STRING",
-            "value": "?"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "sep"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "sep"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               },
               {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "STMT"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "sep"
-                    }
-                  ]
-                }
+                "type": "STRING",
+                "value": "?"
               },
               {
-                "type": "BLANK"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "sep"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "STMT"
           }
-        ]
-      }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "STMT"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "sep"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "STMT"
+        }
+      ]
     },
     "BODY": {
       "type": "PREC_LEFT",
@@ -1436,7 +1440,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "guardedSTMT"
+                      "name": "GuardedSTMT"
                     }
                   ]
                 },
@@ -1456,7 +1460,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "guardedSTMT"
+                "name": "GuardedSTMT"
               }
             ]
           },
@@ -1650,7 +1654,7 @@
         }
       ]
     },
-    "headedBODY": {
+    "HeadedBODY": {
       "type": "SEQ",
       "members": [
         {
@@ -1667,7 +1671,7 @@
         }
       ]
     },
-    "CASE_0": {
+    "CASE_opt": {
       "type": "SEQ",
       "members": [
         {
@@ -1687,7 +1691,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "headedBODY"
+              "name": "HeadedBODY"
             },
             {
               "type": "SYMBOL",
@@ -1701,7 +1705,7 @@
         }
       ]
     },
-    "CASE": {
+    "CASE_end": {
       "type": "SEQ",
       "members": [
         {
@@ -1721,7 +1725,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "headedBODY"
+              "name": "HeadedBODY"
             },
             {
               "type": "SYMBOL",
@@ -1742,12 +1746,12 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "CASE_0"
+            "name": "CASE_opt"
           }
         },
         {
           "type": "SYMBOL",
-          "name": "CASE"
+          "name": "CASE_end"
         },
         {
           "type": "STRING",
@@ -2523,6 +2527,9 @@
     ],
     [
       "BODY"
+    ],
+    [
+      "GuardedSTMT"
     ]
   ],
   "precedences": [],

@@ -1,8 +1,18 @@
+
 ; Only select blocks as function definition
+; Note: this selects subject blocks too
 (block
-  (CASE
-    (HEAD)? @parameter.inside
+  ([CASE_opt CASE_end]
     (BODY) @function.inside
+  )
+) @function.around
+
+(block
+  ([CASE_opt CASE_end]
+    (HeadedBODY
+      (HEAD) @parameter.inside
+      (BODY) @function.inside
+    )
   )
 ) @function.around
 
@@ -12,8 +22,8 @@
   (subExpr) @class.around
 )
 
-; This selects a list surrounded by '⟨⟩' (or '[]' accidently)
-(array) @test.around
+; This selects lists surrounded by '⟨⟩' (or '[]' accidently)
+(array) @class.around
 
 (comment) @comment.inside
 (comment)+ @comment.around

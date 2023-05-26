@@ -54,14 +54,14 @@
       "required": true,
       "types": [
         {
+          "type": "GuardedSTMT",
+          "named": true
+        },
+        {
           "type": "STMT",
           "named": true
         },
         {
-          "type": "guardedSTMT",
-          "named": true
-        },
-        {
           "type": "sep",
           "named": true
         }
@@ -69,7 +69,7 @@
     }
   },
   {
-    "type": "CASE",
+    "type": "CASE_end",
     "named": true,
     "fields": {},
     "children": {
@@ -81,7 +81,7 @@
           "named": true
         },
         {
-          "type": "headedBODY",
+          "type": "HeadedBODY",
           "named": true
         },
         {
@@ -92,7 +92,7 @@
     }
   },
   {
-    "type": "CASE_0",
+    "type": "CASE_opt",
     "named": true,
     "fields": {},
     "children": {
@@ -104,7 +104,7 @@
           "named": true
         },
         {
-          "type": "headedBODY",
+          "type": "HeadedBODY",
           "named": true
         },
         {
@@ -281,6 +281,29 @@
     }
   },
   {
+    "type": "GuardedSTMT",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "EXPR",
+          "named": true
+        },
+        {
+          "type": "STMT",
+          "named": true
+        },
+        {
+          "type": "sep",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "HEAD",
     "named": true,
     "fields": {},
@@ -314,6 +337,25 @@
         },
         {
           "type": "symbol__m",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "HeadedBODY",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BODY",
+          "named": true
+        },
+        {
+          "type": "HEAD",
           "named": true
         }
       ]
@@ -620,11 +662,11 @@
       "required": true,
       "types": [
         {
-          "type": "CASE",
+          "type": "CASE_end",
           "named": true
         },
         {
-          "type": "CASE_0",
+          "type": "CASE_opt",
           "named": true
         }
       ]
@@ -634,48 +676,6 @@
     "type": "character",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "guardedSTMT",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "EXPR",
-          "named": true
-        },
-        {
-          "type": "STMT",
-          "named": true
-        },
-        {
-          "type": "sep",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "headedBODY",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "BODY",
-          "named": true
-        },
-        {
-          "type": "HEAD",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "lhs",

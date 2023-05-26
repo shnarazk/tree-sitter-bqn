@@ -35,6 +35,7 @@ module.exports = grammar({
     [$.HEAD, $.specialname_s],
     [$.HEAD, $.specialname_F],
     [$.BODY],
+    [$.GuardedSTMT],
   ],
   rules: {
     source_file: $ => $._PROGRAM,
@@ -130,18 +131,20 @@ module.exports = grammar({
     lhsComp: $   => choice($.LHS_SUB, $.lhsStr , seq("(", $.lhs, ")")),
     lhs: $       => choice($.symbol_s, $.lhsComp),
 
-    guardedSTMT: $ => prec.left(seq(
-      $.EXPR,
-      optional($.sep),
-      "?",
-      optional($.sep),
+    GuardedSTMT: $ => seq(
+      repeat1(seq(
+        $.EXPR,
+        optional($.sep),
+        "?",
+        optional($.sep),
+      )),
       optional(repeat(seq($.STMT, $.sep))),
       $.STMT
-    )),
+    ),
     BODY: $ => prec.left(seq(
       optional($.sep),
-      repeat(seq(choice($.STMT, $.guardedSTMT), $.sep)),
-      choice($.STMT, $.guardedSTMT),
+      repeat(seq(choice($.STMT, $.GuardedSTMT), $.sep)),
+      choice($.STMT, $.GuardedSTMT),
       optional($.sep)
     )),
     HEAD: $  => choice(
@@ -156,21 +159,21 @@ module.exports = grammar({
       ),
       $.lhsComp,
     ),
-    headedBODY: $ => seq(
+    HeadedBODY: $ => seq(
       $.HEAD,
       ":",
       $.BODY
     ),
-    CASE_0: $  => seq(
+    CASE_opt: $  => seq(
       optional($.sep),
-      choice($.headedBODY, $.BODY),
+      choice($.HeadedBODY, $.BODY),
       ";"
     ),
-    CASE: $  => seq(
+    CASE_end: $  => seq(
       optional($.sep),
-      choice($.headedBODY, $.BODY)
+      choice($.HeadedBODY, $.BODY)
     ),
-    block: $ => seq("{", repeat($.CASE_0), $.CASE, "}"),
+    block: $ => seq("{", repeat($.CASE_opt), $.CASE_end, "}"),
 
     number: $          => token(choice(/¯?[∞]/, /¯π([eE]¯?\d+)?/, /¯?\d+(\.\d+)?([eE]¯?\d+)?/)),
     character: $       => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),

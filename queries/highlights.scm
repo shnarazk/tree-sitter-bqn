@@ -1,15 +1,44 @@
 ["·" "@"] @constant.builtin
 ["‿" "⟨" "⟩" "[" "]"] @operator
-["," "?" ";" ":" "⋄"] @punctuation.delimiter
 ["(" ")" "{" "}"] @punctuation.bracket
-(ASGN) @keyword.directive
+
+[
+  ","
+  "?"
+  ";"
+  ":"
+  "⋄"
+  (ASGN)
+] @keyword.directive
 
 (comment) @comment
 (character) @constant.character
 (number) @constant.numeric
 (string) @string
 
-[(specialname_s) (symbol_sl) (symbol_s)] @variable
-[(specialname_F) (symbol_Fl) (symbol_F) (system_F)] @function
-[(specialname__m) (symbol__ml) (symbol__m) (system__m)] @special
-[(specialname__c_) (symbol__cl_) (symbol__c_) (system__c_)] @function.special
+[
+  (specialname_s)
+  (symbol_sl)
+  (symbol_s)
+] @variable
+
+[
+  (specialname_F)
+  (symbol_Fl)
+  (symbol_F)
+  (system_F)
+] @function
+
+[
+  (specialname__m)
+  (symbol__ml)
+  (symbol__m)
+  (system__m)
+] @special
+
+[
+  (specialname__c_)
+  (symbol__cl_)
+  (symbol__c_)
+  (system__c_)
+] @function.special

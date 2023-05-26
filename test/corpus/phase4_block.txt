@@ -10,7 +10,7 @@ block (1) {+}
       (m2_Expr_
         (mod_2_
           (block
-            (CASE
+            (CASE_end
               (BODY
                 (STMT
                   (EXPR
@@ -33,7 +33,7 @@ block (2) {-;+}
       (m2_Expr_
         (mod_2_
           (block
-            (CASE
+            (CASE_opt
               (BODY
                 (STMT
                   (EXPR
@@ -43,7 +43,7 @@ block (2) {-;+}
                           (Derv
                             (Func
                               (symbol_Fl))))))))))
-            (CASE
+            (CASE_end
               (BODY
                 (STMT
                   (EXPR
@@ -66,17 +66,18 @@ block (3) { 𝕨 F 𝕩 : 𝕨+𝕩 }
       (m2_Expr_
         (mod_2_
           (block
-            (CASE
-  			  (HEAD (symbol_F))
-              (BODY
-                (STMT
-                  (EXPR
-                    (subExpr
-  					  (arg
-                        (subject (atom (specialname_s)))
-	                      (Derv (Func (symbol_Fl)))
-                        (subExpr (arg (subject (atom (specialname_s)))))
-                      ))))))))))))
+            (CASE_end
+              (HeadedBODY
+                (HEAD (symbol_F))
+                (BODY
+                  (STMT
+                    (EXPR
+                      (subExpr
+                        (arg
+                          (subject (atom (specialname_s)))
+                           (Derv (Func (symbol_Fl)))
+                          (subExpr (arg (subject (atom (specialname_s)))))
+                        )))))))))))))
 
 ==================
 modifier block (1) {𝔽 _𝕣: 𝔽˜´}
@@ -90,7 +91,8 @@ modifier block (1) {𝔽 _𝕣: 𝔽˜´}
       (m2_Expr_
         (mod_2_
           (block
-            (CASE
+            (CASE_end
+            (HeadedBODY
               (HEAD (specialname__m))
               (BODY
                 (STMT
@@ -105,4 +107,4 @@ modifier block (1) {𝔽 _𝕣: 𝔽˜´}
                                   (Derv (Func (specialname_F))))
                                 (mod_1 (symbol__ml))))
                             (mod_1 (symbol__ml))
-                          ))))))))))))))
+                          )))))))))))))))

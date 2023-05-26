@@ -1,0 +1,147 @@
+==================
+guarded block (1) {1 ? 0; ¯1 }
+==================
+{1 ? 0 ; ¯1 }
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE_opt
+              (BODY
+                (GuardedSTMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number)))))))
+                  (STMT
+                    (EXPR
+                      (subExpr
+                        (arg
+                          (subject
+                            (atom
+                              (symbol_sl
+                                (number)))))))))))
+            (CASE_end
+              (BODY
+                (STMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number))))))))))))))))
+
+==================
+guarded block (2) {1 ? 1 ? 0; ¯1 }
+==================
+{1 ? 1 ? 0 ; ¯1 }
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE_opt
+              (BODY
+                (GuardedSTMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number)))))))
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number)))))))
+                  (STMT
+                    (EXPR
+                      (subExpr
+                        (arg
+                          (subject
+                            (atom
+                              (symbol_sl
+                                (number)))))))))))
+            (CASE_end
+              (BODY
+                (STMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number))))))))))))))))
+
+==================
+guarded block (3) {1 ? ¯1; 1 ? 0; 1 }
+==================
+{1 ? ¯1; 1 ? 0; 1 }
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE_opt
+              (BODY
+                (GuardedSTMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number)))))))
+                  (STMT
+                    (EXPR
+                      (subExpr
+                        (arg
+                          (subject
+                            (atom
+                              (symbol_sl
+                                (number)))))))))))
+            (CASE_opt
+              (BODY
+                (GuardedSTMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number)))))))
+                  (STMT
+                    (EXPR
+                      (subExpr
+                        (arg
+                          (subject
+                            (atom
+                              (symbol_sl
+                                (number)))))))))))
+            (CASE_end
+              (BODY
+                (STMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (symbol_sl
+                              (number))))))))))))))))
