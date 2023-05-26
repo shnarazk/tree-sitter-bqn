@@ -2,13 +2,28 @@
 ; Only select blocks as function definition
 ; Note: this selects subject blocks too
 (block
-  ([CASE_opt CASE_end]
+  (CASE_opt
     (BODY) @function.inside
   )
 ) @function.around
 
 (block
-  ([CASE_opt CASE_end]
+  (CASE_end
+    (BODY) @function.inside
+  )
+) @function.around
+
+(block
+  (CASE_opt
+    (HeadedBODY
+      (HEAD) @parameter.inside
+      (BODY) @function.inside
+    )
+  )
+) @function.around
+
+(block
+  (CASE_end
     (HeadedBODY
       (HEAD) @parameter.inside
       (BODY) @function.inside
