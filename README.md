@@ -116,3 +116,16 @@ $ hx -g build
 $ cp -r queries $HELIX/runtime/queries/bqn
 ```
 
+```apl
+# What you can do now in Helix:
+#   - traverse function blocks by `]f` and `[f`
+#   - traverse function headers by `]a` and `[a`
+#   - traverse namespaces by `]t` and `[t`
+#   - traverse comments by `]c` and `[c`
+
+J ⇐ { F x: 2⋆x; w F x: x + w }
+K ← (⌽⋈∨)       # no block here
+l ⇐ { w ⇐ 10, Y ⇐ J }
+_m ⇐ { 𝔽 _mod: 𝔽´⁼ }
+ns ⇐ { w ⇐ 3, k ⇐ 10 }
+```
