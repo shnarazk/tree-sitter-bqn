@@ -83,13 +83,14 @@ $ tree-sitter parse check.bqn
 3. Phase3: shaping -- modifiers
 4. Phase4: tedious -- untyped blocks
 5. Phase5: 'Quite tedious' -- fix errors, give up a better grammar
-6. Release 0.1.0
+6. Release 0.1.0 -- provide misc queries
+7. Release 0.2.0 -- better textobjects and auto indents
 
 # A configuration for Helix
 
-Are you a [Helix](https://helix-editor.com/) user? Then try (I'm making a PR nwo):
+Are you a [Helix](https://helix-editor.com/) user? Then try:
 
-1. add the following to your $CONFIG/helix/languages.toml
+1. Add the following to your $CONFIG/helix/languages.toml
 
 ```toml
 [[language]]
@@ -102,14 +103,14 @@ source.git = "https://github.com/shnarazk/tree-sitter-bqn"
 source.rev = "20fbe4cc2b4f6d398421f570fa80dd383a6ef956" or something new
 ```
 
-2. build up on shell:
+2. Build up on shell:
 
 ```
 $ hx -g fetch
 $ hx -g build
 ```
 
-3. copy query files:
+3. Copy query files:
 
 ```
 $ cp -r queries $HELIX/runtime/queries/bqn
