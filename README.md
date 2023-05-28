@@ -129,11 +129,12 @@ $ hx -g build
 3. Copy query files:
 
 ```
+$ mkdir -p $HELIX/runtime/queries/bqn
 $ cp -r queries $HELIX/runtime/queries/bqn
 ```
 
 Now you can:
-- expand/shrink selection by moving up AST
+- expand/shrink selection by moving up/down AST
 - indent after `:`, `?`, `{`, `⟨` and so on
 - outdent at `}`, `⟩`, `;` and so on
 - traverse function blocks by `]f` and `[f`
