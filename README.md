@@ -1,12 +1,9 @@
 # tree-sitter-bqn
 Structual editing and highlighting [BQN](https://mlochbaum.github.io/BQN) programs with editors powered by [tree-sitter](https://tree-sitter.github.io/)
 
-- [Specification BQN grammar](https://mlochbaum.github.io/BQN/spec/grammar.html)
-- [tree-sitter tutorial](https://tree-sitter.github.io/tree-sitter/creating-parsers)
-- [target color schema](https://github.com/helix-editor/helix/blob/53f47bc47771c94dab51626ca025be28e62eba0c/runtime/themes/solarized_light.toml#L1-L23)
-- [textobjects](https://docs.helix-editor.com/guides/textobject.html)
+![](https://user-images.githubusercontent.com/997855/241345573-dd2ed350-d7e7-4c7b-8709-7fa9290eba47.png)
 
-`tree-sitter-bqn` provides a parser for a simplified BQN grammar, in which blocks (`subExpr`, `FuncExpr`, `_m1Expr` and `_m2_Expr`) are unified as a typeless `block `type.
+`tree-sitter-bqn` provides a parser for a simplified BQN grammar, in which blocks (`subExpr`, `FuncExpr`, `_m1Expr` and `_m2_Expr`) are unified as a typeless `block` type.
 So you get the following:
 
 ```
@@ -76,6 +73,13 @@ $ tree-sitter parse check.bqn
                                 (number [0, 28] - [0, 30])))))))))))))))))
 ```
 
+### References
+
+- [Specification BQN grammar](https://mlochbaum.github.io/BQN/spec/grammar.html)
+- [tree-sitter tutorial](https://tree-sitter.github.io/tree-sitter/creating-parsers)
+- [target color schema](https://github.com/helix-editor/helix/blob/53f47bc47771c94dab51626ca025be28e62eba0c/runtime/themes/solarized_light.toml#L1-L23)
+- [textobjects](https://docs.helix-editor.com/guides/textobject.html)
+
 # Changelog and Loadmap
 
 1. Phase1: quite simplified -- basic expressions
@@ -91,7 +95,7 @@ $ tree-sitter parse check.bqn
 
 Are you a [Helix](https://helix-editor.com/) user? Then try:
 
-1. Add the following to your $CONFIG/helix/languages.toml (Note: this does not include settings for bqnlsp. Please check the wiki about it.)
+1. Add the following to your $CONFIG/helix/languages.toml (Note: this does not include settings for bqnlsp. Please check [the wiki](https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers#bqn) about it.)
 
 ```toml
 [[language]]
