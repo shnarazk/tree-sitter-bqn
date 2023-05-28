@@ -1783,6 +1783,10 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
           "type": "PATTERN",
           "value": "'.'"
         },
@@ -1892,10 +1896,6 @@
     "symbol_sl": {
       "type": "CHOICE",
       "members": [
-        {
-          "type": "STRING",
-          "value": "@"
-        },
         {
           "type": "SYMBOL",
           "name": "character"

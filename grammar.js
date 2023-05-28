@@ -176,7 +176,7 @@ module.exports = grammar({
     block: $ => seq("{", repeat($.CASE_opt), $.CASE_end, "}"),
 
     number: $          => token(choice(/¯?[∞]/, /¯π([eE]¯?\d+)?/, /¯?\d+(\.\d+)?([eE]¯?\d+)?/)),
-    character: $       => choice(/'.'/, /'\\u[0-9a-fA-F]{4}'/),
+    character: $       => choice('@', /'.'/, /'\\u[0-9a-fA-F]{4}'/),
     string: $          => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
     system_s: $        => token(seq(
       "•",
@@ -187,7 +187,6 @@ module.exports = grammar({
       '𝕨', '𝕩', '𝕗', '𝕘', '𝕤',
     ),
     symbol_sl: $       => choice(
-      '@',
       $.character, $.string, $.number
     ),
     system_F: $        => token(seq(
