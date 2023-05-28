@@ -80,17 +80,6 @@ $ tree-sitter parse check.bqn
 - [target color schema](https://github.com/helix-editor/helix/blob/53f47bc47771c94dab51626ca025be28e62eba0c/runtime/themes/solarized_light.toml#L1-L23)
 - [textobjects](https://docs.helix-editor.com/guides/textobject.html)
 
-# Changelog and Loadmap
-
-1. Phase1: quite simplified -- basic expressions
-2. Phase2: simplified -- statements
-3. Phase3: shaping -- modifiers
-4. Phase4: tedious -- untyped blocks
-5. Phase5: 'Quite tedious' -- fix errors, give up a better grammar
-6. Release 0.1.0 -- provide misc queries
-7. Release 0.2.0 -- better textobjects and auto indents
-7. Release 0.2.1 -- categorize `@` as a character
-
 # A configuration for Helix
 
 Are you a [Helix](https://helix-editor.com/) user? Then try:
