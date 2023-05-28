@@ -76,7 +76,7 @@ $ tree-sitter parse check.bqn
                                 (number [0, 28] - [0, 30])))))))))))))))))
 ```
 
-# Loadmap
+# Changelog and Loadmap
 
 1. Phase1: quite simplified -- basic expressions
 2. Phase2: simplified -- statements
@@ -85,22 +85,38 @@ $ tree-sitter parse check.bqn
 5. Phase5: 'Quite tedious' -- fix errors, give up a better grammar
 6. Release 0.1.0 -- provide misc queries
 7. Release 0.2.0 -- better textobjects and auto indents
+7. Release 0.2.1 -- categorize `@` as a character
 
 # A configuration for Helix
 
 Are you a [Helix](https://helix-editor.com/) user? Then try:
 
-1. Add the following to your $CONFIG/helix/languages.toml
+1. Add the following to your $CONFIG/helix/languages.toml (Note: this does not include settings for bqnlsp. Please check the wiki about it.)
 
 ```toml
 [[language]]
 name = "bqn"
+language-id = "bqn"
+file-types = ["bqn"]
+injection-regex = "bqn"
 scope = "source.bqn"
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+shebangs = ["BQN", "CBQN", "bqn", "cbqn"]
 
 [[grammar]]
 name = "bqn"
 source.git = "https://github.com/shnarazk/tree-sitter-bqn"
-source.rev = "20fbe4cc2b4f6d398421f570fa80dd383a6ef956" or something new
+source.rev = "a56f2d20ee42d39afe67730eeb13c2f41e1b0877" or something new
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+"'" = "'"
+'"' = '"'
+'⟨' = '⟩'
 ```
 
 2. Build up on shell:
@@ -116,16 +132,11 @@ $ hx -g build
 $ cp -r queries $HELIX/runtime/queries/bqn
 ```
 
-```apl
-# What you can do now in Helix:
-#   - traverse function blocks by `]f` and `[f`
-#   - traverse function headers by `]a` and `[a`
-#   - traverse namespaces by `]t` and `[t`
-#   - traverse comments by `]c` and `[c`
-
-J ⇐ { F x: 2⋆x; w F x: x + w }
-K ← (⌽⋈∨)       # no block here
-l ⇐ { w ⇐ 10, Y ⇐ J }
-_m ⇐ { 𝔽 _mod: 𝔽´⁼ }
-ns ⇐ { w ⇐ 3, k ⇐ 10 }
-```
+Now you can:
+- expand/shrink selection by moving up AST
+- indent after `:`, `?`, `{`, `⟨` and so on
+- outdent at `}`, `⟩`, `;` and so on
+- traverse function blocks by `]f` and `[f`
+- traverse function headers by `]a` and `[a`
+- traverse namespaces by `]t` and `[t`
+- traverse comments by `]c` and `[c`
