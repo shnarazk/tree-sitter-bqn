@@ -41,4 +41,4 @@
   (symbol__cl_)
   (symbol__c_)
   (system__c_)
-] @function.special
+] @special
