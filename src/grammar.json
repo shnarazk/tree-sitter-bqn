@@ -638,56 +638,64 @@
       }
     },
     "m2_Expr_": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "mod_2_"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "symbol__c_"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "ASGN"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "m2_Expr_"
-            }
-          ]
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 5,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "mod_2_"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "symbol__c_"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ASGN"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "m2_Expr_"
+              }
+            ]
+          }
+        ]
+      }
     },
     "m1_Expr": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "mod_1"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "symbol__m"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "ASGN"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "m1_Expr"
-            }
-          ]
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 5,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "mod_1"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "symbol__m"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ASGN"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "m1_Expr"
+              }
+            ]
+          }
+        ]
+      }
     },
     "Derv": {
       "type": "CHOICE",

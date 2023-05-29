@@ -86,8 +86,8 @@ module.exports = grammar({
     subject: $ => choice($.atom, seq($.ANY, repeat1(seq('‿', $.ANY)))),
 
     ASGN: $     => prec.right(choice('←', $.symbol_export, '↩')),
-    m2_Expr_: $ => choice($.mod_2_, seq($.symbol__c_, $.ASGN, $.m2_Expr_)),
-    m1_Expr: $  => choice($.mod_1, seq($.symbol__m, $.ASGN, $.m1_Expr)),
+    m2_Expr_: $ => prec.left(5, choice($.mod_2_, seq($.symbol__c_, $.ASGN, $.m2_Expr_))),
+    m1_Expr: $  => prec.left(5, choice($.mod_1, seq($.symbol__m, $.ASGN, $.m1_Expr))),
 
     Derv: $     => choice(
       $.Func,
