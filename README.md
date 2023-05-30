@@ -8,6 +8,7 @@ Structual editing and highlighting [BQN](https://mlochbaum.github.io/BQN) progra
 - A simplified grammar
 
 This `tree-sitter-bqn` provides a parser for a simplified BQN grammar, in which blocks (`subExpr`, `FuncExpr`, `_m1Expr` and `_m2_Expr`) are unified as a typeless `block` type.
+
 So you get the following from `{⋆}{𝔾𝔽¨𝕩}+{𝔽´}{↕10}`:
 
 ```
