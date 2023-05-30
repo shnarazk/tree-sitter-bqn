@@ -3,13 +3,71 @@ Structual editing and highlighting [BQN](https://mlochbaum.github.io/BQN) progra
 
 ![](https://user-images.githubusercontent.com/997855/241345573-dd2ed350-d7e7-4c7b-8709-7fa9290eba47.png)
 
-`tree-sitter-bqn` provides a parser for a simplified BQN grammar, in which blocks (`subExpr`, `FuncExpr`, `_m1Expr` and `_m2_Expr`) are unified as a typeless `block` type.
-So you get the following:
+## Implementation memo
+
+- A simplified grammar
+
+This `tree-sitter-bqn` provides a parser for a simplified BQN grammar, in which blocks (`subExpr`, `FuncExpr`, `_m1Expr` and `_m2_Expr`) are unified as a typeless `block` type.
+So you get the following from `{⋆}{𝔾𝔽¨𝕩}+{𝔽´}{↕10}`:
 
 ```
-$ cat check.bqn
-(((+))(((⌜))))((˜))((↕)10)
-$ tree-sitter parse check.bqn
+(source_file [0, 0] - [1, 0]
+  (STMT [0, 0] - [0, 15]
+    (EXPR [0, 0] - [0, 15]
+      (subExpr [0, 0] - [0, 15]
+        (arg [0, 0] - [0, 15]
+          (subject [0, 0] - [0, 3]
+            (atom [0, 0] - [0, 3]
+              (block [0, 0] - [0, 3]
+                (CASE_end [0, 1] - [0, 2]
+                  (BODY [0, 1] - [0, 2]
+                    (STMT [0, 1] - [0, 2]
+                      (EXPR [0, 1] - [0, 2]
+                        (FuncExpr [0, 1] - [0, 2]
+                          (Train [0, 1] - [0, 2]
+                            (Fork [0, 1] - [0, 2]
+                              (Derv [0, 1] - [0, 2]
+                                (Func [0, 1] - [0, 2]
+                                  (symbol_Fl [0, 1] - [0, 2])))))))))))))
+          (Derv [0, 3] - [0, 11]
+            (Func [0, 3] - [0, 11]
+              (block [0, 3] - [0, 11]
+                (CASE_end [0, 4] - [0, 10]
+                  (BODY [0, 4] - [0, 10]
+                    (STMT [0, 4] - [0, 10]
+                      (EXPR [0, 4] - [0, 10]
+                        (FuncExpr [0, 4] - [0, 10]
+                          (Train [0, 4] - [0, 10]
+                            (Fork [0, 4] - [0, 10]
+                              (Derv [0, 4] - [0, 10]
+                                (Operand [0, 4] - [0, 8]
+                                  (Derv [0, 4] - [0, 8]
+                                    (Func [0, 4] - [0, 8]
+                                      (specialname_F [0, 4] - [0, 8]))))
+                                (mod_1 [0, 8] - [0, 10]
+                                  (symbol__ml [0, 8] - [0, 10])))))))))))))
+          (subExpr [0, 11] - [0, 15]
+            (arg [0, 11] - [0, 15]
+              (subject [0, 11] - [0, 15]
+                (atom [0, 11] - [0, 15]
+                  (block [0, 11] - [0, 15]
+                    (CASE_end [0, 12] - [0, 14]
+                      (BODY [0, 12] - [0, 14]
+                        (STMT [0, 12] - [0, 14]
+                          (EXPR [0, 12] - [0, 14]
+                            (subExpr [0, 12] - [0, 14]
+                              (arg [0, 12] - [0, 14]
+                                (subject [0, 12] - [0, 14]
+                                  (atom [0, 12] - [0, 14]
+                                    (symbol_sl [0, 12] - [0, 14]
+                                      (number [0, 12] - [0, 14])))))))))))))))))))
+```
+
+- This is a CFG but not LR(1)
+
+`(((+))(((⌜))))((˜))((↕)10)` gives
+
+```
 (source_file [0, 0] - [0, 31]
   (STMT [0, 0] - [0, 31]
     (EXPR [0, 0] - [0, 31]
@@ -73,7 +131,7 @@ $ tree-sitter parse check.bqn
                                 (number [0, 28] - [0, 30])))))))))))))))))
 ```
 
-### References
+## References
 
 - [Specification BQN grammar](https://mlochbaum.github.io/BQN/spec/grammar.html)
 - [tree-sitter tutorial](https://tree-sitter.github.io/tree-sitter/creating-parsers)
