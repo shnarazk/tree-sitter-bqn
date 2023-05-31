@@ -1,4 +1,4 @@
-["·" "@"] @constant.builtin
+["·"] @constant.builtin
 ["‿" "⟨" "⟩" "[" "]"] @operator
 ["(" ")" "{" "}"] @punctuation.bracket
 
@@ -12,8 +12,8 @@
 ] @keyword.directive
 
 (comment) @comment
-(character) @constant.character
-(number) @constant.numeric
+["@" (character)] @character
+(number) @numeric
 (string) @string
 
 [
