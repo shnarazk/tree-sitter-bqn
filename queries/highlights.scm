@@ -1,4 +1,4 @@
-["·" "@"] @constant.builtin
+["·"] @constant.builtin
 ["‿" "⟨" "⟩" "[" "]"] @operator
 ["(" ")" "{" "}"] @punctuation.bracket
 
@@ -8,12 +8,13 @@
   ";"
   ":"
   "⋄"
+  "⇐"
   (ASGN)
 ] @keyword.directive
 
 (comment) @comment
-(character) @constant.character
-(number) @constant.numeric
+["@" (character)] @character
+(number) @numeric
 (string) @string
 
 [
@@ -24,6 +25,7 @@
 
 [
   (specialname_F)
+  "𝕊"
   (symbol_Fl)
   (symbol_F)
   (system_F)

@@ -1,7 +1,7 @@
 # tree-sitter-bqn
 Structual editing and highlighting [BQN](https://mlochbaum.github.io/BQN) programs with editors powered by [tree-sitter](https://tree-sitter.github.io/)
 
-![](https://user-images.githubusercontent.com/997855/242119630-cf9cc32c-f7ea-4e56-9de1-6366d21074c6.png)
+![](https://user-images.githubusercontent.com/997855/242257497-ec2578eb-45e2-46cd-9a52-cc761e1cdc11.png)
 
 ## Implementation memo
 
