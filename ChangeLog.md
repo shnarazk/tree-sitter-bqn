@@ -1,5 +1,12 @@
 # Changelog and Loadmap
 
+### Release 0.2.3
+
+-(highlight) change some token categories
+    - '@' is `@character` (was `@constant.builtin`)
+    - `character` is `@character`(was `@constant.character`)
+    - `number` is `@numeric` (was `@constant.numeric`)
+
 ### Release 0.2.2
 
 - (highlight) render modifiers as `@special`
