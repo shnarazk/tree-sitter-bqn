@@ -24,6 +24,7 @@
 
 [
   (specialname_F)
+  "𝕊"
   (symbol_Fl)
   (symbol_F)
   (system_F)
