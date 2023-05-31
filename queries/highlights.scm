@@ -8,6 +8,7 @@
   ";"
   ":"
   "⋄"
+  "⇐"
   (ASGN)
 ] @keyword.directive
 
