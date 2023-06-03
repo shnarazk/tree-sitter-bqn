@@ -186,7 +186,7 @@ $ cp -r queries $HELIX/runtime/queries/bqn
 ```
 
 Now you can:
-- expand/shrink selection by moving up/down AST
+- expand/shrink selection by moving up/down AST as we expect
 - indent after `:`, `?`, `{`, `⟨` and so on
 - outdent at `}`, `⟩`, `;` and so on
 - traverse function blocks by `]f` and `[f`
