@@ -66,7 +66,7 @@ So you get the following from `{⋆}{𝔾𝔽¨𝕩}+{𝔽´}{↕10}`:
 
 - This is a CFG but not LR(1)
 
-`(((+))(((⌜))))((˜))((↕)10)` gives
+Thanks to GLR parser, `(((+))(((⌜))))((˜))((↕)10)` is parsed as
 
 ```
 (source_file [0, 0] - [0, 31]
