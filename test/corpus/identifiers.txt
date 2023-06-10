@@ -15,7 +15,7 @@ system value: •Show •Show
 ==================
 identifiers
 ==================
-a‿b¯b‿a_b_c‿F_π‿_m1‿_m2∞_
+a‿b¯b‿a_b_c‿F_π‿_m_1‿__m_2∞__
 ---
 
 (source_file

@@ -205,21 +205,21 @@ module.exports = grammar({
     system__m: $       => token(seq(
       "•",
       optional(repeat(seq(/[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/, '.'))),
-      /_[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/
+      /_+[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/
     )),
     specialname__m: $  => "_𝕣",
     symbol__ml: $      => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`'),
     system__c_: $      => token(seq(
       "•",
       optional(repeat(seq(/[A-Za-z0-9]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/, '.'))),
-      /_[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_/
+      /_+[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_+/
     )),
     specialname__c_: $ => "_𝕣_",
     symbol__cl_: $     => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟'),
     symbol_s: $        => /[a-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/,
     symbol_F: $        => /[A-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/,
-    symbol__m: $       => /_[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/,
-    symbol__c_: $      => /_[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_/,
+    symbol__m: $       => /_+[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/,
+    symbol__c_: $      => /_+[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_+/,
     symbol_export: $   => "⇐",
     comment: $         => /#.*/,
     _end_of_line: $    => token(/\r?\n/),
