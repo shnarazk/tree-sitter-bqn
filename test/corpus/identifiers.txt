@@ -1,0 +1,32 @@
+==================
+system value: •Show •Show
+==================
+•Show •Show
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (FuncExpr
+        (Train
+          (Derv (Func (system_F)))
+          (Fork (Derv (Func (system_F)))))))))
+
+==================
+identifiers
+==================
+a‿b¯b‿a_b_c‿F_π‿_m1‿_m2∞_
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (ANY (atom (symbol_s)))
+            (ANY (atom (symbol_s)))
+            (ANY (atom (symbol_s)))
+            (ANY (Func (symbol_F)))
+            (ANY (mod_1 (symbol__m)))
+            (ANY (mod_2_ (symbol__c_)))))))))
