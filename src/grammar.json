@@ -1789,10 +1789,6 @@
         {
           "type": "PATTERN",
           "value": "'.'"
-        },
-        {
-          "type": "PATTERN",
-          "value": "'\\\\u[0-9a-fA-F]{4}'"
         }
       ]
     },
@@ -1847,7 +1843,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+                      "value": "[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
                     },
                     {
                       "type": "STRING",
@@ -1863,7 +1859,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+            "value": "[a-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
           }
         ]
       }
@@ -1929,7 +1925,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+                      "value": "[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
                     },
                     {
                       "type": "STRING",
@@ -1945,7 +1941,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+            "value": "[A-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
           }
         ]
       }
@@ -2175,7 +2171,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+                      "value": "[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
                     },
                     {
                       "type": "STRING",
@@ -2191,7 +2187,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+            "value": "_+[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
           }
         ]
       }
@@ -2260,7 +2256,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[A-Za-z0-9]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+                      "value": "[A-Za-z0-9]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
                     },
                     {
                       "type": "STRING",
@@ -2276,7 +2272,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "_[A-Za-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_"
+            "value": "_+[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_+"
           }
         ]
       }
@@ -2336,19 +2332,19 @@
     },
     "symbol_s": {
       "type": "PATTERN",
-      "value": "[a-z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+      "value": "[a-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
     },
     "symbol_F": {
       "type": "PATTERN",
-      "value": "[A-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+      "value": "[A-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
     },
     "symbol__m": {
       "type": "PATTERN",
-      "value": "_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?"
+      "value": "_+[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?"
     },
     "symbol__c_": {
       "type": "PATTERN",
-      "value": "_[a-zA-Z]([A-Za-z0-9_]*[A-Za-z0-9]+)?_"
+      "value": "_+[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_+"
     },
     "symbol_export": {
       "type": "STRING",

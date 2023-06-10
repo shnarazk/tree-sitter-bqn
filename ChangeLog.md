@@ -1,5 +1,9 @@
 # Changelog and Loadmap
 
+### Release 0.3.0
+
+- (grammar) `¯π∞` are letters that can be used in identifiers
+
 ### Release 0.2.3
 
 -(highlight) change some token categories
