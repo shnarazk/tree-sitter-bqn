@@ -180,8 +180,8 @@ module.exports = grammar({
     string: $          => token(seq('"', repeat(choice('""', /[^"]+/)), '"')),
     system_s: $        => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/, '.'))),
-      /[a-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/
+      optional(repeat(seq(/[A-Za-z][A-Za-z0-9¯∞π_]*/, '.'))),
+      /[a-z][A-Za-z0-9¯∞π_]*/
     )),
     specialname_s: $   => choice(
       '𝕨', '𝕩', '𝕗', '𝕘', '𝕤',
@@ -191,8 +191,8 @@ module.exports = grammar({
     ),
     system_F: $        => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/, '.'))),
-      /[A-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/
+      optional(repeat(seq(/[A-Za-z][A-Za-z0-9¯∞π_]*/, '.'))),
+      /[A-Z][A-Za-z0-9¯∞π_]*/
     )),
     specialname_F: $   => choice(
       '𝕎', '𝕏', '𝔽', '𝔾', '𝕊',
@@ -204,22 +204,22 @@ module.exports = grammar({
     ),
     system__m: $       => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/, '.'))),
-      /_+[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/
+      optional(repeat(seq(/[A-Za-z][A-Za-z0-9¯∞π_]*/, '.'))),
+      /_+[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π])?/
     )),
     specialname__m: $  => "_𝕣",
     symbol__ml: $      => choice( '˙', '˜', '˘', '¨', '⌜', '⁼', '´', '˝', '`'),
     system__c_: $      => token(seq(
       "•",
-      optional(repeat(seq(/[A-Za-z0-9]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/, '.'))),
-      /_+[A-Za-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_+/
+      optional(repeat(seq(/[A-Za-z0-9][A-Za-z0-9¯∞π_]*/, '.'))),
+      /_+[A-Za-z][A-Za-z0-9¯∞π_]*_/
     )),
     specialname__c_: $ => "_𝕣_",
     symbol__cl_: $     => choice( '∘', '○', '⊸', '⟜', '⌾', '⊘', '◶', '⎊', '⎉', '⚇', '⍟'),
-    symbol_s: $        => /[a-z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/,
-    symbol_F: $        => /[A-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/,
-    symbol__m: $       => /_+[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?/,
-    symbol__c_: $      => /_+[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π]+)?_+/,
+    symbol_s: $        => /[a-z][A-Za-z0-9¯∞π_]*/,
+    symbol_F: $        => /[A-Z][A-Za-z0-9¯∞π_]*/,
+    symbol__m: $       => /_+[a-zA-Z]([A-Za-z0-9¯∞π_]*[A-Za-z0-9¯∞π])?/,
+    symbol__c_: $      => /_+[a-zA-Z][A-Za-z0-9¯∞π_]*_/,
     symbol_export: $   => "⇐",
     comment: $         => /#.*/,
     _end_of_line: $    => token(/\r?\n/),
