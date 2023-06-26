@@ -30,3 +30,17 @@ a‿b¯b‿a_b_c‿F_π‿_m_1‿__m_2∞__
             (ANY (Func (symbol_F)))
             (ANY (mod_1 (symbol__m)))
             (ANY (mod_2_ (symbol__c_)))))))))
+
+==================
+subject_with_trailing_underscores
+==================
+a__B_____
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (subExpr
+        (arg
+          (subject
+            (atom (symbol_s)) ))))))
