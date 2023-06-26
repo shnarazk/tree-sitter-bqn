@@ -2,7 +2,7 @@
 
 ### Release 0.3.1
 
-- (grammar minor change) handle trailing underscores in identifiers correctly
+- (grammar) handle trailing underscores in identifiers correctly
 
 ### Release 0.3.0
 
