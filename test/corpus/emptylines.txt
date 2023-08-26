@@ -1,0 +1,81 @@
+==================
+no empty line between bodies: {𝕩 ; 𝕨+𝕩}
+==================
+{𝕩 ; 𝕨⋆𝕩}
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE_opt
+              (BODY
+                (STMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (specialname_s)))))))))
+            (CASE_end
+              (BODY
+                (STMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (specialname_s)))
+                        (Derv
+                          (Func
+                            (symbol_Fl)))
+                        (subExpr
+                          (arg
+                            (subject
+                              (atom
+                                (specialname_s)))))))))))))))))
+
+==================
+empty line between bodies: {𝕩 ; 𝕨+𝕩}
+==================
+{𝕩 ;
+
+𝕨⋆𝕩}
+---
+
+(source_file
+  (STMT
+    (EXPR
+      (m2_Expr_
+        (mod_2_
+          (block
+            (CASE_opt
+              (BODY
+                (STMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (specialname_s)))))))))
+            (CASE_end
+              (sep)
+              (BODY
+                (sep)
+                (STMT
+                  (EXPR
+                    (subExpr
+                      (arg
+                        (subject
+                          (atom
+                            (specialname_s)))
+                        (Derv
+                          (Func
+                            (symbol_Fl)))
+                        (subExpr
+                          (arg
+                            (subject
+                              (atom
+                                (specialname_s)))))))))))))))))
