@@ -192,3 +192,5 @@ Now you can:
 - traverse function headers by `]a` and `[a`
 - traverse namespaces by `]t` and `[t`
 - traverse comments by `]c` and `[c`
+
+I'll make a PR for Helix once the number of `path:*.bqn NOT is:fork` reaches 2000.)
